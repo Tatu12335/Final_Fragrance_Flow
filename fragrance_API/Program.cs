@@ -1,3 +1,13 @@
+using Fragrance_flow_DL_VERSION_;
+using Fragrance_flow_DL_VERSION_.classes;
+using Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine;
+using Fragrance_flow_DL_VERSION_.classes.logic.Suggestion_logic;
+using Fragrance_flow_DL_VERSION_.classes.Services;
+using Fragrance_flow_DL_VERSION_.classes.Sql;
+using Fragrance_flow_DL_VERSION_.interfaces;
+using Fragrance_flow_DL_VERSION_.models;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +17,27 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION");
+if (connectionString == null) return;
+builder.Services.AddSingleton<ILoggger, LoggerService>();
+builder.Services.AddTransient<IFragranceRepo>(sp =>
+            new SqlFragranceRepo(connectionString, sp.GetRequiredService<IPasswordhasher>(),
+            sp.GetRequiredService<ILoggger>()));
+
+builder.Services.AddSingleton<IPasswordhasher, Passwordhasher>();
+
+
+
+builder.Services.AddTransient<FragranceEngine>();
+
+builder.Logging.SetMinimumLevel(LogLevel.Warning);
+
+builder.Services.AddControllers();
+
 var app = builder.Build();
+
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -23,3 +53,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+

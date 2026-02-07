@@ -3,26 +3,26 @@ namespace Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine
 {
     public class FragranceEngine
     {
-        private readonly IWeatherService _weather;
-        private readonly ICli _cli;
+        //private readonly IWeatherService _weather;
+       // private readonly ICli _cli;
         private readonly IFragranceRepo _repo;
-        private readonly IAdminServices _adminServices;
-        private readonly ISuggestion _suggestion;
+        //private readonly IAdminServices _adminServices;
+       // private readonly ISuggestion _suggestion;
         private readonly ILoggger _loggger;
-        public FragranceEngine(IWeatherService weather, ICli cli, IFragranceRepo repo, IAdminServices adminServices, ISuggestion suggestion, ILoggger loggger)
+        public FragranceEngine(/*IWeatherService weather, ICli cli,*/ IFragranceRepo repo,/* IAdminServices adminServices, ISuggestion suggestion,*/ ILoggger loggger)
         {
-            _weather = weather;
-            _cli = cli;
+            //_weather = weather;
+            //_cli = cli;
             _repo = repo;
-            _adminServices = adminServices;
-            _suggestion = suggestion;
+            //_adminServices = adminServices;
+            //_suggestion = suggestion;
             _loggger = loggger;
         }
         public async Task RUN()
         {
 
-            
-            string username = await _cli.UserPanel();
+            await _repo.GetAllAsync();
+            /*string username = await _cli.UserPanel();
 
             string password = _cli.UserPanel_PasswordAsync();
 
@@ -108,7 +108,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine
 
                 await _cli.ExecuteCommand(command, username, Id.id);
 
-            }
+            }*/
 
 
         }
