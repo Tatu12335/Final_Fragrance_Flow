@@ -1,0 +1,31 @@
+body
+{
+    background-color: #917bfe6b;
+    font-family: 'Arial', sans-serif;
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsoghaat.co.uk%2Fwp-content%2Fuploads%2F2023%2F09%2FSpectre-Ghost-Perfume-Eau-De-Parfum-100ml-by-FA-Paris-Fragrance-World-scaled.jpg&f=1&nofb=1&ipt=6430992667d18ad871d36e1df9c7942ca0fa5aa2391a67311787e8e0df532971');
+}
+.login-container {
+    width: 400px;
+    margin: 100px auto;
+    padding: 30px;
+    background-color: #ffffff58;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#username, #password {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #917bfe3f;
+}
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #917bfe3f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
