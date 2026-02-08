@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
+
 namespace WindowsForms_version
 {
     public partial class Form1 : Form
@@ -15,6 +18,23 @@ namespace WindowsForms_version
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            
+            new CreateAnAccount().ShowDialog();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var passwordToHash = textBox2.Text;
         }
     }
 }

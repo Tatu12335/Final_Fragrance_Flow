@@ -21,7 +21,8 @@ namespace Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine
         public async Task RUN()
         {
 
-            await _repo.GetAllAsync();
+            //await _repo.GetAllAsync();
+            
             /*string username = await _cli.UserPanel();
 
             string password = _cli.UserPanel_PasswordAsync();
