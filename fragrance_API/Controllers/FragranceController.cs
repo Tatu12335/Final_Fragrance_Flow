@@ -7,7 +7,7 @@ using Microsoft.Identity.Client;
 namespace fragrance_API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Fragrances")]
     public class FragranceController : ControllerBase
     {
         private readonly IFragranceRepo _repository;
@@ -16,19 +16,19 @@ namespace fragrance_API.Controllers
         {
             _repository = repository;
         }
-        /*[HttpGet]
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             var fragrances = await _repository.GetAllAsync();
             return Ok(fragrances);
-        }*/
-        [HttpGet]
+        }
+        /*[HttpGet]
         public async Task<IActionResult> GetUserFragrances(string username, int id)
         {
             var fragrances = await _repository.GetFragrancesByUserId(username, id);
             return Ok(fragrances);
 
-        }
+        }*/
 
 
 
