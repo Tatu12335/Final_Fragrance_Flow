@@ -4,10 +4,10 @@ using Fragrance_flow_DL_VERSION_.classes;
 using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.Identity.Client;
 
-namespace fragrance_API.Controllers
+namespace fragrance_API.Controllers.Fragrance_Controllers
 {
     [ApiController]
-    [Route("api/Fragrances")]
+    [Route("api/Fragrance_Flow")]
     public class FragranceController : ControllerBase
     {
         private readonly IFragranceRepo _repository;
