@@ -12,8 +12,8 @@ using Fragrance_flow_DL_VERSION_.models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION");
-if (connectionString == null) return;
+string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION")
+?? throw new InvalidOperationException("'DB_CONNECTION' not found");
 
 builder.Services.AddSingleton<ILoggger, LoggerService>();
 
@@ -32,13 +32,20 @@ builder.Services.AddSingleton<Dbcontext>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
 
 builder.Services.AddControllers();
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -46,7 +53,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

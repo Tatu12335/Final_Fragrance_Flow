@@ -1,6 +1,6 @@
-@fragrance_API_HostAddress = http://localhost:5288
+@fragrance_API_HostAddress = http://localhost:7014
 
 GET {{fragrance_API_HostAddress}}/api/fragrances
-
+Accept: Text/Plain
 
 ###
