@@ -4,4 +4,4 @@
     javascript.
 
   
-  • Update, i learned js and react, so now i start to work on the frontend of my web version.
+  • Update, i learned js and react, so now i start to work on the frontend of my web version. At the same time, im doing a wpf-version.
