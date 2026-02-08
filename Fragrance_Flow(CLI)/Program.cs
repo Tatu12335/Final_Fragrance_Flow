@@ -39,7 +39,7 @@ public class Fragrance_Flow
            new SuggestionLogic(connectionString, sp.GetRequiredService<ILoggger>()));
 
         builder.Services.AddTransient<SuggestionLogic>();
-        builder.Services.AddTransient<ICli, Clirepo>();
+       // builder.Services.AddTransient<ICli, Clirepo>();
 
         builder.Services.AddTransient<FragranceEngine>();
 
@@ -49,7 +49,8 @@ public class Fragrance_Flow
 
         // builder.Services.AddTransient<SuggestionLogic>();
 
-        builder.Services.AddTransient<ICli, Clirepo>();
+        //builder.Services.AddTransient<ICli, Clirepo>();
+
 
         builder.Services.AddTransient<FragranceEngine>();
 

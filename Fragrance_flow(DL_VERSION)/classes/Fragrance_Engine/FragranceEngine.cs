@@ -1,4 +1,5 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
+
 namespace Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine
 {
     public class FragranceEngine
@@ -9,6 +10,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine
         //private readonly IAdminServices _adminServices;
        // private readonly ISuggestion _suggestion;
         private readonly ILoggger _loggger;
+        
         public FragranceEngine(/*IWeatherService weather, ICli cli,*/ IFragranceRepo repo,/* IAdminServices adminServices, ISuggestion suggestion,*/ ILoggger loggger)
         {
             //_weather = weather;
@@ -17,9 +19,12 @@ namespace Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine
             //_adminServices = adminServices;
             //_suggestion = suggestion;
             _loggger = loggger;
+
         }
         public async Task RUN()
         {
+
+
 
             //await _repo.GetAllAsync();
             

@@ -10,11 +10,7 @@ namespace Fragrance_Flow_WPF_
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
+            
         }
     }
 }

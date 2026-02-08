@@ -1,9 +1,74 @@
-﻿public class Helloworld
+﻿
+using Fragrance_flow_DL_VERSION_.classes;
+using Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine;
+using Fragrance_flow_DL_VERSION_.classes.logic.Suggestion_logic;
+using Fragrance_flow_DL_VERSION_.classes.Services;
+using Fragrance_flow_DL_VERSION_.classes.Sql;
+using Fragrance_flow_DL_VERSION_.interfaces;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+
+public class Program
 {
 
 
-    public static void Main(string[] args)
+    public async static Task Main(string[] args)
     {
-        Console.WriteLine("Helloworld");
+        var builder = Host.CreateApplicationBuilder(args);
+        string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION");
+
+        if (string.IsNullOrEmpty(connectionString)) return;
+
+        builder.Services.AddSingleton<ILoggger, LoggerService>();
+
+        builder.Services.AddSingleton<IPasswordhasher, Passwordhasher>();
+
+
+
+        builder.Services.AddTransient<IFragranceRepo>(sp =>
+            new SqlFragranceRepo(connectionString, sp.GetRequiredService<IPasswordhasher>(),
+            sp.GetRequiredService<ILoggger>()));
+
+        builder.Services.AddTransient<IFragranceRepo>(sp =>
+                new SqlFragranceRepo(connectionString, sp.GetRequiredService<IPasswordhasher>(),
+                sp.GetRequiredService<ILoggger>()));
+        builder.Services.AddTransient<IAdminServices>(sp =>
+                   new AdminServices(connectionString,
+                   sp.GetRequiredService<ILoggger>()));
+
+        builder.Services.AddTransient<ISuggestion>(sp =>
+           new SuggestionLogic(connectionString, sp.GetRequiredService<ILoggger>()));
+
+        builder.Services.AddTransient<SuggestionLogic>();
+        // builder.Services.AddTransient<ICli, Clirepo>();
+
+        builder.Services.AddTransient<FragranceEngine>();
+
+        builder.Logging.SetMinimumLevel(LogLevel.Warning);
+
+
+
+        // builder.Services.AddTransient<SuggestionLogic>();
+
+        //builder.Services.AddTransient<ICli, Clirepo>();
+
+
+        builder.Services.AddTransient<FragranceEngine>();
+
+        builder.Logging.SetMinimumLevel(LogLevel.Warning);
+
+        using IHost host = builder.Build();
+
+        var logic = host.Services.GetRequiredService<FragranceEngine>();
+        await logic.RUN();
+
+
     }
+
 }
