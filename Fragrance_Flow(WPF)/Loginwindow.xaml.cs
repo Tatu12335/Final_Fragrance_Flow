@@ -1,23 +1,11 @@
-﻿using Fragrance_flow_DL_VERSION_.classes;
-using Fragrance_flow_DL_VERSION_.classes.Services;
-using Fragrance_flow_DL_VERSION_.interfaces;
+﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Fragrance_flow_DL_VERSION_.models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Fragrance_Flow_WPF_
 {
@@ -25,16 +13,16 @@ namespace Fragrance_Flow_WPF_
     /// Interaction logic for Loginwindow.xaml
     /// </summary>
 
-    
-    public partial class Loginwindow : Window 
+
+    public partial class Loginwindow : Window
     {
-        
+
         // https://localhost:7014/api/Fragrance_Flow/Users?username=tatu
         public Loginwindow()
         {
 
             InitializeComponent();
-            
+
         }
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -67,8 +55,7 @@ namespace Fragrance_Flow_WPF_
                             Passwordhasher hasher = new Passwordhasher();
                             if (hasher.VerifyPassword(password, userInfo.PasswordHash, Convert.FromHexString(userInfo.salt)))
                             {
-                                MessageBox.Show("Login successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                                MainWindow mainWindow = new MainWindow();
+                                MainWindow mainWindow = new MainWindow(username);
                                 mainWindow.Show();
                                 this.Close();
                             }
@@ -88,14 +75,14 @@ namespace Fragrance_Flow_WPF_
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ErrorMessage.Content = ex.Message;
             }
         }
         private void TextBlock_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
     }
@@ -132,5 +119,5 @@ namespace Fragrance_Flow_WPF_
     }
 }
 
-   
+
 

@@ -35,7 +35,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Sql
             {
                 _loggger.Log($" [error] : {ex.Message}. {ex.StackTrace}");
                 throw new Exception(" An error occured : " + ex.Message);
-                
+
             }
         }
         public async Task<IEnumerable<Fragrance>> GetAllAsync()
@@ -84,7 +84,9 @@ namespace Fragrance_flow_DL_VERSION_.classes.Sql
                 {
 
                     var user = await conn.QueryFirstOrDefaultAsync<Users>(sqlQuery, new { Username = username });
-
+                    
+                    if (user == null) return null;
+                    
                     return user;
 
 
@@ -287,7 +289,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Sql
                 throw new Exception(" An error occured : " + ex.Message);
             }
         }
-        
+
     }
-    
+
 }

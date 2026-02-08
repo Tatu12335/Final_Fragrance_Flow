@@ -7,11 +7,6 @@ using Fragrance_flow_DL_VERSION_.classes.Sql;
 using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
 public class Program

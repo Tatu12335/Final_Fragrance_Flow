@@ -1,5 +1,4 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
-using Microsoft.Identity.Client;
 using System.Collections.Concurrent;
 
 namespace Fragrance_flow_DL_VERSION_.classes.Services
@@ -28,14 +27,14 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
         {
             try
             {
-                
+
                 const int maxAttempts = 10;
                 int attempt = 0;
                 FileStream fs = null;
                 while (true)
                 {
                     try
-                    { 
+                    {
                         fs = new FileStream(_filepath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite);
                         fs.Seek(0, SeekOrigin.End);
                         break;
@@ -45,7 +44,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
                         attempt++;
                         if (attempt >= maxAttempts)
                         {
-                            throw; 
+                            throw;
                         }
                         Thread.Sleep(200);
                     }
@@ -66,8 +65,8 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
                     }
                     catch (IOException iex)
                     {
-                        throw new Exception(" IOEXCEPTION occured : " +  iex.Message);
-                       
+                        throw new Exception(" IOEXCEPTION occured : " + iex.Message);
+
                     }
                     catch (UnauthorizedAccessException uaex)
                     {
@@ -81,7 +80,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
             }
             catch (Exception e)
             {
-                throw new Exception(" An error occured 3 : " +  e.Message);
+                throw new Exception(" An error occured 3 : " + e.Message);
             }
         }
         public void Log(string logMessage)
@@ -112,10 +111,10 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
             }
             _disposed = true;
 
-            _logsQue.CompleteAdding(); 
+            _logsQue.CompleteAdding();
             try
             {
-                _worker.Wait(5000); 
+                _worker.Wait(5000);
             }
             catch (AggregateException aex)
             {

@@ -1,5 +1,4 @@
-﻿using Fragrance_flow_DL_VERSION_;
-using Fragrance_flow_DL_VERSION_.classes;
+﻿using Fragrance_flow_DL_VERSION_.classes;
 using Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine;
 using Fragrance_flow_DL_VERSION_.classes.logic.Suggestion_logic;
 using Fragrance_flow_DL_VERSION_.classes.Services;
@@ -8,7 +7,7 @@ using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-// TIME WASTED (Including writting the 1000 line prototype) : 60h 0m. GAWDDAMN
+// TIME WASTED (Including writting the 1000 line prototype) : 61h 0m. GAWDDAMN
 public class Fragrance_Flow
 {
     static async Task Main(string[] args)
@@ -19,10 +18,10 @@ public class Fragrance_Flow
         if (string.IsNullOrEmpty(connectionString)) return;
 
         builder.Services.AddSingleton<ILoggger, LoggerService>();
-        
+
         builder.Services.AddSingleton<IPasswordhasher, Passwordhasher>();
 
-    
+
 
         builder.Services.AddTransient<IFragranceRepo>(sp =>
             new SqlFragranceRepo(connectionString, sp.GetRequiredService<IPasswordhasher>(),
@@ -39,7 +38,7 @@ public class Fragrance_Flow
            new SuggestionLogic(connectionString, sp.GetRequiredService<ILoggger>()));
 
         builder.Services.AddTransient<SuggestionLogic>();
-       // builder.Services.AddTransient<ICli, Clirepo>();
+        // builder.Services.AddTransient<ICli, Clirepo>();
 
         builder.Services.AddTransient<FragranceEngine>();
 

@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Fragrance_flow_DL_VERSION_.models;
-using Fragrance_flow_DL_VERSION_.classes;
-using Fragrance_flow_DL_VERSION_.interfaces;
-using Microsoft.Identity.Client;
+﻿using Fragrance_flow_DL_VERSION_.interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace fragrance_API.Controllers.Fragrance_Controllers
 {

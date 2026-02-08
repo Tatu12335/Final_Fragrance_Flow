@@ -1,7 +1,6 @@
 ﻿
 using Fragrance_flow_DL_VERSION_.interfaces;
 using Fragrance_flow_DL_VERSION_.models;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Fragrance_flow_DL_VERSION_
@@ -88,7 +87,7 @@ namespace Fragrance_flow_DL_VERSION_
         }
         public async Task SUGGEST(double temp, int id)
         {
-            
+
             var fragrance = await _suggestion.ScentOfTheDay(temp, id);
 
             foreach (var item in fragrance)
@@ -417,7 +416,7 @@ namespace Fragrance_flow_DL_VERSION_
             var username = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(username))
             {
-               
+
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(" Username cannot be empty.");
                 Console.ResetColor();

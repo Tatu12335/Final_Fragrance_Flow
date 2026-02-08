@@ -6,10 +6,11 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
 {
     [ApiController]
     [Route("api/Fragrance_Flow/Users")]
-    public class GetAllUserInfoById : Controller
+    public class GetAllUserInfoById : ControllerBase
     {
         private readonly IFragranceRepo _repo;
-        public GetAllUserInfoById(IFragranceRepo repo) {
+        public GetAllUserInfoById(IFragranceRepo repo)
+        {
             _repo = repo;
         }
         /* public IActionResult Index()
@@ -17,9 +18,9 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
              return View();
          }*/
         [HttpGet]
-        public async Task <Users> GetUserInfoByUsername(string username)
+        public async Task<Users> GetUserInfoByUsername(string username)
         {
-           
+
             var userInfo = _repo.CheckIfUserExists(username);
             if (userInfo == null)
             {

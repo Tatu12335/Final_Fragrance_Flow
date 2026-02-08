@@ -1,13 +1,9 @@
 using fragrance_API.Controllers.Fragrance_Controllers;
 using fragrance_API.dbcontext;
-using Fragrance_flow_DL_VERSION_;
 using Fragrance_flow_DL_VERSION_.classes;
-using Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine;
-using Fragrance_flow_DL_VERSION_.classes.logic.Suggestion_logic;
 using Fragrance_flow_DL_VERSION_.classes.Services;
 using Fragrance_flow_DL_VERSION_.classes.Sql;
 using Fragrance_flow_DL_VERSION_.interfaces;
-using Fragrance_flow_DL_VERSION_.models;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,7 +24,9 @@ builder.Services.AddTransient<IAdminServices>(sp =>
            new AdminServices(connectionString,
            sp.GetRequiredService<ILoggger>()));
 
-builder.Services.AddTransient<GetAllUserInfoById>();
+//builder.Services.AddTransient<GetAllUserInfoById>();
+
+builder.Services.AddTransient<GetFragrancesForUserId>();
 
 builder.Services.AddSingleton<Dbcontext>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -37,7 +35,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",builder =>
+    options.AddPolicy("AllowAll", builder =>
     {
         builder.AllowAnyOrigin()
                .AllowAnyMethod()

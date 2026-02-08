@@ -33,7 +33,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
             {
                 _loggger.Log($" [error] : {ex.Message}. {ex.StackTrace}");
                 throw new Exception(" An error occured : " + ex.Message);
-                
+
             }
         }
 
@@ -52,7 +52,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
             {
                 _loggger.Log($" [error] : {ex.Message}. {ex.StackTrace}");
                 throw new Exception(" An error occured : " + ex.Message);
-                
+
             }
         }
         public async Task UnbanUserById(int id)
