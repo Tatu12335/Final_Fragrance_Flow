@@ -8,26 +8,20 @@ namespace fragrance_API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class FragranceController : Controller
+    public class FragranceController : ControllerBase
     {
-        private readonly string _connectionString;
         private readonly IFragranceRepo _repository;
 
-        public FragranceController(string connectionString, IFragranceRepo repository)
+        public FragranceController(IFragranceRepo repository)
         {
-            _connectionString = connectionString;
             _repository = repository;
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpGet]
-        public async Task<ActionResult> GetFrag()
+        public async Task <IActionResult> Get()
         {
             var fragrances = await _repository.GetAllAsync();
             return Ok(fragrances);
         }
+
     }
 }
