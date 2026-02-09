@@ -18,8 +18,8 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Beige">
+
+        <StackPanel x:Name="stackPanel" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Beige">
             <TextBlock Text="Username:" Margin="0,0,0,5"/>
             <TextBox x:Name="UsernameTextBox" Width="200" Margin="0,0,0,10" Background="AliceBlue"
                      BorderBrush="Silver" BorderThickness="3px"/>
@@ -27,14 +27,24 @@
             <PasswordBox x:Name="PasswordBox" Width="200" Margin="0,0,0,20" Background="AliceBlue"
                          BorderBrush="Silver" BorderThickness="3px"/>
             <Button Content="Login" Width="100" Click="LoginButton_Click" BorderBrush="Silver" BorderThickness="3px" RenderTransformOrigin="0.5,0.5" Cursor="Hand">
-                
+
             </Button>
         </StackPanel>
-        <Label x:Name="Welcome" Content="Welcome to Fragrance Flow!" FontSize="24" FontWeight="Bold" Foreground="DarkBlue" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label x:Name="Welcome" Content="Welcome to Fragrance Flow!" FontSize="24" FontWeight="Bold" Foreground="DarkBlue" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        </Label>
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="17,19,222,77" RenderTransformOrigin="0.501,-0.307">
+            <Hyperlink Click="Hyperlink_Click">
+                forgot password?
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="220,20,34,75" RenderTransformOrigin="0.501,-0.307">
+    <Hyperlink Click="Hyperlink_Click_1">
+        create account
+    </Hyperlink>
+        </TextBlock>
 
-        <TextBlock Text="Forgot Password?" Foreground="DarkRed" TextDecorations="Underline" Grid.Column="1" Grid.ColumnSpan="2" Margin="123,163,219,23" Grid.RowSpan="2" Grid.Row="1"
-                   Hyperlink.Click="TextBlock_Click" Cursor="Hand"/>
-        <Label x:Name="ErrorMessage" Content="" Foreground="Red" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label x:Name="ErrorMessage" Content="" Foreground="Red"  Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,75,0,0" Width="572" Grid.Column="1"/>
+
 
     </Grid>
 </Window>

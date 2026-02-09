@@ -1,5 +1,7 @@
-﻿using Fragrance_flow_DL_VERSION_.interfaces;
+﻿using Azure.Core;
+using Fragrance_flow_DL_VERSION_.interfaces;
 using Fragrance_flow_DL_VERSION_.models;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Security.Cryptography;
@@ -64,9 +66,6 @@ namespace Fragrance_Flow_WPF_
                                 ErrorMessage.Content = new Exception(" Incorrect password. Please try again.");
                             }
                         }
-
-
-
                     }
                     else
                     {
@@ -80,11 +79,16 @@ namespace Fragrance_Flow_WPF_
                 ErrorMessage.Content = ex.Message;
             }
         }
-        private void TextBlock_Click(object sender, RoutedEventArgs e)
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e) // This event is Forgot password, i will implement it later, maybe with a security question or something, but for now, it will just be a placeholder.
+        {
+            
+        }
+
+        private void Hyperlink_Click_1(object sender, RoutedEventArgs e) // This event is for the register hyperlink
         {
 
         }
-
     }
     public class Passwordhasher : IPasswordhasher
     {
