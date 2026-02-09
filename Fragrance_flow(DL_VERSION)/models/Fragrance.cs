@@ -4,8 +4,8 @@
     {
         public int id { get; set; }
         //public int userid { get; set; }
-        public string Name { get; set; }
-        public string Brand { get; set; }
+        public string name { get; set; }
+        public string brand { get; set; }
         //public string size { get; set; }
         public string notes { get; set; }
         public string category { get; set; }

@@ -36,27 +36,44 @@ namespace Fragrance_Flow_WPF_
             {
                 using (var client = new HttpClient())
                 {
-                    
+
                     var response = await client.GetAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances?username={_username}");
 
-                    
-                    if (response != null)
+
+                    if (response.IsSuccessStatusCode)
                     {
 
-                        var userInfo = await response.Content.ReadFromJsonAsync<Fragrance>();
+                        var userInfo = await response.Content.ReadFromJsonAsync<List<Fragrance>>();
+                        if (userInfo != null)
+                        {
+                            Listbox1.ItemsSource = null;
+                            Listbox1.Items.Clear();
 
-                        if (userInfo == null) throw new Exception("Failed to deserialize the response into a Fragrance object.");
+                            foreach (var fragrance in userInfo)
+                            {
+                                string row = $"{fragrance.brand} - {fragrance.name}";
+                                Listbox1.Items.Add(row);
+
+                                //MessageBox.Show($"Fragrance Name: {fragrance.Name}\nBrand: {fragrance.Brand}\nNotes: {fragrance.notes}\nCategory: {fragrance.category}\nWeather: {fragrance.weather}\nOccasion: {fragrance.occasion}", "Fragrance Details", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            Listbox1.Items.Refresh();
+                            //Listbox1.ItemsSource = $"{userInfo.Brand},{userInfo.Name}";
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("No fragrance data found for the user.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
 
 
 
-                        Listbox1.ItemsSource = $"{userInfo.Brand},{userInfo.Brand}";
-                       
-                        
-
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to fetch fragrance data from the server.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                     }
-
                 }
             }
             catch (Exception ex)
