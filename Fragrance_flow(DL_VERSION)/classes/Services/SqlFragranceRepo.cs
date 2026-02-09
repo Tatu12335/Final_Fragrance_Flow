@@ -187,8 +187,8 @@ namespace Fragrance_flow_DL_VERSION_.classes.Sql
                     var result = await conn.ExecuteAsync(sqlQuery, new
                     {
                         UserId = userEntity.id,
-                        Name = frag.Name,
-                        Brand = frag.Brand,
+                        Name = frag.name,
+                        Brand = frag.brand,
                         Notes = frag.notes,
                         Category = frag.category,
                         Weather = frag.weather,
