@@ -1,4 +1,5 @@
-﻿using Fragrance_flow_DL_VERSION_.interfaces;
+﻿using Azure.Core;
+using Fragrance_flow_DL_VERSION_.interfaces;
 using Fragrance_flow_DL_VERSION_.models;
 using System.Diagnostics;
 using System.Net.Http;
@@ -79,15 +80,14 @@ namespace Fragrance_Flow_WPF_
             }
         }
 
-
-        private void Button_Click(object sender, RoutedEventArgs e) // Forgot password button
+        private void Hyperlink_Click(object sender, RoutedEventArgs e) // This event is Forgot password, i will implement it later, maybe with a security question or something, but for now, it will just be a placeholder.
         {
-            MessageBox.Show(" Registration functionality is not implemented yet. Please contact support for assistance.", " Registration", MessageBoxButton.OK, MessageBoxImage.Information);
+            
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e) // Register button
+        private void Hyperlink_Click_1(object sender, RoutedEventArgs e) // This event is for the register hyperlink
         {
-            MessageBox.Show(" Registration functionality is not implemented yet. Please contact support for assistance.", " Registration", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
     }
     public class Passwordhasher : IPasswordhasher

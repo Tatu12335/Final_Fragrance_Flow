@@ -32,10 +32,17 @@
         </StackPanel>
         <Label x:Name="Welcome" Content="Welcome to Fragrance Flow!" FontSize="24" FontWeight="Bold" Foreground="DarkBlue" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
         </Label>
-        <Button Grid.Column="1" Grid.Row="1" Margin="229,163,0,0" Background="Transparent" BorderBrush="Transparent" Click="Button_Click">Forgot password?</Button>
-        <Button Content="Register" Width="100" Grid.Column="1" Grid.Row="2" Margin="121,50,121,33" Click="Button_Click_1" 
-                BorderBrush="Transparent" BorderThickness="3px" RenderTransformOrigin="0.509,0.849" Cursor="Hand" Background="Transparent"
-                />
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="17,19,222,77" RenderTransformOrigin="0.501,-0.307">
+            <Hyperlink Click="Hyperlink_Click">
+                forgot password?
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="220,20,34,75" RenderTransformOrigin="0.501,-0.307">
+    <Hyperlink Click="Hyperlink_Click_1">
+        create account
+    </Hyperlink>
+        </TextBlock>
+
         <Label x:Name="ErrorMessage" Content="" Foreground="Red"  Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,75,0,0" Width="572" Grid.Column="1"/>
 
 
