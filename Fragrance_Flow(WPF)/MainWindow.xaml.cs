@@ -15,14 +15,10 @@ namespace Fragrance_Flow_WPF_
             InitializeComponent();
             _username = username;
 
-
-
             try
             {
-
                 GetFragrances();
-
-
+                label1.Content = $" Welcome, {_username}!";
             }
             catch (Exception ex)
             {
@@ -36,9 +32,7 @@ namespace Fragrance_Flow_WPF_
             {
                 using (var client = new HttpClient())
                 {
-
                     var response = await client.GetAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances?username={_username}");
-
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -52,27 +46,18 @@ namespace Fragrance_Flow_WPF_
                             foreach (var fragrance in userInfo)
                             {
                                 string row = $"{fragrance.brand} - {fragrance.name}";
-                                Listbox1.Items.Add(row);
-
-                                //MessageBox.Show($"Fragrance Name: {fragrance.Name}\nBrand: {fragrance.Brand}\nNotes: {fragrance.notes}\nCategory: {fragrance.category}\nWeather: {fragrance.weather}\nOccasion: {fragrance.occasion}", "Fragrance Details", MessageBoxButton.OK, MessageBoxImage.Information);
+                                Listbox1.Items.Add(row);  
                             }
                             Listbox1.Items.Refresh();
-                            //Listbox1.ItemsSource = $"{userInfo.Brand},{userInfo.Name}";
-
                         }
                         else
                         {
                             MessageBox.Show("No fragrance data found for the user.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-
-
-
                         }
                     }
                     else
                     {
                         MessageBox.Show("Failed to fetch fragrance data from the server.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
                     }
                 }
             }
