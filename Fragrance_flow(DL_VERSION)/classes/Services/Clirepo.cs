@@ -93,7 +93,7 @@ namespace Fragrance_flow_DL_VERSION_
             foreach (var item in fragrance)
             {
                 Console.WriteLine("");
-                Console.WriteLine($" [TEMPERATURE : {temp}], I suggest {item.Brand},{item.Name}");
+                Console.WriteLine($" [TEMPERATURE : {temp}], I suggest {item.brand},{item.name}");
                 Console.WriteLine("");
             }
         }
@@ -323,7 +323,7 @@ namespace Fragrance_flow_DL_VERSION_
                         var frags = await _repo.GetFragrancesByUserId(username, id);
                         foreach (var frag in frags)
                         {
-                            Console.WriteLine($"ID : {frag.id} Name : {frag.Name}, Brand : {frag.Brand}, Category : {frag.category}, Notes : {frag.notes}, Occasion :{frag.occasion}.");
+                            Console.WriteLine($"ID : {frag.id} Name : {frag.name}, Brand : {frag.brand}, Category : {frag.category}, Notes : {frag.notes}, Occasion :{frag.occasion}.");
                         }
                         break;
                     }
@@ -396,7 +396,7 @@ namespace Fragrance_flow_DL_VERSION_
                         return;
                     }
 
-                    Console.WriteLine($" Todays suggestion Is : [{suggestion.Brand}, {suggestion.Name}]");
+                    Console.WriteLine($" Todays suggestion Is : [{suggestion.brand}, {suggestion.name}]");
                     _logger.Log($" User : '{username}', used 'suggest -f'.");
 
                     break;
@@ -517,7 +517,7 @@ namespace Fragrance_flow_DL_VERSION_
             }
             Console.WriteLine($" Fragrance : {Brand}, {Name}, added successfully");
             _logger.Log($" Fragrance : {Brand}, {Name}, added successfully");
-            return new Fragrance { Name = Name, Brand = Brand, category = Category, notes = Notes, occasion = Occasion, weather = Weather };
+            return new Fragrance { name = Name, brand = Brand, category = Category, notes = Notes, occasion = Occasion, weather = Weather };
         }
         public void ShowPrompt()
         {

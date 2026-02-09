@@ -17,7 +17,7 @@ namespace Fragrance_Flow_WPF_
     public partial class Loginwindow : Window
     {
 
-        // https://localhost:7014/api/Fragrance_Flow/Users?username=tatu
+        // https://localhost:7014/api/Fragrance_Flow/Users?username
         public Loginwindow()
         {
 
