@@ -1,5 +1,6 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Fragrance_flow_DL_VERSION_.models;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Security.Cryptography;
@@ -64,9 +65,6 @@ namespace Fragrance_Flow_WPF_
                                 ErrorMessage.Content = new Exception(" Incorrect password. Please try again.");
                             }
                         }
-
-
-
                     }
                     else
                     {
@@ -80,11 +78,17 @@ namespace Fragrance_Flow_WPF_
                 ErrorMessage.Content = ex.Message;
             }
         }
-        private void TextBlock_Click(object sender, RoutedEventArgs e)
-        {
 
+
+        private void Button_Click(object sender, RoutedEventArgs e) // Forgot password button
+        {
+            MessageBox.Show(" Registration functionality is not implemented yet. Please contact support for assistance.", " Registration", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e) // Register button
+        {
+            MessageBox.Show(" Registration functionality is not implemented yet. Please contact support for assistance.", " Registration", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
     public class Passwordhasher : IPasswordhasher
     {

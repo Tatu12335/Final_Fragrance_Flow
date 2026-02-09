@@ -21,6 +21,7 @@ namespace Fragrance_Flow_WPF_
             {
 
                 GetFragrances();
+                label1.Content = $" Welcome, {_username}!";
 
 
             }
