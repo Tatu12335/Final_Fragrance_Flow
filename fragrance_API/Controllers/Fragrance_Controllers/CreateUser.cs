@@ -1,6 +1,7 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Fragrance_flow_DL_VERSION_.models;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
 namespace fragrance_API.Controllers.Fragrance_Controllers
 {
@@ -20,7 +21,7 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
 
         [Route("api/Fragrance_Flow/Users/Create")]
         [HttpPost]
-        public async Task<UserSession> Create(string username, string email, string password)
+        public async Task<UserSession> Create( string username, string email, [FromBody] string password)
         {
             try
             {

@@ -17,7 +17,7 @@ namespace Fragrance_Flow_WPF_
     public partial class Loginwindow : Window
     {
 
-        // https://localhost:7014/api/Fragrance_Flow/Users?username
+        
         public Loginwindow()
         {
 
@@ -85,6 +85,8 @@ namespace Fragrance_Flow_WPF_
 
         private void Hyperlink_Click_1(object sender, RoutedEventArgs e) // This event is for the register hyperlink
         {
+            var username = UsernameTextBox.Text;
+            var password = PasswordBox.Password;
             this.Hide();
             CreateAuser createAuserWindow = new CreateAuser();
             createAuserWindow.Show();
