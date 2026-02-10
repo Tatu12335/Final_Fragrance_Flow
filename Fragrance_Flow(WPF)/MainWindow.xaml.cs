@@ -1,7 +1,7 @@
 ﻿using Fragrance_flow_DL_VERSION_.models;
-using System.Windows;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Windows;
 namespace Fragrance_Flow_WPF_
 {
     /// <summary>
@@ -46,7 +46,7 @@ namespace Fragrance_Flow_WPF_
                             foreach (var fragrance in userInfo)
                             {
                                 string row = $"{fragrance.brand} - {fragrance.name}";
-                                Listbox1.Items.Add(row);  
+                                Listbox1.Items.Add(row);
                             }
                             Listbox1.Items.Refresh();
                         }
