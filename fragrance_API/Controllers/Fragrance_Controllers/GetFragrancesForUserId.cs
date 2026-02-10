@@ -1,6 +1,7 @@
-﻿using Fragrance_flow_DL_VERSION_.interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
+using Fragrance_flow_DL_VERSION_.interfaces;
 using Fragrance_flow_DL_VERSION_.models;
-using Microsoft.AspNetCore.Mvc;
+using Fragrance_flow_DL_VERSION_.classes;
 
 namespace fragrance_API.Controllers.Fragrance_Controllers
 {
@@ -14,7 +15,7 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
             _repo = repo;
         }
         [HttpGet("Fragrances")]
-        public async Task<IEnumerable<Fragrance>> GetFragrancesByUserId(string username)
+        public async Task <IEnumerable<Fragrance>> GetFragrancesByUserId(string username)
         {
             Users userInfo = await _repo.CheckIfUserExists(username);
             if (userInfo == null)
