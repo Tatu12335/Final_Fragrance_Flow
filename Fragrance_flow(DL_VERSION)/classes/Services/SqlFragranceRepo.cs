@@ -84,9 +84,9 @@ namespace Fragrance_flow_DL_VERSION_.classes.Sql
                 {
 
                     var user = await conn.QueryFirstOrDefaultAsync<Users>(sqlQuery, new { Username = username });
-
+                    
                     if (user == null) return null;
-
+                    
                     return user;
 
 
