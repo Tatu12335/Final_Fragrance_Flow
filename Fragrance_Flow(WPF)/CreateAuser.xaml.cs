@@ -1,4 +1,3 @@
-﻿using System.Windows;
 
 namespace Fragrance_Flow_WPF_
 {
