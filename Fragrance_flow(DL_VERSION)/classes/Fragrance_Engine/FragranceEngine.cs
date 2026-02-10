@@ -5,10 +5,10 @@ namespace Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine
     public class FragranceEngine
     {
         private readonly IWeatherService _weather;
-         private readonly ICli _cli;
+        private readonly ICli _cli;
         private readonly IFragranceRepo _repo;
         private readonly IAdminServices _adminServices;
-         private readonly ISuggestion _suggestion;
+        private readonly ISuggestion _suggestion;
         private readonly ILoggger _loggger;
 
         public FragranceEngine(IWeatherService weather, ICli cli, IFragranceRepo repo, IAdminServices adminServices, ISuggestion suggestion, ILoggger loggger)
@@ -56,7 +56,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine
                 }
 
             }
-           
+
             if (session == null)
             {
                 return;
