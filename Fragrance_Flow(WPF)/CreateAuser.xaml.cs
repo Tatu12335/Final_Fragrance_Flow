@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Text.Json;
 using Newtonsoft.Json;
+using Fragrance_flow_DL_VERSION_.interfaces;
 namespace Fragrance_Flow_WPF_
 {
     /// <summary>
@@ -16,7 +17,8 @@ namespace Fragrance_Flow_WPF_
         public CreateAuser()
         {
             InitializeComponent();
-           
+            
+            
         }
 
         private async void CreateAccountButton_Click(object sender, RoutedEventArgs e)
@@ -33,9 +35,9 @@ namespace Fragrance_Flow_WPF_
 
                     var userData = new
                     {
-                        Username = UsernameTextBox.Text,
-                        Email = EmailBox.Text
-                        Password = 
+                        username = UsernameTextBox.Text,
+                        email = EmailBox.Text,
+                        password = PasswordBox.Password,
                     };
 
                     
@@ -54,7 +56,7 @@ namespace Fragrance_Flow_WPF_
                     }
                     else
                     {
-                        MessageBox.Show(" An error occured","Error",MessageBoxButton.OK, MessageBoxImage.Error );
+                        MessageBox.Show($" An error occured : {response.StatusCode}","Error",MessageBoxButton.OK, MessageBoxImage.Error );
                     }
                     
                 }

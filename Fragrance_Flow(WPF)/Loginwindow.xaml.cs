@@ -87,6 +87,7 @@ namespace Fragrance_Flow_WPF_
         {
             var username = UsernameTextBox.Text;
             var password = PasswordBox.Password;
+            
             this.Hide();
             CreateAuser createAuserWindow = new CreateAuser();
             createAuserWindow.Show();
