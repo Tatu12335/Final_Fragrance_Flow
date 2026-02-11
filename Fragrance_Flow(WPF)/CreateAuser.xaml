@@ -21,13 +21,13 @@
                 </Grid.RowDefinitions>
                 <Label Content="Username:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
                 <TextBox x:Name="UsernameTextBox" Grid.Row="0" Grid.Column="1" Margin="5,9,5,1"/>
-                <Label Content="Password:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="189,0,0,0"/>
-                <PasswordBox x:Name="PasswordBox" Grid.Row="2" Grid.Column="1" Margin="5,4,5,4"/>
-                <Label Content="Confirm Password:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,1,5,0"/>
-                <TextBox x:Name="EmailBox" Grid.Column="1" Margin="5,45,5,23" Grid.RowSpan="3"/>
-                <Button Content="Create Account" Grid.Row="3" HorizontalAlignment="Left" Margin="86,53,0,-23" Click="CreateAccountButton_Click" Grid.Column="1"/>
-                <Label Content="Email:" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,36,10,0" Grid.RowSpan="3" />
-                <PasswordBox x:Name="ConfirmPasswordBox" Grid.Row="3" Grid.Column="1" Margin="5,1,5,23"/>
+                <Label Content="Password:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="189,3,0,0" Grid.RowSpan="2"/>
+                <PasswordBox x:Name="PasswordBox" Grid.Row="3" Grid.Column="1" Margin="5,5,5,32"/>
+                <Label Content="Confirm Password:" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="147,35,0,0"/>
+                <TextBox x:Name="EmailBox" Grid.Column="1" Margin="5,0,5,16" Grid.RowSpan="2" Grid.Row="1"/>
+                <Button Content="Create Account" Grid.Row="3" HorizontalAlignment="Left" Margin="87,83,0,-53" Click="CreateAccountButton_Click" Grid.Column="1"/>
+                <Label Content="Email:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="209,0,0,0" Grid.Row="1" />
+                <PasswordBox x:Name="ConfirmPasswordBox" Grid.Row="3" Grid.Column="1" Margin="5,22,5,2"/>
             </Grid>
         </StackPanel>
     </Grid>

@@ -29,6 +29,9 @@ builder.Services.AddTransient<IAdminServices>(sp =>
 builder.Services.AddTransient<GetFragrancesForUserId>();
 
 builder.Services.AddSingleton<Dbcontext>();
+builder.Services.AddTransient<CreateUser>();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
