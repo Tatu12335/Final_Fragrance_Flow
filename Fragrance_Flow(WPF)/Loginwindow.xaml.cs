@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using Newtonsoft.Json;
 
 namespace Fragrance_Flow_WPF_
 {
@@ -19,7 +20,7 @@ namespace Fragrance_Flow_WPF_
     public partial class Loginwindow : Window
     {
 
-        // https://localhost:7014/api/Fragrance_Flow/Users?username
+        
         public Loginwindow()
         {
 
@@ -39,37 +40,33 @@ namespace Fragrance_Flow_WPF_
                     await Task.CompletedTask;
                 }
 
-                using (var client = new HttpClient())
+                using (HttpClient client = new HttpClient())
                 {
-                    var response = await client.GetAsync($"https://localhost:7014/api/Fragrance_Flow/Users?username={username}");
-                    if (response != null)
+
+                    var userData = new
                     {
-                        var userInfo = await response.Content.ReadFromJsonAsync<Users>();
+                        username = UsernameTextBox.Text,
+                        password = PasswordBox.Password,
+                    };
 
-                        if (userInfo == null)
-                        {
 
-                            ErrorMessage.Content = new Exception(" User not found. Please check your username and try again.");
+                    var json = JsonConvert.SerializeObject(userData);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                        }
-                        else
-                        {
-                            Passwordhasher hasher = new Passwordhasher();
-                            if (hasher.VerifyPassword(password, userInfo.PasswordHash, Convert.FromHexString(userInfo.salt)))
-                            {
-                                MainWindow mainWindow = new MainWindow(username);
-                                mainWindow.Show();
-                                this.Close();
-                            }
-                            else
-                            {
-                                ErrorMessage.Content = new Exception(" Incorrect password. Please try again.");
-                            }
-                        }
+
+                    var response = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/Login", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        
+                        this.Close();
+                        MainWindow mainWindow = new MainWindow(username);
+                        mainWindow.Show();
+
                     }
                     else
                     {
-                        ErrorMessage.Content = new Exception(" Error connecting to the server.");
+                        MessageBox.Show($" An error occured : {response.StatusCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 
                 }
@@ -87,6 +84,12 @@ namespace Fragrance_Flow_WPF_
 
         private void Hyperlink_Click_1(object sender, RoutedEventArgs e) // This event is for the register hyperlink
         {
+            var username = UsernameTextBox.Text;
+            var password = PasswordBox.Password;
+            
+            this.Hide();
+            CreateAuser createAuserWindow = new CreateAuser();
+            createAuserWindow.Show();
 
         }
     }
