@@ -1,7 +1,10 @@
 ﻿using Fragrance_flow_DL_VERSION_.models;
-using System.Windows;
+using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
 namespace Fragrance_Flow_WPF_
 {
     /// <summary>
@@ -30,35 +33,37 @@ namespace Fragrance_Flow_WPF_
         {
             try
             {
-                using (var client = new HttpClient())
+                using (HttpClient client = new HttpClient())
                 {
-                    var response = await client.GetAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances?username={_username}");
 
+                    var userData = new
+                    {
+                        username = _username,
+                        
+                    };
+
+
+                    var json = JsonConvert.SerializeObject(userData);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+
+                    var response = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/Fragrances", content);
+                    Listbox1.Items.Clear();
                     if (response.IsSuccessStatusCode)
                     {
-
-                        var userInfo = await response.Content.ReadFromJsonAsync<List<Fragrance>>();
-                        if (userInfo != null)
+                       foreach(var item in await response.Content.ReadFromJsonAsync<Fragrance[]>())
                         {
-                            Listbox1.ItemsSource = null;
-                            Listbox1.Items.Clear();
+                            Listbox1.Items.Add($" {item.name} | {item.brand}");
+                        }
 
-                            foreach (var fragrance in userInfo)
-                            {
-                                string row = $"{fragrance.brand} - {fragrance.name}";
-                                Listbox1.Items.Add(row);  
-                            }
-                            Listbox1.Items.Refresh();
-                        }
-                        else
-                        {
-                            MessageBox.Show("No fragrance data found for the user.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
+
+
                     }
                     else
                     {
-                        MessageBox.Show("Failed to fetch fragrance data from the server.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($" An error occured 2 : {response.ReasonPhrase}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
+
                 }
             }
             catch (Exception ex)

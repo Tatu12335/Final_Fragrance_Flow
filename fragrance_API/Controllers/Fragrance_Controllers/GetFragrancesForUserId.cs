@@ -9,20 +9,25 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
     [Route("api/Fragrance_Flow")]
     public class GetFragrancesForUserId : Controller
     {
+        public class UserIdRequest
+        {
+            public string username { get; set; }
+        }
         private readonly IFragranceRepo _repo;
         public GetFragrancesForUserId(IFragranceRepo repo)
         {
             _repo = repo;
         }
-        [HttpGet("Fragrances")]
-        public async Task <IEnumerable<Fragrance>> GetFragrancesByUserId(string username)
+        [Route("Fragrances")]
+        [HttpPost]
+        public async Task <IEnumerable<Fragrance>> GetFragrancesByUserId([FromBody] UserIdRequest id)
         {
-            Users userInfo = await _repo.CheckIfUserExists(username);
+            Users userInfo = await _repo.CheckIfUserExists(id.username);
             if (userInfo == null)
             {
                 return null;
             }
-            var fragrances = await _repo.GetFragrancesByUserId(username, userInfo.id);
+            var fragrances = await _repo.GetFragrancesByUserId(id.username, userInfo.id);
             return fragrances;
         }
     }
