@@ -59,14 +59,15 @@ namespace Fragrance_Flow_WPF_
                     if (response.IsSuccessStatusCode)
                     {
                         
-                        this.Close();
+                        
                         MainWindow mainWindow = new MainWindow(username);
                         mainWindow.Show();
+                        this.Close();
 
                     }
                     else
                     {
-                        MessageBox.Show($" An error occured : {response.StatusCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($" An error occured : {response.StatusCode} {response.ReasonPhrase}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 
                 }

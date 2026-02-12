@@ -38,9 +38,7 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
             if (data == null || string.IsNullOrEmpty(data.password)) return BadRequest(" Missing information");
             try
             {
-                var user = await _repo.CreateNewUserAsync(data.username,data.email,data.password);
-
-                
+                var user = await _repo.CreateNewUserAsync(data.username,data.email,data.password);  
 
                 return Ok(new {message = " User creation successfull!"});
                 
