@@ -52,9 +52,9 @@ namespace Fragrance_Flow_WPF_
                     if (response.IsSuccessStatusCode)
                     {
                        foreach(var item in await response.Content.ReadFromJsonAsync<Fragrance[]>())
-                        {
+                       {
                             Listbox1.Items.Add($" {item.name} | {item.brand}");
-                        }
+                       }
 
 
 
@@ -70,6 +70,11 @@ namespace Fragrance_Flow_WPF_
             {
                 throw new Exception(" An error occured while fetching fragrances : " + ex.Message);
             }
+        }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
