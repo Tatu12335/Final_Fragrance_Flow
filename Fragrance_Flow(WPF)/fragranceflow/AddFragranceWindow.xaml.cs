@@ -51,12 +51,12 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
 
 
-                    var response = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/Fragrances/Add", content);
+                    var response = await client.PostAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/Add/{_username}", content);
                     
                     if (response.IsSuccessStatusCode)
                     {
                        
-
+                        MessageBox.Show(content.ToString(), "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
 
                     }

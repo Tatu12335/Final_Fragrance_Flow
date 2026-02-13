@@ -54,9 +54,9 @@ namespace Fragrance_Flow_WPF_
                     if (response.IsSuccessStatusCode)
                     {
                        foreach(var item in await response.Content.ReadFromJsonAsync<Fragrance[]>())
-                        {
+                       {
                             Listbox1.Items.Add($" {item.name} | {item.brand}");
-                        }
+                       }
 
 
 
@@ -76,6 +76,7 @@ namespace Fragrance_Flow_WPF_
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
+
             Window addFragranceWindow = new AddFragranceWindow(_username);
             addFragranceWindow.Show();
         }

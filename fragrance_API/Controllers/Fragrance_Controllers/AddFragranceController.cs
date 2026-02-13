@@ -17,17 +17,17 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
         }
 
         [HttpPost("Add")]
-        public async Task<IActionResult> AddFragrance([FromBody] Fragrance fragrance)
+        public async Task<IActionResult> AddFragrance([FromBody] Fragrance fragrance,UserSession user)
         {
             try
             {
-                var user = HttpContext.User.Identity.Name; 
-                if(string.IsNullOrEmpty(user))
+               
+                if(string.IsNullOrEmpty(user.Username))
                 {
                     return Unauthorized(new { message = "User not authenticated" });
                 }
 
-                await _repo.AddFragrance(user, fragrance);
+                await _repo.AddFragrance(user.Username, fragrance);
                 return Ok(new { message = "Fragrance added successfully" });
             }
             catch (Exception ex)
