@@ -5,6 +5,8 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using Fragrance_Flow_WPF_.fragranceflow;
 namespace Fragrance_Flow_WPF_
 {
     /// <summary>
@@ -75,6 +77,8 @@ namespace Fragrance_Flow_WPF_
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
 
+            Window addFragranceWindow = new AddFragranceWindow(_username);
+            addFragranceWindow.Show();
         }
     }
 }
