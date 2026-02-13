@@ -1,0 +1,22 @@
+﻿<Window x:Class="Fragrance_Flow_WPF_.fragranceflow.AddFragranceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fragrance_Flow_WPF_.fragranceflow"
+        mc:Ignorable="d"
+        Title="AddFragranceWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Add a New Fragrance" FontSize="24" FontWeight="Bold" Foreground="DarkBlue" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
+        <StackPanel Margin="20,0,20,0" VerticalAlignment="Center" Height="414">
+            <Label Content="Fragrance Name:" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtFragranceName" Height="30" Margin="0,5,0,15"/>
+            <Label Content="Brand:" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtBrand" Height="30" Margin="0,5,0,15"/>
+            <Label Content="Notes:" FontSize="16" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtNotes" Height="21" TextWrapping="Wrap"/>
+            <Button Content="Add Fragrance" Width="150" Height="25" Background="#FF4CAF50" Foreground="White" FontSize="16" FontWeight="Bold"
+                    Click="Button_Click" RenderTransformOrigin="0.3,0.518"/>
+        </StackPanel>
+    </Grid>
+</Window>
