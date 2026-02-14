@@ -17,7 +17,7 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
         }
 
         [HttpPost("Add")]
-        public async Task<IActionResult> AddFragrance([FromBody] Fragrance fragrance,UserSession user)
+        public async Task<IActionResult> AddFragrance([FromBody] Fragrance fragrance,[FromHeader] UserSession user)
         {
             try
             {
