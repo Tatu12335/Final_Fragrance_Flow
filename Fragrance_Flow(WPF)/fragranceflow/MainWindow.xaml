@@ -23,6 +23,7 @@
         </ListBox>
         <Label Content="Fragrances" HorizontalAlignment="Center" Margin="0,88,0,0" VerticalAlignment="Top" Height="41" Width="86" RenderTransformOrigin="0.648,0.502" FontSize="16" Grid.RowSpan="2"/>
         <Button x:Name="BtnAdd" Content="Button" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="86" Margin="0,10,0,0" FontSize="16" FontWeight="Bold"
+        <Button x:Name="BtnAdd" Content="Add" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="86" Margin="0,10,0,0" FontSize="16" FontWeight="Bold"
                 Click="BtnAdd_Click"/>
 
     </Grid>

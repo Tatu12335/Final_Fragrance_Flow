@@ -38,7 +38,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                     var userData = new
                     {
-                        
+                        username = _username,
                         name = txtFragranceName,
                         brand = txtBrand,
                         notes = txtNotes,
