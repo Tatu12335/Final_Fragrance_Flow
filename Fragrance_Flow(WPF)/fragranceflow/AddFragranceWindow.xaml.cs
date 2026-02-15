@@ -42,6 +42,9 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                         name = txtFragranceName,
                         brand = txtBrand,
                         notes = txtNotes,
+                        occasion = txtOccasion,
+                        weather = txtWeather,
+
 
 
                     };

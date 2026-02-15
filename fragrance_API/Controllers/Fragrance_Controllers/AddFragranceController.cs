@@ -17,17 +17,17 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
         }
 
         [HttpPost("Add")]
-        public async Task<IActionResult> AddFragrance([FromBody] Fragrance fragrance,[FromHeader] UserSession user)
+        public async Task<IActionResult> AddFragrance([FromBody] Fragrance fragrance,string username)
         {
             try
             {
-               
-                if(string.IsNullOrEmpty(user.Username))
-                {
-                    return Unauthorized(new { message = "User not authenticated" });
-                }
 
-                await _repo.AddFragrance(user.Username, fragrance);
+                var userid = _repo.GetUserId(username);
+                if (userid == null) throw new Exception("userid is null, did you try to add a fragrance to a user that doesnt exist");
+
+                await _repo.AddFragrance(username,fragrance);
+                
+                
                 return Ok(new { message = "Fragrance added successfully" });
             }
             catch (Exception ex)
