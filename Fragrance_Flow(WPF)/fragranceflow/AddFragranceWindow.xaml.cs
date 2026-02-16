@@ -38,13 +38,12 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                     var userData = new
                     {
-                        username = _username,
-                        name = txtFragranceName,
-                        brand = txtBrand,
-                        notes = txtNotes,
-                        occasion = txtOccasion,
-                        weather = txtWeather,
-
+                        name = txtFragranceName.Text,
+                        brand = txtBrand.Text,
+                        notes = txtNotes.Text,
+                        category = txtCategory.Text,                       
+                        weather = txtWeather.Text,
+                        occasion = txtOccasion.Text,
 
 
                     };
@@ -54,25 +53,26 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
 
 
-                    var response = await client.PostAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/Add/{_username}", content);
+                    var response = await client.PostAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/Add/{_username}/", content);
                     
                     if (response.IsSuccessStatusCode)
                     {
-                       
-                        MessageBox.Show(content.ToString(), "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        MessageBox.Show(json, "Sent data");
 
 
                     }
                     else
                     {
-                        MessageBox.Show($" An error occured 2 : {response.ReasonPhrase}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        var error = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($" An error occured 2 : {response.ReasonPhrase} - {error}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception(" An error occured while fetching fragrances : " + ex.Message);
+                MessageBox.Show($" An error occured :{ex.Message}");
             }
         }
     }
