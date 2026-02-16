@@ -36,7 +36,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                 using (HttpClient client = new HttpClient())
                 {
 
-                    var userData = new
+                    var fragranceData = new
                     {
                         name = txtFragranceName.Text,
                         brand = txtBrand.Text,
@@ -49,31 +49,36 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                     };
 
 
-                    var json = JsonConvert.SerializeObject(userData);
+                    var json = JsonConvert.SerializeObject(fragranceData);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    
 
-
-                    var response = await client.PostAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/Add/{_username}/", content);
+                    var response = await client.PostAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/Add?username={_username}", content);
                     
                     if (response.IsSuccessStatusCode)
                     {
 
-                        MessageBox.Show(json, "Sent data");
+                        MessageBox.Show(json, "Sent data",MessageBoxButton.OK);
 
 
                     }
                     else
                     {
                         var error = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show($" An error occured 2 : {response.ReasonPhrase} - {error}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($" An error occured 2 : {response.StatusCode} - {error}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($" An error occured :{ex.Message}");
+                MessageBox.Show($" An error occured :{ex.Message}","Fatal error");
             }
+        }
+
+        private void txtFragranceName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -21,9 +21,11 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
         {
             try
             {
+                
+                
+                
 
-                var userid = _repo.GetUserId(username);
-                if (userid == null) throw new Exception("userid is null, did you try to add a fragrance to a user that doesnt exist");
+                if (fragrance == null) throw new Exception("userid is null, did you try to add a fragrance to a user that doesnt exist");
 
                 await _repo.AddFragrance(username,fragrance);
                 
