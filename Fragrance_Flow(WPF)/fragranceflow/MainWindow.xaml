@@ -25,6 +25,7 @@
         
         <Button x:Name="BtnAdd" Content="Add" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="86" Margin="0,10,0,0" FontSize="16" FontWeight="Bold"
                 Click="BtnAdd_Click"/>
-
+        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="86" Margin="0,50,0,0" FontSize="16" FontWeight="Bold"
+        Click="BtnDelete_Click"/>
     </Grid>
 </Window>

@@ -12,9 +12,10 @@ namespace Fragrance_Flow_WPF_
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window 
     {
         private string _username;
+        
         public MainWindow(string username)
         {
             InitializeComponent();
@@ -30,6 +31,7 @@ namespace Fragrance_Flow_WPF_
                 throw new Exception(" An error occured while loading the main window : " + ex.Message);
             }
 
+            
         }
         public async void GetFragrances()
         {
@@ -55,7 +57,9 @@ namespace Fragrance_Flow_WPF_
                     {
                        foreach(var item in await response.Content.ReadFromJsonAsync<Fragrance[]>())
                        {
-                            Listbox1.Items.Add($" {item.name} | {item.brand}");
+                            Listbox1.Items.Add($"{item.id}, {item.name} | {item.brand}");
+                            
+                            
                        }
 
 
@@ -79,6 +83,40 @@ namespace Fragrance_Flow_WPF_
 
             Window addFragranceWindow = new AddFragranceWindow(_username);
             addFragranceWindow.Show();
+        }
+        private async void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                
+
+                using (HttpClient client = new HttpClient())
+                {
+
+                    var id = Listbox1.SelectedItems; 
+
+                    var userData = new
+                    { 
+                        id = id
+                    };
+                    
+                    var json = JsonConvert.SerializeObject(userData);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    var response = await client.PostAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/delete?username={_username}", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show(json, "Remove successful", MessageBoxButton.OK);
+                    }
+                    MessageBox.Show(response.ReasonPhrase);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($" An error occured : Failed to delete {ex.Message}");
+            }
         }
     }
 }
