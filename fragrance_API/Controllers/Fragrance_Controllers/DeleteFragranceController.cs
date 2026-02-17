@@ -1,6 +1,7 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Fragrance_flow_DL_VERSION_.models;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace fragrance_API.Controllers.Fragrance_Controllers
 {
@@ -14,11 +15,11 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
             _repo = repo;
         }
         [HttpDelete]
-        public async Task <IActionResult> Delete([FromBody] Users user,Fragrance fragrance)
+        public async Task <IActionResult> Delete([FromBody] Fragrance fragrance,string username)
         {
-            var userId = await _repo.GetUserId(user.username);
+            var userId = await _repo.GetUserId(username);
             
-            if (userId == null) throw new Exception(" An error occured : Are you sure the user exists");
+            
 
             try
             {
