@@ -18,6 +18,7 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
              return View();
          }*/
         [HttpGet]
+        
         public async Task<Users> GetUserInfoByUsername(string username)
         {
 
