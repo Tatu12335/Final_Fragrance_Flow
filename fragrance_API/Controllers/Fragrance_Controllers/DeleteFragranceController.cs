@@ -17,9 +17,7 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
         [HttpDelete]
         public async Task <IActionResult> Delete([FromBody] Fragrance fragrance,string username)
         {
-            var userId = await _repo.GetUserId(username);
-            
-            
+            var userId = await _repo.GetUserId(username);       
 
             try
             {
