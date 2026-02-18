@@ -7,15 +7,43 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Fragrance_Flow_WPF_.fragranceflow;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 namespace Fragrance_Flow_WPF_
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    
     public partial class MainWindow : Window 
     {
         private string _username;
-        
+
+        public class Observable : INotifyPropertyChanged 
+        {
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            public void NotifyPropertyChanged([CallerMemberName] string propertyName == null)
+            {
+                PropertyChangedEventHandler handler = PropertyChanged;
+                if(handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+
+        private ObservableCollection<Fragrance> _selectedFrag;
+        public ObservableCollection<Fragrance > SelectedFrag
+        {
+            get { return _selectedFrag; }
+            set 
+            { 
+                
+                _selectedFrag = value; 
+                
+            }
+        }
+
         public MainWindow(string username)
         {
             InitializeComponent();
@@ -57,12 +85,8 @@ namespace Fragrance_Flow_WPF_
                     {
                        foreach(var item in await response.Content.ReadFromJsonAsync<Fragrance[]>())
                        {
-                            Listbox1.Items.Add($"{item.id}, {item.name} | {item.brand}");
-                            
-                            
+                            Listbox1.Items.Add($"{item.id}, {item.name} | {item.brand}");     
                        }
-
-
 
                     }
                     else
@@ -93,11 +117,11 @@ namespace Fragrance_Flow_WPF_
                 using (HttpClient client = new HttpClient())
                 {
 
-                    var id = Listbox1.SelectedItems; 
+                     
 
                     var userData = new
                     { 
-                        id = id
+                        id =
                     };
                     
                     var json = JsonConvert.SerializeObject(userData);
@@ -119,4 +143,5 @@ namespace Fragrance_Flow_WPF_
             }
         }
     }
+
 }
