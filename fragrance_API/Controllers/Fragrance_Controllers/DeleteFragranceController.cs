@@ -15,13 +15,13 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
             _repo = repo;
         }
         [HttpDelete]
-        public async Task <IActionResult> Delete([FromBody] Fragrance fragrance,string username)
+        public async Task <IActionResult> Delete(string username,int id)
         {
             var userId = await _repo.GetUserId(username);       
 
             try
             {
-                await _repo.RemoveFragranceById(userId.id, fragrance.id);
+                await _repo.RemoveFragranceById(userId.id, id);
                 return Ok(new {message = " Remove successful"});
             }
             catch (Exception ex)
