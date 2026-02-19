@@ -20,20 +20,15 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
         {
             try
             {
-
-
-
-
                 if (fragrance == null) throw new Exception("userid is null, did you try to add a fragrance to a user that doesnt exist");
 
                 await _repo.AddFragrance(username, fragrance);
-
 
                 return Ok(new { message = "Fragrance added successfully" });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = $"Error adding fragrance: {ex.Message}" });
+                return StatusCode(500,new { message = $"Error adding fragrance: {ex.Message}" });
             }
 
         }
