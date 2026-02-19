@@ -26,7 +26,7 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception($" An error occured : {ex.Message}");
+                return StatusCode(500);
                 
             }
         }
