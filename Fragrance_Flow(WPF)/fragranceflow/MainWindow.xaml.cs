@@ -57,13 +57,18 @@ namespace Fragrance_Flow_WPF_
 
 
                     var response = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/Fragrances", content);
-                    Listbox1.Items.Clear();
+                    
                     if (response.IsSuccessStatusCode)
                     {
-                       foreach(var item in await response.Content.ReadFromJsonAsync<Fragrance[]>())
-                       {
-                            Listbox1.Items.Add($"{item.id}, {item.name} | {item.brand}");     
-                       }
+                        var responseData = await response.Content.ReadAsStringAsync();
+                         
+                        
+                        var fragrances = JsonConvert.DeserializeObject<List<Fragrance>>(responseData);
+                        Listbox1.ItemsSource = fragrances;
+
+
+
+
 
                     }
                     else
@@ -93,34 +98,30 @@ namespace Fragrance_Flow_WPF_
 
                 using (HttpClient client = new HttpClient())
                 {
-                    //var selectedFragrance = Listbox1.SelectedItem as Fragrance;
+                    var selectedFragrance = Listbox1.SelectedItem as Fragrance;
 
-                    object rawItem = Listbox1.SelectedItem;
 
-                    if(rawItem == null)
+                    if (selectedFragrance == null)
                     {
-                        MessageBox.Show(" Select a fragrance to delete first");
+                        MessageBox.Show(selectedFragrance.GetType().FullName);
                         return;
                     }
-                    var selected = rawItem as Fragrance;
+                    
+                    
 
-                    if (selected == null)
-                    {
-                        MessageBox.Show(rawItem.GetType().Name);
-                        return;
-                    }
+                   
 
-
-                    int idToDelete = selected.id;
-
+                    var idToDelete = selectedFragrance.id;
+                   
+                    
 
                     var response = await client.DeleteAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/delete?username={_username}&id={idToDelete}");
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("Fragrance remove successful", "Remove success", MessageBoxButton.OK);
+                        MessageBox.Show("Fragrance remove successful", "Removal successful", MessageBoxButton.OK);
                     }
-                    MessageBox.Show(response.ReasonPhrase);
+                    return;
 
                 }
             }
