@@ -1,26 +1,20 @@
 ﻿using Fragrance_flow_DL_VERSION_.models;
+using Fragrance_Flow_WPF_.fragranceflow;
 using Newtonsoft.Json;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using Fragrance_Flow_WPF_.fragranceflow;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 namespace Fragrance_Flow_WPF_
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    
-    public partial class MainWindow : Window 
+
+    public partial class MainWindow : Window
     {
         private string _username;
 
- 
+
 
         public MainWindow(string username)
         {
@@ -36,7 +30,7 @@ namespace Fragrance_Flow_WPF_
                 throw new Exception(" An error occured while loading the main window : " + ex.Message);
             }
 
-            
+
         }
         public async void GetFragrances()
         {
@@ -48,7 +42,7 @@ namespace Fragrance_Flow_WPF_
                     var userData = new
                     {
                         username = _username,
-                        
+
                     };
 
 
@@ -57,12 +51,12 @@ namespace Fragrance_Flow_WPF_
 
 
                     var response = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/Fragrances", content);
-                    
+
                     if (response.IsSuccessStatusCode)
                     {
                         var responseData = await response.Content.ReadAsStringAsync();
-                         
-                        
+
+
                         var fragrances = JsonConvert.DeserializeObject<List<Fragrance>>(responseData);
                         Listbox1.ItemsSource = fragrances;
 
@@ -94,7 +88,7 @@ namespace Fragrance_Flow_WPF_
         {
             try
             {
-                
+
 
                 using (HttpClient client = new HttpClient())
                 {
@@ -106,14 +100,14 @@ namespace Fragrance_Flow_WPF_
                         MessageBox.Show(selectedFragrance.GetType().FullName);
                         return;
                     }
-                    
-                    
 
-                   
+
+
+
 
                     var idToDelete = selectedFragrance.id;
-                   
-                    
+
+
 
                     var response = await client.DeleteAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/delete?username={_username}&id={idToDelete}");
 
