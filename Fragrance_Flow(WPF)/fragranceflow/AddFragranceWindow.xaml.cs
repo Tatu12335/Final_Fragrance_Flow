@@ -33,14 +33,11 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                         category = txtCategory.Text,
                         weather = txtWeather.Text,
                         occasion = txtOccasion.Text,
-
-
                     };
 
 
                     var json = JsonConvert.SerializeObject(fragranceData);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-
 
                     var response = await client.PostAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/Add?username={_username}", content);
 
@@ -53,7 +50,6 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                         var error = await response.Content.ReadAsStringAsync();
                         MessageBox.Show($" An error occured 2 : {response.StatusCode} - {error}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-
                 }
             }
             catch (Exception ex)

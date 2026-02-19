@@ -13,10 +13,6 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
         {
             _repo = repo;
         }
-        /* public IActionResult Index()
-         {
-             return View();
-         }*/
         [HttpGet]
 
         public async Task<Users> GetUserInfoByUsername(string username)

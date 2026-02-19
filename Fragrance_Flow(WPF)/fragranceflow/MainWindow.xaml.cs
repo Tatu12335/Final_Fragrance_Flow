@@ -14,8 +14,6 @@ namespace Fragrance_Flow_WPF_
     {
         private string _username;
 
-
-
         public MainWindow(string username)
         {
             InitializeComponent();
@@ -49,21 +47,14 @@ namespace Fragrance_Flow_WPF_
                     var json = JsonConvert.SerializeObject(userData);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-
                     var response = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/Fragrances", content);
 
                     if (response.IsSuccessStatusCode)
                     {
                         var responseData = await response.Content.ReadAsStringAsync();
 
-
                         var fragrances = JsonConvert.DeserializeObject<List<Fragrance>>(responseData);
                         Listbox1.ItemsSource = fragrances;
-
-
-
-
-
                     }
                     else
                     {
@@ -88,8 +79,6 @@ namespace Fragrance_Flow_WPF_
         {
             try
             {
-
-
                 using (HttpClient client = new HttpClient())
                 {
                     var selectedFragrance = Listbox1.SelectedItem as Fragrance;
@@ -101,13 +90,7 @@ namespace Fragrance_Flow_WPF_
                         return;
                     }
 
-
-
-
-
                     var idToDelete = selectedFragrance.id;
-
-
 
                     var response = await client.DeleteAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/delete?username={_username}&id={idToDelete}");
 

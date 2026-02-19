@@ -1,3 +1,4 @@
+using fragrance_API.Controllers.AdminControllers;
 using fragrance_API.Controllers.Fragrance_Controllers;
 using fragrance_API.dbcontext;
 using Fragrance_flow_DL_VERSION_.classes;
@@ -31,6 +32,8 @@ builder.Services.AddTransient<GetFragrancesForUserId>();
 builder.Services.AddSingleton<Dbcontext>();
 builder.Services.AddTransient<CreateUser>();
 builder.Services.AddTransient<AddFragranceController>();
+builder.Services.AddTransient<GetAdminStatusController>();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
