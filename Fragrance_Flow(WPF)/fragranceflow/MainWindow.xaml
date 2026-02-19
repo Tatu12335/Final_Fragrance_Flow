@@ -18,7 +18,7 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Label x:Name="label1" Content="Welcome to Fragrance Flow!" FontSize="24" FontWeight="Bold" Foreground="DarkRed" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <ListBox x:Name="Listbox1" Grid.Row="1" Grid.Column="0" Margin="10" Background="Beige" BorderBrush="Silver" BorderThickness="3px" SelectedValuePath="id"/>
+        <ListBox x:Name="Listbox1" Grid.Row="1" Grid.Column="0" Margin="10" Background="Beige" BorderBrush="Silver" BorderThickness="3px" DisplayMemberPath="name"/>
 
 
         <Label Content="Fragrances" HorizontalAlignment="Center" Margin="0,88,0,0" VerticalAlignment="Top" Height="41" Width="86" RenderTransformOrigin="0.648,0.502" FontSize="16" Grid.RowSpan="2"/>
