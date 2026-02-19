@@ -1,19 +1,8 @@
-﻿using Fragrance_flow_DL_VERSION_.models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Fragrance_Flow_WPF_.fragranceflow
 {
@@ -41,7 +30,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                         name = txtFragranceName.Text,
                         brand = txtBrand.Text,
                         notes = txtNotes.Text,
-                        category = txtCategory.Text,                       
+                        category = txtCategory.Text,
                         weather = txtWeather.Text,
                         occasion = txtOccasion.Text,
 
@@ -51,16 +40,13 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                     var json = JsonConvert.SerializeObject(fragranceData);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    
+
 
                     var response = await client.PostAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/Add?username={_username}", content);
-                    
+
                     if (response.IsSuccessStatusCode)
                     {
-
-                        MessageBox.Show(json, "Sent data",MessageBoxButton.OK);
-
-
+                        MessageBox.Show(json, "Sent data", MessageBoxButton.OK);
                     }
                     else
                     {
@@ -72,7 +58,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
             }
             catch (Exception ex)
             {
-                MessageBox.Show($" An error occured :{ex.Message}","Fatal error");
+                MessageBox.Show($" An error occured :{ex.Message}", "Fatal error");
             }
         }
 

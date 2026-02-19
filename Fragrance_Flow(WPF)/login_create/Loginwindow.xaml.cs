@@ -1,14 +1,10 @@
-﻿using Azure.Core;
-using Fragrance_flow_DL_VERSION_.interfaces;
-using Fragrance_flow_DL_VERSION_.models;
-using System.Diagnostics;
+﻿using Fragrance_flow_DL_VERSION_.interfaces;
+using Newtonsoft.Json;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using Newtonsoft.Json;
 
 namespace Fragrance_Flow_WPF_
 {
@@ -20,7 +16,7 @@ namespace Fragrance_Flow_WPF_
     public partial class Loginwindow : Window
     {
 
-        
+
         public Loginwindow()
         {
 
@@ -58,8 +54,8 @@ namespace Fragrance_Flow_WPF_
 
                     if (response.IsSuccessStatusCode)
                     {
-                        
-                        
+
+
                         MainWindow mainWindow = new MainWindow(username);
                         mainWindow.Show();
                         this.Close();
@@ -80,14 +76,14 @@ namespace Fragrance_Flow_WPF_
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e) // This event is Forgot password, i will implement it later, maybe with a security question or something, but for now, it will just be a placeholder.
         {
-            
+
         }
 
         private void Hyperlink_Click_1(object sender, RoutedEventArgs e) // This event is for the register hyperlink
         {
             var username = UsernameTextBox.Text;
             var password = PasswordBox.Password;
-            
+
             this.Hide();
             CreateAuser createAuserWindow = new CreateAuser();
             createAuserWindow.Show();
