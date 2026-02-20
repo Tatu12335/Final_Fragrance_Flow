@@ -20,8 +20,9 @@ namespace fragrance_API.Controllers.AdminControllers
         {
             try
             {
-                var asdasd = await _repository.GetAdminStatus(username);
-                if (asdasd == null) return Ok(new { message = " User is not admin" });
+                var adminStatus = await _repository.GetAdminStatus(username);
+                
+                if (adminStatus == null) return Ok(new { message = " User is not admin" });
                 
                 
                 return Ok(new { message = $" User is admin" });
