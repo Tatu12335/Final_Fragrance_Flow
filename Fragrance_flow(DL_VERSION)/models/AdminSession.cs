@@ -1,8 +1,13 @@
-﻿namespace Fragrance_flow_DL_VERSION_.models
-{
-    public class UserSession
-    {
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace Fragrance_flow_DL_VERSION_.models
+{
+    public class AdminSession
+    {
         public Guid SessionId { get; } = Guid.NewGuid();
         public int UserId { get; init; }
         public string Username { get; init; }
@@ -12,14 +17,10 @@
         public double? Temperature { get; set; }
         public string? Location { get; set; }
 
-
-        public bool IsFullyLoaded => UserId > 0 && Temperature.HasValue && isBanned == 0;
-
-        public UserSession(int userId, string username)
-        {
-            UserId = userId;
+        public AdminSession(string username, int userId) 
+        { 
             Username = username;
-            
+            UserId = userId;
         }
     }
 }

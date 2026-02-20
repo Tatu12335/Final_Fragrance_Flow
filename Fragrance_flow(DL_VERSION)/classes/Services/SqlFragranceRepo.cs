@@ -152,7 +152,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Sql
         public async Task<UserSession?> Login(string username, string password)
         {
             var userEntity = await CheckIfUserExists(username);
-
+            
 
             if (userEntity == null)
             {
@@ -168,9 +168,9 @@ namespace Fragrance_flow_DL_VERSION_.classes.Sql
                 return new UserSession(userEntity.id, userEntity.username);
 
             }
+            
 
-
-            return null;
+                return null;
         }
         public async Task AddFragrance(string username, Fragrance frag)
         {
