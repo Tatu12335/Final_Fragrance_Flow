@@ -22,7 +22,9 @@
 
 
         <Label Content="Fragrances" HorizontalAlignment="Center" Margin="0,88,0,0" VerticalAlignment="Top" Height="41" Width="86" RenderTransformOrigin="0.648,0.502" FontSize="16" Grid.RowSpan="2"/>
-        
+
+        <Button x:Name="BtnAdmin" Content="Admin panel" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" Height="32" FontSize="16" FontWeight="Bold" Visibility="Hidden"
+                Click="BtnAdmin_Click"/>
         <Button x:Name="BtnAdd" Content="Add" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="86" Margin="0,10,0,0" FontSize="16" FontWeight="Bold"
                 Click="BtnAdd_Click"/>
         <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="86" Margin="0,50,0,0" FontSize="16" FontWeight="Bold"

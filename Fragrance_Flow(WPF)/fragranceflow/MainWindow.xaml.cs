@@ -107,6 +107,11 @@ namespace Fragrance_Flow_WPF_
                 MessageBox.Show($" An error occured : Failed to delete {ex.Message}");
             }
         }
+
+        private void BtnAdmin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }
