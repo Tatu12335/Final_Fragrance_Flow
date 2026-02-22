@@ -16,20 +16,20 @@ namespace fragrance_API.Controllers.AdminControllers
         }
 
         [HttpGet("IsAdmin")]
-        public async Task<IActionResult> GetAdminStatus(string username)
+        public async Task<bool> GetAdminStatus(string username)
         {
             try
             {
                 var adminStatus = await _repository.GetAdminStatus(username);
                 
-                if (adminStatus == null) return Ok(new { message = " User is not admin" });
+                if (adminStatus == null) return false;
                 
                 
-                return Ok(new { message = $" User is admin" });
+                return true;
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return false;
             }
         }
     }

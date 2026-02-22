@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="AdminPanel" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel>
+            <Label x:Name="welcome" Content="Welcome" HorizontalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <Button x:Name="BtnBanUser" HorizontalAlignment="Left" Height="20" Width="100"/>
+        </StackPanel>
     </Grid>
 </Window>
