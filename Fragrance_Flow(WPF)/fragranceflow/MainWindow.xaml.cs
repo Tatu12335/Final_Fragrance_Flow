@@ -34,18 +34,20 @@ namespace Fragrance_Flow_WPF_
         {
             try
             {
-                // The problem is not in the api its in this code, fix later
+                
                 using (HttpClient client = new HttpClient())
                 {
                     var isAdmin = await client.GetAsync($"https://localhost:7014/api/Fragrance_Flow/Users/IsAdmin?username={_username}");
                     if (isAdmin == null) return false;
-                    var content = isAdmin.Content.ReadAsStringAsync();
-                    
-                    if(content.ToString() == "false") return false;
+                    var content = isAdmin.Content;
 
-                    BtnAdmin.Visibility = Visibility.Visible;
-                    return true;
-
+                    if (isAdmin.StatusCode == System.Net.HttpStatusCode.NoContent) return false;
+                    else if (isAdmin.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        BtnAdmin.Visibility = Visibility.Visible;
+                        return true;
+                    }
+                    return false;
 
                 }
             }
