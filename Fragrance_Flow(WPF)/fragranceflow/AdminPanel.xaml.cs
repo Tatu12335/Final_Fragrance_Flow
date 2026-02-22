@@ -19,9 +19,13 @@ namespace Fragrance_Flow_WPF_.fragranceflow
     /// </summary>
     public partial class AdminPanel : Window
     {
-        public AdminPanel()
+        private string _username;
+
+        public AdminPanel(string username)
         {
             InitializeComponent();
+            _username = username;
+            welcome.Content = $"Welcome {_username}";
         }
     }
 }

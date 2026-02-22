@@ -30,10 +30,35 @@ namespace Fragrance_Flow_WPF_
 
 
         }
+        public async Task<bool> AdminStatus()
+        {
+            try
+            {
+                // The problem is not in the api its in this code, fix later
+                using (HttpClient client = new HttpClient())
+                {
+                    var isAdmin = await client.GetAsync($"https://localhost:7014/api/Fragrance_Flow/Users/IsAdmin?username={_username}");
+                    if (isAdmin == null) return false;
+                    var content = isAdmin.Content.ReadAsStringAsync();
+                    
+                    if(content.ToString() == "false") return false;
+
+                    BtnAdmin.Visibility = Visibility.Visible;
+                    return true;
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public async void GetFragrances()
         {
             try
             {
+                await AdminStatus();
                 using (HttpClient client = new HttpClient())
                 {
 
@@ -110,7 +135,7 @@ namespace Fragrance_Flow_WPF_
 
         private void BtnAdmin_Click(object sender, RoutedEventArgs e)
         {
-
+       
         }
     }
 
