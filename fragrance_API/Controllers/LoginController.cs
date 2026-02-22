@@ -1,6 +1,5 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using System.Text.Json.Serialization;
 
 namespace fragrance_API.Controllers
@@ -28,14 +27,14 @@ namespace fragrance_API.Controllers
         {
             var userEntity = await _repo.Login(user.username, user.password);
             var IsAdmin = await _repo.GetAdminStatus(user.username);
-            if(userEntity == null)
+            if (userEntity == null)
             {
-                return BadRequest($" Error occured ");
+                return NotFound($" Error occured : User not found ");
             }
-            
-            if(IsAdmin == null) return Ok(new { message = " Successfully logged in, Not admin" });
 
-            return Ok(new {message = " Succesfully logged in, user is admin"});
+            if (IsAdmin == null) return Ok(new { message = " Successfully logged in, Not admin" });
+
+            return Ok(new { message = " Succesfully logged in, user is admin" });
 
         }
 

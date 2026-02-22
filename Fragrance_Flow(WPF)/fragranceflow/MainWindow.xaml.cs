@@ -34,7 +34,7 @@ namespace Fragrance_Flow_WPF_
         {
             try
             {
-                
+
                 using (HttpClient client = new HttpClient())
                 {
                     var isAdmin = await client.GetAsync($"https://localhost:7014/api/Fragrance_Flow/Users/IsAdmin?username={_username}");
@@ -137,7 +137,7 @@ namespace Fragrance_Flow_WPF_
 
         private void BtnAdmin_Click(object sender, RoutedEventArgs e)
         {
-       
+
         }
     }
 

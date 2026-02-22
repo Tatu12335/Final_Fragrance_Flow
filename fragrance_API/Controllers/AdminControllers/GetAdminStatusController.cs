@@ -1,6 +1,5 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography.Xml;
 
 namespace fragrance_API.Controllers.AdminControllers
 {
@@ -16,12 +15,12 @@ namespace fragrance_API.Controllers.AdminControllers
         }
 
         [HttpGet("IsAdmin")]
-        public async Task <IActionResult> GetAdminStatus(string username)
+        public async Task<IActionResult> GetAdminStatus(string username)
         {
             try
             {
                 var adminStatus = await _repository.GetAdminStatus(username);
-                
+
                 if (adminStatus == null) return NoContent();
 
 

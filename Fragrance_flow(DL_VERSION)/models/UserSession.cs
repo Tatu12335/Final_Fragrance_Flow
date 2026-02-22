@@ -19,7 +19,7 @@
         {
             UserId = userId;
             Username = username;
-            
+
         }
     }
 }
