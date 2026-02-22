@@ -28,7 +28,7 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500,new { message = $"Error adding fragrance: {ex.Message}" });
+                return StatusCode(500, new { message = $"Error adding fragrance: {ex.Message}" });
             }
 
         }

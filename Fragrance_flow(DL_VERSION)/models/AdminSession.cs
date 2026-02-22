@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Fragrance_flow_DL_VERSION_.models
+﻿namespace Fragrance_flow_DL_VERSION_.models
 {
     public class AdminSession
     {
@@ -17,8 +11,8 @@ namespace Fragrance_flow_DL_VERSION_.models
         public double? Temperature { get; set; }
         public string? Location { get; set; }
 
-        public AdminSession(string username, int userId) 
-        { 
+        public AdminSession(string username, int userId)
+        {
             Username = username;
             UserId = userId;
         }
