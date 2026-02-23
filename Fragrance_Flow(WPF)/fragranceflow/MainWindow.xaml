@@ -27,7 +27,9 @@
                 Click="BtnAdmin_Click"/>
         <Button x:Name="BtnAdd" Content="Add" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="86" Margin="0,10,0,0" FontSize="16" FontWeight="Bold"
                 Click="BtnAdd_Click"/>
-        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="86" Margin="0,50,0,0" FontSize="16" FontWeight="Bold"
+        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="86" Margin="0,50,0,0" FontSize="16" FontWeight="Bold"                
         Click="BtnDelete_Click"/>
+        <Button  Content="🔁" FontSize="30" Margin="84,26,84,51" HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center" Click="ReFreshButton_Click"/>
     </Grid>
 </Window>
