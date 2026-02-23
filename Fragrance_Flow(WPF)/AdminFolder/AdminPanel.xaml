@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel>
             <Label x:Name="welcome" Content="Welcome" HorizontalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
-            <Button x:Name="BtnBanUser" HorizontalAlignment="Left" Height="20" Width="100"/>
+            <Button x:Name="BtnBanUser" Height="22" Width="100" Click="BtnBanUser_Click" Content="Ban"/>
         </StackPanel>
     </Grid>
 </Window>

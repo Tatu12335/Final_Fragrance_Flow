@@ -15,5 +15,10 @@ namespace Fragrance_Flow_WPF_.fragranceflow
             _username = username;
             welcome.Content = $"Welcome {_username}";
         }
+
+        private void BtnBanUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
