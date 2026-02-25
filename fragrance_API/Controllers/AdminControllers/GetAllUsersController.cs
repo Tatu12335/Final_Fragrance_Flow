@@ -1,5 +1,4 @@
-﻿using Fragrance_flow_DL_VERSION_.classes.Services;
-using Fragrance_flow_DL_VERSION_.interfaces;
+﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace fragrance_API.Controllers.AdminControllers
@@ -13,18 +12,18 @@ namespace fragrance_API.Controllers.AdminControllers
         private readonly IAdminServices _adminServices;
         private readonly IFragranceRepo _repo;
 
-        public GetAllUsersController(IFragranceRepo repo,IAdminServices adminServices)
+        public GetAllUsersController(IFragranceRepo repo, IAdminServices adminServices)
         {
             _repo = repo;
             _adminServices = adminServices;
         }
 
         [HttpGet("UserList")]
-        public async Task <IActionResult> GetUsers()
+        public async Task<IActionResult> GetUsers()
         {
             try
             {
-                var users  = await _adminServices.GetAllUsers();
+                var users = await _adminServices.GetAllUsers();
                 return Ok(users);
             }
             catch (Exception ex)

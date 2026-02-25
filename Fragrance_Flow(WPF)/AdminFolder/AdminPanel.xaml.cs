@@ -1,11 +1,8 @@
 ﻿
 using Fragrance_flow_DL_VERSION_.models;
-using Microsoft.Identity.Client;
 using Newtonsoft.Json;
 using System.Net.Http;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Fragrance_Flow_WPF_.fragranceflow
 {
@@ -28,18 +25,18 @@ namespace Fragrance_Flow_WPF_.fragranceflow
             }
             catch (Exception ex)
             {
-                MessageBox.Show($" An error occured while loading users : {ex.Message}", " Error", MessageBoxButton.OK );
+                MessageBox.Show($" An error occured while loading users : {ex.Message}", " Error", MessageBoxButton.OK);
                 return;
             }
         }
         public async void GetUsers()
         {
-            
+
             try
             {
-                
+
                 using (HttpClient client = new HttpClient())
-                {                   
+                {
 
                     var response = await client.GetAsync("https://localhost:7014/api/Fragrance_Flow/Users/UserList");
 
@@ -48,14 +45,14 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                         var responseData = await response.Content.ReadAsStringAsync();
 
                         var users = JsonConvert.DeserializeObject<IEnumerable<Users>>(responseData);
-                        
+
                         if (users == null) return;
 
-                        
-                     
-                            ListBox2.ItemsSource = users;
-                        
-                        
+
+
+                        ListBox2.ItemsSource = users;
+
+
 
                     }
                     else
@@ -72,7 +69,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
         }
         private void BtnBanUser_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
     }
 }
