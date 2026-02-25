@@ -7,7 +7,7 @@ using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-// TIME WASTED (Including writting the 1000 line prototype) : 73h 30m. GAWDDAMN
+// TIME WASTED (Including writting the 1000 line prototype) : 75h 0m. GAWDDAMN
 public class Fragrance_Flow
 {
     static async Task Main(string[] args)
