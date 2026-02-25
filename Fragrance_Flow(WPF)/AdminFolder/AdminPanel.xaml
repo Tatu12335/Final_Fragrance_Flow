@@ -7,9 +7,24 @@
         mc:Ignorable="d"
         Title="AdminPanel" Height="450" Width="800">
     <Grid>
-        <StackPanel>
-            <Label x:Name="welcome" Content="Welcome" HorizontalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
-            <Button x:Name="BtnBanUser" Height="22" Width="100" Click="BtnBanUser_Click" Content="Ban"/>
-        </StackPanel>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="200"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+            <Label Grid.Row="0" Grid.Column="1" x:Name="welcome" Content="Welcome" HorizontalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <Button Grid.Column="1" Grid.Row="1" x:Name="BtnBanUser" Height="22" Width="100" Click="BtnBanUser_Click" Content="Ban"
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        <ListBox x:Name="ListBox2" Grid.Column="0" Grid.Row="1" DisplayMemberPath="FullUserInfo">
+            
+        </ListBox>
+        
     </Grid>
 </Window>

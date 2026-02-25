@@ -25,7 +25,7 @@ namespace fragrance_API.Controllers.AdminControllers
             try
             {
                 var users  = await _adminServices.GetAllUsers();
-                return Ok();
+                return Ok(users);
             }
             catch (Exception ex)
             {
