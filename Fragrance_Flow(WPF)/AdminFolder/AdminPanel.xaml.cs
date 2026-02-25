@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Fragrance_Flow_WPF_.AdminFolder;
+using System.Windows;
 
 namespace Fragrance_Flow_WPF_.fragranceflow
 {
@@ -18,7 +19,8 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
         private void BtnBanUser_Click(object sender, RoutedEventArgs e)
         {
-
+            BanUserWindow banUser = new BanUserWindow();
+            banUser.Show();
         }
     }
 }
