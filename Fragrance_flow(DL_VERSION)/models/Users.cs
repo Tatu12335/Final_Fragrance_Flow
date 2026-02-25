@@ -10,5 +10,7 @@
         public int isAdmin { get; set; } = 0;
         public int isBanned { get; set; } = 0;
 
+        public string FullUserInfo => $"{id} - {username} - {email} - (ISBANNED) : {isBanned} - (ISADMIN) : {isAdmin}";
+
     }
 }
