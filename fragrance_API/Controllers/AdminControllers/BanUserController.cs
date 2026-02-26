@@ -1,5 +1,6 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Numerics;
 
 namespace fragrance_API.Controllers.AdminControllers
 {
@@ -13,9 +14,17 @@ namespace fragrance_API.Controllers.AdminControllers
             _adminServices = adminServices;
         }
         [HttpPatch]
-        public async Task <IActionResult> BanUser()
+        public async Task <IActionResult> BanUser(int id)
         {
-
+            try
+            {
+                await _adminServices.BanUserById(id);
+                return Ok(new { message = " Banned user successfully" });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($" An error occured banning user : {ex.Message}");
+            }
         }
     }
 }
