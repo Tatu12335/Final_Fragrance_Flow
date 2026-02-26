@@ -24,8 +24,8 @@
                     HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
         <ListBox x:Name="ListBox2" Grid.Column="0" Grid.Row="1" DisplayMemberPath="FullUserInfo">
         </ListBox>
-        <Button Content="🔁" FontSize="30" Margin="84,26,84,51" HorizontalContentAlignment="Center"
-          VerticalContentAlignment="Center" Click="Button_Click" Width="40" Height="40"/>
+        <Button Content="🔁" FontSize="30" Margin="108,10,109,57" HorizontalContentAlignment="Center"
+          VerticalContentAlignment="Center" Click="Button_Click" Width="50" Height="50"/>
 
     </Grid>
 </Window>
