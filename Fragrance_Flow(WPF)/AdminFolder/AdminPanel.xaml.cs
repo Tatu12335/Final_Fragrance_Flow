@@ -2,6 +2,7 @@
 using Fragrance_flow_DL_VERSION_.models;
 using Newtonsoft.Json;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Fragrance_Flow_WPF_.fragranceflow
@@ -57,7 +58,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                     }
                     else
                     {
-                        MessageBox.Show($" An error occured 2 : {response.ReasonPhrase}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($" An error occured : {response.ReasonPhrase}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 
                 }
@@ -67,9 +68,19 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                 throw new Exception(" An error occured while fetching users : " + ex.Message);
             }
         }
-        private void BtnBanUser_Click(object sender, RoutedEventArgs e)
+        private async Task BtnBanUser_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                using(HttpClient client = new HttpClient())
+                {
+                    
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($" An error occured banning user : {ex.Message}");
+            }
         }
     }
 }
