@@ -25,7 +25,7 @@
         <ListBox x:Name="ListBox2" Grid.Column="0" Grid.Row="1" DisplayMemberPath="FullUserInfo">
         </ListBox>
         <Button Content="🔁" FontSize="30" Margin="84,26,84,51" HorizontalContentAlignment="Center"
-          VerticalContentAlignment="Center" Click="ReFreshButton_Click" Width="40" Height="40"/>
+          VerticalContentAlignment="Center" Click="Button_Click" Width="40" Height="40"/>
 
     </Grid>
 </Window>

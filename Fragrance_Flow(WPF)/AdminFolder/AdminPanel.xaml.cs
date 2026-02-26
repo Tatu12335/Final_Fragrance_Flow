@@ -68,7 +68,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                 throw new Exception(" An error occured while fetching users : " + ex.Message);
             }
         }
-        private async Task BtnBanUser_Click(object sender, RoutedEventArgs e)
+        private async void BtnBanUser_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -81,6 +81,11 @@ namespace Fragrance_Flow_WPF_.fragranceflow
             {
                 MessageBox.Show($" An error occured banning user : {ex.Message}");
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
