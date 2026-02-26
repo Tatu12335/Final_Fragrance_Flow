@@ -72,9 +72,19 @@ namespace Fragrance_Flow_WPF_.fragranceflow
         {
             try
             {
-                using(HttpClient client = new HttpClient())
+                var seletedUser = ListBox2.SelectedItem as Users;
+
+                if (seletedUser == null) MessageBox.Show("Please selected a user to ban");
+
+                else
                 {
-                    
+
+
+                    using (HttpClient client = new HttpClient())
+                    {
+                        await client.PatchAsync($"https://localhost:7014/api/Fragrance_Flow/Users/Admin/Ban?id={seletedUser}");
+
+                    }
                 }
             }
             catch(Exception ex)
