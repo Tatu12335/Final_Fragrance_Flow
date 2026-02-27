@@ -14,7 +14,7 @@ namespace fragrance_API.Controllers.AdminControllers
             _adminServices = adminServices;
         }
         [HttpPatch("Ban")]
-        public async Task <IActionResult> BanUser(int id)
+        public async Task <IActionResult> BanUser([FromBody]int id)
         {
             try
             {

@@ -2,6 +2,7 @@
 using Fragrance_flow_DL_VERSION_.models;
 using Newtonsoft.Json;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -82,7 +83,18 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                     using (HttpClient client = new HttpClient())
                     {
-                        await client.PatchAsync($"https://localhost:7014/api/Fragrance_Flow/Users/Admin/Ban?id={seletedUser}");
+                        
+                        var userdata = new
+                        {
+                            seletedUser.id 
+                        };
+
+                        var json = JsonConvert.SerializeObject(userdata);
+                        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                        var response = await client.PatchAsync($"https://localhost:7014/api/Fragrance_Flow/Users/Admin/Ban",content);
+
+                        if (response.IsSuccessStatusCode) MessageBox.Show($"Successfully banned user : {seletedUser.username}");
 
                     }
                 }
@@ -95,7 +107,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            GetUsers();
         }
     }
 }
