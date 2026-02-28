@@ -77,29 +77,28 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                 if (seletedUser == null) MessageBox.Show("Please selected a user to ban");
 
-                else
+
+
+
+                using (HttpClient client = new HttpClient())
                 {
 
-
-                    using (HttpClient client = new HttpClient())
+                    var userdata = new
                     {
-                        
-                        var userdata = new
-                        {
-                            seletedUser.id 
-                        };
+                        seletedUser.id
+                    };
 
-                        var json = JsonConvert.SerializeObject(userdata);
-                        var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var json = JsonConvert.SerializeObject(userdata);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                        var response = await client.PatchAsync($"https://localhost:7014/api/Fragrance_Flow/Users/Admin/Ban",content);
+                    var response = await client.PatchAsync($"https://localhost:7014/api/Fragrance_Flow/Users/Admin/Ban", content);
 
-                        if (response.IsSuccessStatusCode) MessageBox.Show($"Successfully banned user : {seletedUser.username}");
+                    if (response.IsSuccessStatusCode) MessageBox.Show($"Successfully banned user : {seletedUser.username}");
 
-                    }
                 }
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($" An error occured banning user : {ex.Message}");
             }
@@ -108,6 +107,49 @@ namespace Fragrance_Flow_WPF_.fragranceflow
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             GetUsers();
+        }
+
+        private async void ButtonUnban_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
+
+            var selectedUser = ListBox2.SelectedItem as Users;
+
+            if (selectedUser == null) MessageBox.Show("Please selected a user to ban");
+
+            var msg = MessageBox.Show($" Do you want to ban user : {selectedUser.username}", "Select", MessageBoxButton.YesNoCancel);
+
+            if (msg == MessageBoxResult.No) return;
+            if (msg == MessageBoxResult.Cancel) return;
+
+
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var userdata = new
+                    {
+                        selectedUser.id
+                    };
+                    
+                    var json = JsonConvert.SerializeObject(userdata);
+                    var content = new StringContent (json, Encoding.UTF8, "application/json");
+
+                    var response = await client.PatchAsync("https://localhost:7014/api/Fragrance_Flow/Users/Admin/Unban", content);
+                    
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK) MessageBox.Show($"Successfully Unbanned user : {selectedUser.username}");
+                    
+                    return;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($" An error occured while unbanning user [{selectedUser.username}]: {ex.Message}","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+            }
         }
     }
 }

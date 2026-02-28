@@ -9,18 +9,18 @@ namespace fragrance_API.Controllers.AdminControllers
     public class UnbanUserController : Controller
     {
         public readonly IAdminServices _adminService;
-        public UnbanUserController(IAdminServices adminServices) 
-        { 
+        public UnbanUserController(IAdminServices adminServices)
+        {
             _adminService = adminServices;
         }
 
         [HttpPatch("Unban")]
-        public async Task<IActionResult> UnbanUserAsync([FromBody]int id)
+        public async Task<IActionResult> UnbanUserAsync([FromBody] int id)
         {
             try
             {
                 await _adminService.UnbanUserById(id);
-                return Ok(new {message = " Successfully unbanned user" });
+                return Ok(new { message = " Successfully unbanned user" });
             }
             catch (Exception ex)
             {
