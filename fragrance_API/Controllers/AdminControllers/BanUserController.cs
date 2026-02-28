@@ -1,6 +1,5 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Numerics;
 
 namespace fragrance_API.Controllers.AdminControllers
 {
@@ -14,7 +13,7 @@ namespace fragrance_API.Controllers.AdminControllers
             _adminServices = adminServices;
         }
         [HttpPatch("Ban")]
-        public async Task <IActionResult> BanUser([FromBody]int id)
+        public async Task<IActionResult> BanUser([FromBody] int id)
         {
             try
             {

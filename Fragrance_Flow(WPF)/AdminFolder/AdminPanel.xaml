@@ -19,9 +19,11 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         
-            <Label Grid.Row="0" Grid.Column="1" x:Name="welcome" Content="Welcome" HorizontalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
-            <Button Grid.Column="1" Grid.Row="1" x:Name="BtnBanUser" Height="22" Width="100" Click="BtnBanUser_Click" Content="Ban"
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        <Label Grid.Row="0" Grid.Column="1" x:Name="welcome" Content="Welcome" HorizontalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+        <Button Grid.Column="1" Grid.Row="1" x:Name="BtnBanUser" Height="22" Width="100" Click="BtnBanUser_Click" Content="Ban"
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="AliceBlue"/>
+        <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" x:Name="ButtonUnban" 
+                Height="22" Width="100" Content="Unban" Margin="0,0,0,-90" Click="ButtonUnban_Click" BorderBrush="AliceBlue" />
         <ListBox x:Name="ListBox2" Grid.Column="0" Grid.Row="1" DisplayMemberPath="FullUserInfo">
         </ListBox>
         <Button Content="🔁" FontSize="30" Margin="108,10,109,57" HorizontalContentAlignment="Center"
