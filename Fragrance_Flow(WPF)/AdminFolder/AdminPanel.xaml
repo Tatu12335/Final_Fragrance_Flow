@@ -26,7 +26,7 @@
                 Height="22" Width="100" Content="Unban" Margin="0,0,0,-90" Click="ButtonUnban_Click" BorderBrush="AliceBlue" />
         <ListBox x:Name="ListBox2" Grid.Column="0" Grid.Row="1" DisplayMemberPath="FullUserInfo">
         </ListBox>
-        <Button Content="🔁" FontSize="30" Margin="108,10,109,57" HorizontalContentAlignment="Center"
+        <Button Content="🔁" FontSize="30" Margin="83,0,134,67" HorizontalContentAlignment="Center"
           VerticalContentAlignment="Center" Click="Button_Click" Width="50" Height="50"/>
 
     </Grid>
