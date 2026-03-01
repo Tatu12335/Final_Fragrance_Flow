@@ -73,9 +73,11 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                 
                 var selectedUser = ListBox2.SelectedItem as Users;
 
-                if (selectedUser == null) MessageBox.Show("Please selected a user to ban");
-
-
+                if (selectedUser == null)
+                {
+                    MessageBox.Show("Please selected a user to ban");
+                    return;
+                }
 
 
                 using (HttpClient client = new HttpClient())
@@ -85,7 +87,11 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                     {
                         selectedUser.id
                     };
-
+                    if (selectedUser.isBanned == 1)
+                    {
+                        MessageBox.Show("Cant ban user that is already banned", "Warning!", MessageBoxButton.OK);
+                        return;
+                    }
 
                     var msg = MessageBox.Show($" Are you sure you want to ban user : {selectedUser.username}","Confirm",MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
 
@@ -95,16 +101,12 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                         var json = JsonConvert.SerializeObject(userdata);
                         var content = new StringContent(json, Encoding.UTF8, "application/json");
-                        if (selectedUser.isBanned == 1)
-                        {
-                            MessageBox.Show(" Can't ban user that is banned in the first place! ");
-                            return;
-                        }
+
 
                         var response = await client.PatchAsync($"https://localhost:7014/api/Fragrance_Flow/Users/Admin/Ban", content);
 
                         if (response.IsSuccessStatusCode) MessageBox.Show($"Successfully banned user : {selectedUser.username}");
-                        
+
                     }
                     else return;
                 }
@@ -120,9 +122,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
         {
             try
             {
-                ListBox2.ItemsSource = new List<string>();
-                GetUsers();
-               
+                GetUsers();         
             }
             catch(Exception ex)
             {
@@ -133,12 +133,13 @@ namespace Fragrance_Flow_WPF_.fragranceflow
         private async void ButtonUnban_Click(object sender, RoutedEventArgs e)
         {
 
-
-
-
             var selectedUser = ListBox2.SelectedItem as Users;
 
-            if (selectedUser == null) MessageBox.Show("Please selected a user to ban");
+            if (selectedUser == null)
+            {
+                MessageBox.Show("Please selected a user to ban");
+                return;
+            }
             try
             {
                 var msg = MessageBox.Show($" Do you want to Unban user : {selectedUser.username}", "Select", MessageBoxButton.YesNoCancel);
@@ -151,8 +152,6 @@ namespace Fragrance_Flow_WPF_.fragranceflow
             }
             
 
-
-
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -162,11 +161,11 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                         selectedUser.id
                     };
 
-                    if (selectedUser.isBanned == 0)
-                    {
-                        MessageBox.Show(" Can't unban user that is not banned in the first place! ");
+                   if(selectedUser.isBanned == 0)
+                   {
+                        MessageBox.Show("Cant unban user that is not banned" ,"Warning!" , MessageBoxButton.OK);
                         return;
-                    }
+                   }
 
 
                     var json = JsonConvert.SerializeObject(userdata);
