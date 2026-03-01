@@ -55,9 +55,10 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                     }
                     else
                     {
-                        MessageBox.Show($" An error occured : {response.ReasonPhrase}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($" An error occured : {response.StatusCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 
+                    
                 }
             }
             catch (Exception ex)
@@ -69,7 +70,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
         {
             try
             {
-                ListBox2.Items.DeferRefresh();
+                
                 var selectedUser = ListBox2.SelectedItem as Users;
 
                 if (selectedUser == null) MessageBox.Show("Please selected a user to ban");
@@ -103,6 +104,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                         var response = await client.PatchAsync($"https://localhost:7014/api/Fragrance_Flow/Users/Admin/Ban", content);
 
                         if (response.IsSuccessStatusCode) MessageBox.Show($"Successfully banned user : {selectedUser.username}");
+                        
                     }
                     else return;
                 }
@@ -118,7 +120,8 @@ namespace Fragrance_Flow_WPF_.fragranceflow
         {
             try
             {
-
+                ListBox2.ItemsSource = new List<string>();
+                GetUsers();
                
             }
             catch(Exception ex)
@@ -136,11 +139,17 @@ namespace Fragrance_Flow_WPF_.fragranceflow
             var selectedUser = ListBox2.SelectedItem as Users;
 
             if (selectedUser == null) MessageBox.Show("Please selected a user to ban");
-
-            var msg = MessageBox.Show($" Do you want to Unban user : {selectedUser.username}", "Select", MessageBoxButton.YesNoCancel);
-
-            if (msg == MessageBoxResult.No) return;
-            if (msg == MessageBoxResult.Cancel) return;
+            try
+            {
+                var msg = MessageBox.Show($" Do you want to Unban user : {selectedUser.username}", "Select", MessageBoxButton.YesNoCancel);
+                if (msg == MessageBoxResult.No) return;
+                if (msg == MessageBoxResult.Cancel) return;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($" An error occured : {ex.Message}");
+            }
+            
 
 
 
