@@ -1,6 +1,7 @@
 ﻿
 using Fragrance_flow_DL_VERSION_.models;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
             try
             {
-                GetUsers();
+               
             }
             catch (Exception ex)
             {
@@ -31,7 +32,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                 return;
             }
         }
-        public async void GetUsers()
+        public async Task GetUsers()
         {
 
             try
@@ -50,9 +51,11 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                         if (users == null) return;
 
-                       ListBox2.ItemsSource = users;
-
+                        ListBox2.Items.Clear();
+                       ListBox2.ItemsSource = new ObservableCollection<Users>(users);
                     }
+                    
+                     
                     else
                     {
                         MessageBox.Show($" An error occured : {response.StatusCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -85,7 +88,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                     var userdata = new
                     {
-                        selectedUser.id
+                        selectedUser.id,
                     };
                     if (selectedUser.isBanned == 1)
                     {
@@ -105,10 +108,10 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                         var response = await client.PatchAsync($"https://localhost:7014/api/Fragrance_Flow/Users/Admin/Ban", content);
 
-                        if (response.IsSuccessStatusCode) MessageBox.Show($"Successfully banned user : {selectedUser.username}");
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK) MessageBox.Show($"Successfully banned user : {selectedUser.username}");
 
                     }
-                    else return;
+                    
                 }
 
             }
@@ -122,7 +125,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
         {
             try
             {
-                GetUsers();         
+                await GetUsers();    
             }
             catch(Exception ex)
             {
@@ -158,7 +161,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                 {
                     var userdata = new
                     {
-                        selectedUser.id
+                        selectedUser.id,
                     };
 
                    if(selectedUser.isBanned == 0)
@@ -175,7 +178,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                     
                     if (response.StatusCode == System.Net.HttpStatusCode.OK) MessageBox.Show($"Successfully Unbanned user : {selectedUser.username}");
                     
-                    return;
+                    
 
                 }
             }
