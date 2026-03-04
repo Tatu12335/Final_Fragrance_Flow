@@ -24,7 +24,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
             try
             {
-               
+                GetUsers();
             }
             catch (Exception ex)
             {
@@ -51,7 +51,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                         if (users == null) return;
 
-                        ListBox2.Items.Clear();
+                       
                        ListBox2.ItemsSource = new ObservableCollection<Users>(users);
                     }
                     
@@ -102,11 +102,14 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                     {
 
 
+                        
+                        
+
                         var json = JsonConvert.SerializeObject(userdata);
                         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
 
-                        var response = await client.PatchAsync($"https://localhost:7014/api/Fragrance_Flow/Users/Admin/Ban", content);
+                        var response = await client.PatchAsync($"https://localhost:7014/api/Fragrance_Flow/Users/Admin/Ban",content);
 
                         if (response.StatusCode == System.Net.HttpStatusCode.OK) MessageBox.Show($"Successfully banned user : {selectedUser.username}");
 
@@ -120,7 +123,11 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                 MessageBox.Show($" An error occured banning user : {ex.Message}");
             }
         }
-
+        private async void ReFreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            await GetUsers();
+        
+        }
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             try
