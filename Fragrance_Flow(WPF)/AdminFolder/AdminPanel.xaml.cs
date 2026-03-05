@@ -21,16 +21,18 @@ namespace Fragrance_Flow_WPF_.fragranceflow
             InitializeComponent();
             _username = username;
             welcome.Content = $"Welcome {_username}";
-
-            try
+            this.Loaded += async (s, e) =>
             {
-                GetUsers();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($" An error occured while loading users : {ex.Message}", " Error", MessageBoxButton.OK);
-                return;
-            }
+                try
+                {
+                    await GetUsers();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($" An error occured while loading users : {ex.Message}", " Error", MessageBoxButton.OK);
+                    return;
+                }
+            };
         }
         public async Task GetUsers()
         {
@@ -88,7 +90,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                     var userdata = new
                     {
-                        selectedUser.id,
+                        id = selectedUser.id
                     };
                     if (selectedUser.isBanned == 1)
                     {
@@ -101,20 +103,17 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                     if (msg == MessageBoxResult.Yes)
                     {
 
-
-                        
-                        
-
                         var json = JsonConvert.SerializeObject(userdata);
                         var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-
+                        
                         var response = await client.PatchAsync($"https://localhost:7014/api/Fragrance_Flow/Users/Admin/Ban",content);
 
                         if (response.StatusCode == System.Net.HttpStatusCode.OK) MessageBox.Show($"Successfully banned user : {selectedUser.username}");
-
+                        await GetUsers();
                     }
                     
+
+
                 }
 
             }
@@ -153,8 +152,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
             try
             {
                 var msg = MessageBox.Show($" Do you want to Unban user : {selectedUser.username}", "Select", MessageBoxButton.YesNoCancel);
-                if (msg == MessageBoxResult.No) return;
-                if (msg == MessageBoxResult.Cancel) return;
+                if (msg != MessageBoxResult.Yes) return;
             }
             catch(Exception ex)
             {
@@ -168,7 +166,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                 {
                     var userdata = new
                     {
-                        selectedUser.id,
+                       id = selectedUser.id,
                     };
 
                    if(selectedUser.isBanned == 0)
@@ -184,8 +182,8 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                     var response = await client.PatchAsync("https://localhost:7014/api/Fragrance_Flow/Users/Admin/Unban", content);
                     
                     if (response.StatusCode == System.Net.HttpStatusCode.OK) MessageBox.Show($"Successfully Unbanned user : {selectedUser.username}");
-                    
-                    
+
+                    await GetUsers();
 
                 }
             }
