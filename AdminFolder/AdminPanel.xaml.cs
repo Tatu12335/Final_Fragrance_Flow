@@ -21,7 +21,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
             _username = username;
             welcome.Content = $"Welcome {_username}";
 
-            // Load users after the window is loaded so we can await and catch exceptions
+            
             this.Loaded += async (s, e) =>
             {
                 try
@@ -51,7 +51,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                         if (users == null) return;
 
-                        // Bind an ObservableCollection so future updates can be made without reassigning ItemsSource
+                        
                         ListBox2.ItemsSource = new ObservableCollection<Users>(users);
                     }
                     else
