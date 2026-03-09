@@ -1,4 +1,5 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
+using Fragrance_flow_DL_VERSION_.models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace fragrance_API.Controllers.AdminControllers

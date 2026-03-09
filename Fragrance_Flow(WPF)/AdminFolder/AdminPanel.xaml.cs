@@ -6,6 +6,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Text;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using Fragrance_flow_DL_VERSION_.interfaces;
+using System.Net.Http.Json;
 
 namespace Fragrance_Flow_WPF_.fragranceflow
 {
@@ -15,12 +19,16 @@ namespace Fragrance_Flow_WPF_.fragranceflow
     public partial class AdminPanel : Window
     {
         private string _username;
-
-        public AdminPanel(string username)
+        
+        public AdminPanel(string username) 
         {
             InitializeComponent();
             _username = username;
             welcome.Content = $"Welcome {_username}";
+            
+
+
+
             this.Loaded += async (s, e) =>
             {
                 try
@@ -34,7 +42,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                 }
             };
         }
-        public async Task GetUsers()
+        public async Task GetUsers() 
         {
 
             try
@@ -107,7 +115,9 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                         var content = new StringContent(json, Encoding.UTF8, "application/json");
                         
                         var response = await client.PatchAsync($"https://localhost:7014/api/Fragrance_Flow/Users/Admin/Ban",content);
-
+                        
+                        
+                        
                         if (response.StatusCode == System.Net.HttpStatusCode.OK) MessageBox.Show($"Successfully banned user : {selectedUser.username}");
                         await GetUsers();
                     }
@@ -164,24 +174,31 @@ namespace Fragrance_Flow_WPF_.fragranceflow
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var userdata = new
-                    {
-                       id = selectedUser.id,
-                    };
+                   
 
                    if(selectedUser.isBanned == 0)
                    {
                         MessageBox.Show("Cant unban user that is not banned" ,"Warning!" , MessageBoxButton.OK);
                         return;
                    }
-
+                    var userdata = new
+                    {
+                        id = selectedUser.id,
+                    };
 
                     var json = JsonConvert.SerializeObject(userdata);
-                    var content = new StringContent (json, Encoding.UTF8, "application/json");
+                    var content = new StringContent (json, Encoding.UTF8,"application/json");
 
-                    var response = await client.PatchAsync("https://localhost:7014/api/Fragrance_Flow/Users/Admin/Unban", content);
+                    Debug.WriteLine(json.GetType());
+
+                    var response = await client.PatchAsync("https://localhost:7014/api/Fragrance_Flow/Users/Admin/Unban", content );
                     
                     if (response.StatusCode == System.Net.HttpStatusCode.OK) MessageBox.Show($"Successfully Unbanned user : {selectedUser.username}");
+
+                    var responsedata = await response.Content.ReadAsStringAsync();
+
+                    
+
 
                     await GetUsers();
 
