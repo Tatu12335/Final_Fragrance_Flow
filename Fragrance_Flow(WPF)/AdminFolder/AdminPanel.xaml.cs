@@ -174,24 +174,31 @@ namespace Fragrance_Flow_WPF_.fragranceflow
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var userdata = new
-                    {
-                       id = selectedUser.id,
-                    };
+                   
 
                    if(selectedUser.isBanned == 0)
                    {
                         MessageBox.Show("Cant unban user that is not banned" ,"Warning!" , MessageBoxButton.OK);
                         return;
                    }
-
+                    var userdata = new
+                    {
+                        id = selectedUser.id,
+                    };
 
                     var json = JsonConvert.SerializeObject(userdata);
-                    var content = new StringContent (json, Encoding.UTF8, "application/json");
+                    var content = new StringContent (json, Encoding.UTF8,"application/json");
 
-                    var response = await client.PatchAsync("https://localhost:7014/api/Fragrance_Flow/Users/Admin/Unban", content);
+                    Debug.WriteLine(json.GetType());
+
+                    var response = await client.PatchAsync("https://localhost:7014/api/Fragrance_Flow/Users/Admin/Unban", content );
                     
                     if (response.StatusCode == System.Net.HttpStatusCode.OK) MessageBox.Show($"Successfully Unbanned user : {selectedUser.username}");
+
+                    var responsedata = await response.Content.ReadAsStringAsync();
+
+                    
+
 
                     await GetUsers();
 
