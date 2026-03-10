@@ -1,30 +1,28 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
-using Fragrance_flow_DL_VERSION_.models;
-using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
-using System.ComponentModel.DataAnnotations;
 
 namespace fragrance_API.Controllers.AdminControllers
 {
     [Controller]
     [Route("api/Fragrance_Flow/Users/Admin")]
 
-    public class UnbanUserController : Controller
+    public class UnbanUserController : ControllerBase
     {
+        // I probably should have put the dto's in the models folder but i didn't 
         public class UnbanDto
         {
-            [Required]
             public int id { get; set; }
         }
+        // To access the admin functionality from the repo
         public readonly IAdminServices _adminService;
         public UnbanUserController(IAdminServices adminServices)
         {
             _adminService = adminServices;
         }
+        //
 
         [HttpPatch("Unban")]
-        public async Task<IActionResult> UnbanUserAsync([FromBody]UnbanDto dto)
+        public async Task<IActionResult> UnbanUserAsync([FromBody] UnbanDto dto)
         {
             try
             {
