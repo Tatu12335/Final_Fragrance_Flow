@@ -15,7 +15,8 @@ namespace Fragrance_flow_DL_VERSION_.classes.Sql
             _httpClient = httpClient;
 
         }
-
+        // This gets users generel location from ip-api.com and puts the data to ipLocation class then checks the-
+        // current weather based on the given location.
         public async Task<double?> UserLocationAsync()
         {
             try
