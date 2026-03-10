@@ -9,13 +9,12 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
     {
         private readonly string _connectionString;
         private readonly ILoggger _loggger;
-        // Needs the connection-string[Which is an environment variable] and the logger 
+
         public AdminServices(string connectionString, ILoggger loggger)
         {
             _connectionString = connectionString;
             _loggger = loggger;
         }
-        // Gets all users 
         public async Task<IEnumerable<Users>> GetAllUsers()
         {
 
@@ -37,7 +36,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
 
             }
         }
-        // Ban User by id 
+
         public async Task BanUserById(int id)
         {
             string sqlQuery = "UPDATE users SET isBanned = 1 WHERE id = @Id";
@@ -56,7 +55,6 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
 
             }
         }
-        // And unban user by id
         public async Task UnbanUserById(int id)
         {
             string sqlQuery = "UPDATE users SET isBanned = 0 WHERE id = @Id";
@@ -74,8 +72,6 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
                 throw new Exception(" An error occured : " + ex.Message);
             }
         }
-        // Promote user to admin.
-        // NOTE that i at this time have only 2 roles user and admin, i plan on making this better once the wpf frontend is good enough.
         public async Task PromoteUserById(int id)
         {
             string sqlQuery = "UPDATE users SET isAdmin = 1 WHERE id = @id";
@@ -93,7 +89,6 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
                 throw new Exception(" An error occured : " + ex.Message);
             }
         }
-        // Demote user to user
         public async Task DemoteUserById(int id)
         {
             string sqlQuery = "UPDATE users SET isAdmin = 0 WHERE id = @id";
@@ -111,7 +106,6 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
                 throw new Exception(" An error occured : " + ex.Message);
             }
         }
-        // Remove user from the db
         public async Task RemoveUserById(int id)
         {
             string sqlQuery = "DELETE from users WHERE id = @Id ";

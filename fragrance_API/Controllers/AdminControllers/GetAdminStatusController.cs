@@ -5,10 +5,8 @@ namespace fragrance_API.Controllers.AdminControllers
 {
     [Controller]
     [Route("api/Fragrance_Flow/Users")]
-    public class GetAdminStatusController : ControllerBase
+    public class GetAdminStatusController : Controller
     {
-
-        // To access the repos isAdmin method.
         private readonly IFragranceRepo _repository;
 
         public GetAdminStatusController(IFragranceRepo repository)

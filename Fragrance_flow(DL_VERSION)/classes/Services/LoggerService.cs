@@ -7,7 +7,6 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
     // Also add username to executeadmincommand(), in clirepo, so i can see who made a change.
     public class LoggerService : ILoggger
     {
-        // I pretty much stole this logger from my other project but it work well.
         private readonly BlockingCollection<string> _logsQue = new BlockingCollection<string>();
         private readonly Task _worker;
         private readonly string _directory;

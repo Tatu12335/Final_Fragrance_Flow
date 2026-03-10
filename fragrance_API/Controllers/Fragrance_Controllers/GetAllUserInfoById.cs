@@ -8,14 +8,13 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
     [Route("api/Fragrance_Flow/Users")]
     public class GetAllUserInfoById : ControllerBase
     {
-        // To access the repos CheckIfUserExists()
         private readonly IFragranceRepo _repo;
         public GetAllUserInfoById(IFragranceRepo repo)
         {
             _repo = repo;
         }
-        //
         [HttpGet]
+
         public async Task<Users> GetUserInfoByUsername(string username)
         {
 

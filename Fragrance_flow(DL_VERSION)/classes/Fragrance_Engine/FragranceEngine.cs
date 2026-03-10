@@ -11,7 +11,6 @@ namespace Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine
         private readonly ISuggestion _suggestion;
         private readonly ILoggger _loggger;
 
-        // The Engine needs all of these services at the end
         public FragranceEngine(IWeatherService weather, ICli cli, IFragranceRepo repo, IAdminServices adminServices, ISuggestion suggestion, ILoggger loggger)
         {
             _weather = weather;
@@ -22,7 +21,6 @@ namespace Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine
             _loggger = loggger;
 
         }
-        // Starts the programs logic [Logs user in and validates input]
         public async Task RUN()
         {
 

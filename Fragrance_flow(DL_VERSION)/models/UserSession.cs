@@ -2,9 +2,7 @@
 {
     public class UserSession
     {
-        // Have not been using this model correctly much 
-        // I know its a bad idea to use the users class because someone might get the hashes and salts
-        // I plan on using this class properly once the wpf frontend is all good
+
         public Guid SessionId { get; } = Guid.NewGuid();
         public int UserId { get; init; }
         public string Username { get; init; }

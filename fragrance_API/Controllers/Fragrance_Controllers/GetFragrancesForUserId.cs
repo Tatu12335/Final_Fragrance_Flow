@@ -8,19 +8,15 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
     [Route("api/Fragrance_Flow")]
     public class GetFragrancesForUserId : Controller
     {
-        // Same with this dto, it should NOT BE HERE. But it is what it is
         public class UserIdRequest
         {
             public string username { get; set; }
         }
-        // To access repos both checkifuserexist() and getfragrancebyuserid()
         private readonly IFragranceRepo _repo;
         public GetFragrancesForUserId(IFragranceRepo repo)
         {
             _repo = repo;
         }
-
-
         [Route("Fragrances")]
         [HttpPost]
         public async Task<IEnumerable<Fragrance>> GetFragrancesByUserId([FromBody] UserIdRequest id)

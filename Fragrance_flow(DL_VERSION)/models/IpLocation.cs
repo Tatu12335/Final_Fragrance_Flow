@@ -1,7 +1,5 @@
 ﻿namespace Fragrance_flow_DL_VERSION_.models
 {
-    // The api location model,
-    // I know i dont need all this data from the users ip but i decided to keep it just in case 
     public class IpLocation
     {
 

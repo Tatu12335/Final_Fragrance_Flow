@@ -11,7 +11,6 @@ namespace Fragrance_flow_DL_VERSION_.classes
         private const int iterations = 350000;
         private HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
 
-        // hashes the password using pbkdf2 And a salt, iterates 35 0000 times 
         public string HashPassword(string password, out byte[] salt)
         {
             salt = RandomNumberGenerator.GetBytes(saltSize);
@@ -24,7 +23,6 @@ namespace Fragrance_flow_DL_VERSION_.classes
             );
             return Convert.ToHexString(hash);
         }
-        // verifies given hash and the salt 
         public bool VerifyPassword(string password, string hash, byte[] salt)
         {
             var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(

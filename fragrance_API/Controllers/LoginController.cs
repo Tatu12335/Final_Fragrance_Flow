@@ -8,7 +8,6 @@ namespace fragrance_API.Controllers
     [Route("api/Fragrance_Flow/Login")]
     public class FragranceController : ControllerBase
     {
-        // Same with this. It should not be here 
         public class User
         {
             [JsonPropertyName("username")]
@@ -17,14 +16,12 @@ namespace fragrance_API.Controllers
             [JsonPropertyName("password")]
             public string password { get; set; }
         }
-        //
-        // To access repos login() and getadminstatus() methods
         private readonly IFragranceRepo _repo;
         public FragranceController(IFragranceRepo repo)
         {
             _repo = repo;
         }
-        //
+
         [HttpPost]
         public async Task<IActionResult> GetUser([FromBody] User user)
         {

@@ -1,6 +1,5 @@
 ﻿namespace Fragrance_flow_DL_VERSION_.models
 {
-    // This is at the moment un used
     public class AdminSession
     {
         public Guid SessionId { get; } = Guid.NewGuid();

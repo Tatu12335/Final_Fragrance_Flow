@@ -5,15 +5,13 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
 {
     [Controller]
     [Route("api/Fragrance_Flow/Fragrances/delete")]
-    public class DeleteFragranceController : ControllerBase
+    public class DeleteFragranceController : Controller
     {
-        // To access the repos removebyId()
         private readonly IFragranceRepo _repo;
         public DeleteFragranceController(IFragranceRepo repo)
         {
             _repo = repo;
         }
-        //
         [HttpDelete]
         public async Task<IActionResult> Delete(string username, int id)
         {

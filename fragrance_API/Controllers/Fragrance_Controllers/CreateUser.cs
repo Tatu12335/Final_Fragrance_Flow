@@ -8,7 +8,6 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
     [Route("api/Fragrance_Flow/Users")]
     public class CreateUser : ControllerBase
     {
-        // This dto also should't be here but imma keep it in here for now just because, i dont want to revert 
         public class UserCreateRequest
         {
             [JsonPropertyName("username")]
@@ -20,13 +19,15 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
             [JsonPropertyName("password")]
             public string password { get; set; }
         }
-
-        // To access the repos CreateNewUserAsync() method
         private readonly IFragranceRepo _repo;
         public CreateUser(IFragranceRepo repo)
         {
             _repo = repo;
         }
+        /* public IActionResult Index()
+         {
+             return View();
+         }*/
 
         [Route("Create")]
         [HttpPost]
