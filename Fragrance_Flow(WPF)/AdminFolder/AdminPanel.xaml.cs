@@ -189,13 +189,13 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                     var json = JsonConvert.SerializeObject(userdata);
                     var content = new StringContent (json, Encoding.UTF8,"application/json");
 
-                    Debug.WriteLine(json.GetType());
+                    
 
                     var response = await client.PatchAsync("https://localhost:7014/api/Fragrance_Flow/Users/Admin/Unban", content );
                     
                     if (response.StatusCode == System.Net.HttpStatusCode.OK) MessageBox.Show($"Successfully Unbanned user : {selectedUser.username}");
 
-                    var responsedata = await response.Content.ReadAsStringAsync();
+                    
 
                     
 
