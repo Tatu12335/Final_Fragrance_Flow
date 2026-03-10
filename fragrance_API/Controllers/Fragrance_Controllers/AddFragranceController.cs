@@ -8,8 +8,8 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
     [Route("api/Fragrance_Flow/Fragrances")]
     public class AddFragranceController : Controller
     {
+        // To access the fragrance repos addFragrance() METHod 
         private readonly IFragranceRepo _repo;
-
         public AddFragranceController(IFragranceRepo repo)
         {
             _repo = repo;

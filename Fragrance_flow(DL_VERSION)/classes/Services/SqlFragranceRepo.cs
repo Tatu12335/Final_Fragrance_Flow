@@ -38,6 +38,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Sql
 
             }
         }
+        // Gets all fragrances (From every user it should be an admin method but for some reason i put it here a while back)
         public async Task<IEnumerable<Fragrance>> GetAllAsync()
         {
             using var conn = new SqlConnection(_connectionString);

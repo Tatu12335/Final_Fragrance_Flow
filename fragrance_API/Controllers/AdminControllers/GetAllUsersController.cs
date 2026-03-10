@@ -10,11 +10,12 @@ namespace fragrance_API.Controllers.AdminControllers
         // IMPORTANT : Implement jwt later 
         // Because this is not very safe :(
         private readonly IAdminServices _adminServices;
-        private readonly IFragranceRepo _repo;
 
-        public GetAllUsersController(IFragranceRepo repo, IAdminServices adminServices)
+
+        // To access adminpanels GetAllUsers() method
+
+        public GetAllUsersController(IAdminServices adminServices)
         {
-            _repo = repo;
             _adminServices = adminServices;
         }
 

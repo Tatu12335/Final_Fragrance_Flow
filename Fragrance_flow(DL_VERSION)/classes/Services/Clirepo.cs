@@ -7,6 +7,7 @@ namespace Fragrance_flow_DL_VERSION_
 {
     public class Clirepo : ICli
     {
+        // Needs all of these to work
         private readonly IFragranceRepo _repo;
         private readonly IAdminServices _adminServices;
         private readonly ISuggestion _suggestion;
@@ -20,7 +21,8 @@ namespace Fragrance_flow_DL_VERSION_
             _weatherService = weatherService;
             _logger = logger;
         }
-
+        // 
+        // The 'graphics' to normal userpanel
         public async Task<string> UserPanel()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
@@ -35,6 +37,7 @@ namespace Fragrance_flow_DL_VERSION_
             return username;
 
         }
+        // Method to hide the password for over the shoulder attacks
         public string UserPanel_PasswordAsync()
         {
 
@@ -43,6 +46,7 @@ namespace Fragrance_flow_DL_VERSION_
 
             StringBuilder password = new StringBuilder();
             ConsoleKeyInfo keyInfo;
+            // Appends key clicked to the variable but hides the key pressed and instead writelines '*' For one keypressed
             do
             {
                 keyInfo = Console.ReadKey(true);
@@ -51,16 +55,19 @@ namespace Fragrance_flow_DL_VERSION_
                     password.Append(keyInfo.KeyChar);
                     Console.Write("*");
                 }
+                // If the key pressed is backspace remove 1 character from the variable and writeline a backspace
                 else if (keyInfo.Key == ConsoleKey.Backspace && password.Length > 0)
                 {
                     password.Remove(password.Length - 1, 1);
                     Console.Write("\b \b");
 
                 }
+                // runs as long as the key pressed != Enter
             } while (keyInfo.Key != ConsoleKey.Enter);
             Console.WriteLine();
             return password.ToString();
         }
+        // The 'grapics' for the adminpanel, and reads the command it should't do that there but it work so imma keep it for now 
         public async Task<string> LoadAdminPanel()
         {
             _logger.Log(" Admin panel loaded.");
@@ -85,6 +92,7 @@ namespace Fragrance_flow_DL_VERSION_
             return command;
 
         }
+        // Suggestions 
         public async Task SUGGEST(double temp, int id)
         {
 
@@ -97,6 +105,7 @@ namespace Fragrance_flow_DL_VERSION_
                 Console.WriteLine("");
             }
         }
+        // Executes the admin command 
         public async Task ExecuteAdminCommand(string command)
         {
             Console.Clear();
@@ -278,6 +287,7 @@ namespace Fragrance_flow_DL_VERSION_
             }
 
         }
+
         public string OnceLoggedIn(string username)
         {
 
@@ -409,6 +419,7 @@ namespace Fragrance_flow_DL_VERSION_
 
             }
         }
+        // User creation 'page'
         public async Task CreateUserAsync()
         {
             Console.WriteLine(" Please enter a username for the new user:");
@@ -460,6 +471,7 @@ namespace Fragrance_flow_DL_VERSION_
 
 
         }
+        // Adds a fragrances info to the db 
         public Fragrance AddFragrance(string username)
         {
             Console.WriteLine(" Whats the name of the fragrance");
@@ -519,6 +531,8 @@ namespace Fragrance_flow_DL_VERSION_
             _logger.Log($" Fragrance : {Brand}, {Name}, added successfully");
             return new Fragrance { name = Name, brand = Brand, category = Category, notes = Notes, occasion = Occasion, weather = Weather };
         }
+
+        // Litlle ''''''art''''''
         public void ShowPrompt()
         {
             // Console.Clear();
@@ -543,7 +557,7 @@ namespace Fragrance_flow_DL_VERSION_
 
 
         }
-
+        // this is also a wip
         public string Feeling()
         {
             Console.ResetColor();
