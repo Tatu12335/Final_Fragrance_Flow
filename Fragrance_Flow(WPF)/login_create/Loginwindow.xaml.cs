@@ -1,10 +1,13 @@
-﻿using Fragrance_flow_DL_VERSION_.interfaces;
+﻿using ControlzEx.Theming;
+using Fragrance_flow_DL_VERSION_.interfaces;
+using MahApps.Metro.Controls;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using MahApps.Metro;
 
 namespace Fragrance_Flow_WPF_
 {
@@ -13,15 +16,19 @@ namespace Fragrance_Flow_WPF_
     /// </summary>
 
 
-    public partial class Loginwindow : Window
+    public partial class Loginwindow : MetroWindow
     {
 
-
+        public void ChangeAppStyle()
+        {
+            
+        }
         public Loginwindow()
         {
 
             InitializeComponent();
-
+            
+            
         }
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -58,7 +65,9 @@ namespace Fragrance_Flow_WPF_
 
                         MainWindow mainWindow = new MainWindow(username);
                         mainWindow.Show();
+
                         this.Close();
+                        
 
                     }
                     else
