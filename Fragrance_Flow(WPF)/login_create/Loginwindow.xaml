@@ -21,12 +21,12 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="stackPanel" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Beige">
+        <StackPanel x:Name="stackPanel" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Username:" Margin="0,0,0,5"/>
-            <TextBox x:Name="UsernameTextBox" Width="200" Margin="0,0,0,10" Background="AliceBlue"
+            <TextBox x:Name="UsernameTextBox" Width="200" Margin="0,0,0,10" 
                      BorderBrush="Silver" BorderThickness="3px"/>
             <TextBlock Text="Password:" Margin="0,0,0,5"/>
-            <PasswordBox x:Name="PasswordBox" Width="200" Margin="0,0,0,20" Background="AliceBlue"
+            <PasswordBox x:Name="PasswordBox" Width="200" Margin="0,0,0,20"
                          BorderBrush="Silver" BorderThickness="3px"/>
             <Button Content="Login" Width="100" Click="LoginButton_Click" BorderBrush="Silver" BorderThickness="3px" RenderTransformOrigin="0.5,0.5" Cursor="Hand">
 
