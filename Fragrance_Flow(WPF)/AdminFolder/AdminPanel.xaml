@@ -18,7 +18,7 @@
             <RowDefinition Height="200"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
         <Label Grid.Row="0" Grid.Column="1" x:Name="welcome" Content="Welcome" HorizontalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
         <Button Grid.Column="1" Grid.Row="1" x:Name="BtnBanUser" Height="22" Width="100" Click="BtnBanUser_Click" Content="Ban"
                     HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="AliceBlue"/>
@@ -26,8 +26,17 @@
                 Height="22" Width="100" Content="Unban" Margin="0,0,0,-90" Click="ButtonUnban_Click" BorderBrush="AliceBlue" />
         <ListBox x:Name="ListBox2" Grid.Column="0" Grid.Row="1" DisplayMemberPath="FullUserInfo">
         </ListBox>
-        <Button Content="🔁" FontSize="30" Margin="97,24,125,48" HorizontalContentAlignment="Center"
-          VerticalContentAlignment="Center" Click="ReFreshButton_Click" Width="45" Height="45" Background="Transparent"/>
+        <Button Content="🔁" FontSize="30" Margin="1,1,211,61" HorizontalContentAlignment="Center"
+          VerticalContentAlignment="Center" Click="ReFreshButton_Click" Background="Transparent" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.538"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
 
     </Grid>
 </Window>
