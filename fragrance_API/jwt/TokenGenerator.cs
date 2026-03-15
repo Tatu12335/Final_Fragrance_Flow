@@ -8,7 +8,7 @@ namespace fragrance_API.jwt
 {
     public class TokenGenerator
     {
-        public string GenerateToken(int id,string username,string email)
+        public string GenerateToken(string email)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
@@ -21,8 +21,6 @@ namespace fragrance_API.jwt
             var claims = new List<Claim>
             {
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new(JwtRegisteredClaimNames.Sub, id.ToString()),
-                new(JwtRegisteredClaimNames.PreferredUsername, username),
                 new(JwtRegisteredClaimNames.Email, email)
 
             };

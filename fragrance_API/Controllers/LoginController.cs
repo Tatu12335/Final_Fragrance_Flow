@@ -1,5 +1,6 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace fragrance_API.Controllers
@@ -11,9 +12,11 @@ namespace fragrance_API.Controllers
         // Same with this. It should not be here 
         public class User
         {
+            [Required]
             [JsonPropertyName("username")]
             public string username { get; set; }
 
+            [Required]
             [JsonPropertyName("password")]
             public string password { get; set; }
         }
@@ -29,6 +32,9 @@ namespace fragrance_API.Controllers
         public async Task<IActionResult> GetUser([FromBody] User user)
         {
             var userEntity = await _repo.Login(user.username, user.password);
+            
+            
+
             var IsAdmin = await _repo.GetAdminStatus(user.username);
             if (userEntity == null)
             {

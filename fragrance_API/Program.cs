@@ -1,10 +1,13 @@
+using Azure.Core;
 using fragrance_API.Controllers.AdminControllers;
 using fragrance_API.Controllers.Fragrance_Controllers;
 using fragrance_API.dbcontext;
+using fragrance_API.jwt;
 using Fragrance_flow_DL_VERSION_.classes;
 using Fragrance_flow_DL_VERSION_.classes.Services;
 using Fragrance_flow_DL_VERSION_.classes.Sql;
 using Fragrance_flow_DL_VERSION_.interfaces;
+using Microsoft.AspNetCore.Identity.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,11 +32,13 @@ builder.Services.AddTransient<IAdminServices>(sp =>
 
 builder.Services.AddTransient<GetFragrancesForUserId>();
 
+builder.Services.AddSingleton<TokenGenerator>();
 builder.Services.AddSingleton<Dbcontext>();
 builder.Services.AddTransient<CreateUser>();
 builder.Services.AddTransient<AddFragranceController>();
 builder.Services.AddTransient<GetAdminStatusController>();
-
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication(JwtBearer);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -60,6 +65,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 
