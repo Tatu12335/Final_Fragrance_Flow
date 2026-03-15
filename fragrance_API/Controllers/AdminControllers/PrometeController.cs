@@ -2,6 +2,7 @@
 using Fragrance_flow_DL_VERSION_.models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using Fragrance_flow_DL_VERSION_.models.dtos;
 
 namespace fragrance_API.Controllers.AdminControllers
 {
@@ -9,11 +10,7 @@ namespace fragrance_API.Controllers.AdminControllers
     [Route("api/Fragrance_Flow/Users/Admin")]
     public class PrometeController : Controller
     {
-        public class PromoteDto
-        {
-            [Required]
-            public int id {  get; set; }
-        }
+        
         private readonly IAdminServices _adminService;
         // TO : DO Better error handling and move all dto's from the controllers to models/Dtos folder
         public PrometeController(IAdminServices adminService)

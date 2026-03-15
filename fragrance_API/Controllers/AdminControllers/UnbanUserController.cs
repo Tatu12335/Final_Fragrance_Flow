@@ -1,5 +1,6 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Fragrance_flow_DL_VERSION_.models.dtos;
 
 namespace fragrance_API.Controllers.AdminControllers
 {
@@ -8,11 +9,8 @@ namespace fragrance_API.Controllers.AdminControllers
 
     public class UnbanUserController : ControllerBase
     {
-        // I probably should have put the dto's in the models folder but i didn't 
-        public class UnbanDto
-        {
-            public int id { get; set; }
-        }
+       
+       
         // To access the admin functionality from the repo
         public readonly IAdminServices _adminService;
         public UnbanUserController(IAdminServices adminServices)
