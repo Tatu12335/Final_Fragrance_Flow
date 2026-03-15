@@ -1,5 +1,6 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Fragrance_flow_DL_VERSION_.models.dtos;
 
 namespace fragrance_API.Controllers.AdminControllers
 {
@@ -13,11 +14,8 @@ namespace fragrance_API.Controllers.AdminControllers
         {
             _adminServices = adminServices;
         }
-        // I know this dto shouln't be here but it work so imma keep it.
-        public class BanDto
-        {
-            public int id { get; set; }
-        }
+   
+       
         [HttpPatch("Ban")]
         public async Task<IActionResult> BanUser([FromBody] BanDto dto)
         {
