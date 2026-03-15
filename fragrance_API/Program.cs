@@ -7,7 +7,10 @@ using Fragrance_flow_DL_VERSION_.classes;
 using Fragrance_flow_DL_VERSION_.classes.Services;
 using Fragrance_flow_DL_VERSION_.classes.Sql;
 using Fragrance_flow_DL_VERSION_.interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,7 +41,17 @@ builder.Services.AddTransient<CreateUser>();
 builder.Services.AddTransient<AddFragranceController>();
 builder.Services.AddTransient<GetAdminStatusController>();
 builder.Services.AddAuthorization();
-builder.Services.AddAuthentication(JwtBearer);
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(x =>
+    {
+        x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET"))),
+            ValidateIssuerSigningKey = true,
+            ValidateLifetime = true,
+
+        };
+    });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -58,7 +71,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 var app = builder.Build();
-
+app.UseAuthentication();
+app.UseAuthorization();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
