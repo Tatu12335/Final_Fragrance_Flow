@@ -1,5 +1,6 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Fragrance_flow_DL_VERSION_.models;
+using Fragrance_flow_DL_VERSION_.models.dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace fragrance_API.Controllers.Fragrance_Controllers
@@ -8,11 +9,7 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
     [Route("api/Fragrance_Flow")]
     public class GetFragrancesForUserId : Controller
     {
-        // Same with this dto, it should NOT BE HERE. But it is what it is
-        public class UserIdRequest
-        {
-            public string username { get; set; }
-        }
+        
         // To access repos both checkifuserexist() and getfragrancebyuserid()
         private readonly IFragranceRepo _repo;
         public GetFragrancesForUserId(IFragranceRepo repo)

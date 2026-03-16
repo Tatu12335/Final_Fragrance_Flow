@@ -1,6 +1,7 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Fragrance_flow_DL_VERSION_.models.dtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace fragrance_API.Controllers.AdminControllers
 {
@@ -18,7 +19,7 @@ namespace fragrance_API.Controllers.AdminControllers
             _adminService = adminServices;
         }
         //
-
+        
         [HttpPatch("Unban")]
         public async Task<IActionResult> UnbanUserAsync([FromBody] UnbanDto dto)
         {
