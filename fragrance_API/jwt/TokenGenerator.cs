@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Routing;
+﻿using Fragrance_flow_DL_VERSION_.models.dtos;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -8,7 +9,7 @@ namespace fragrance_API.jwt
 {
     public class TokenGenerator
     {
-        public string GenerateToken(string email)
+        public string GenerateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
@@ -21,15 +22,18 @@ namespace fragrance_API.jwt
             var claims = new List<Claim>
             {
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new(JwtRegisteredClaimNames.Email, email)
+                new Claim(ClaimTypes.Name,user.username),
+                
+               
 
             };
+            
+
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new System.Security.Claims.ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddMinutes(15),
-                Issuer = "https://localhost:7014/api/Fragrance_Flow",
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha256Signature)
             };
 
