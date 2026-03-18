@@ -13,6 +13,7 @@ namespace fragrance_API.Controllers.AdminControllers
         
         private readonly IAdminServices _adminService;
         // TO : DO Better error handling and move all dto's from the controllers to models/Dtos folder
+        // Also implement jwt properly
         public PrometeController(IAdminServices adminService)
         {
             _adminService = adminService;

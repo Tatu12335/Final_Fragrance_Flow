@@ -6,6 +6,8 @@ using Fragrance_flow_DL_VERSION_.models.dtos;
 using Microsoft.AspNetCore.Authorization;
 using fragrance_API.jwt;
 using Fragrance_flow_DL_VERSION_.models;
+using Microsoft.Extensions.Hosting;
+using System.Security.Claims;
 
 namespace fragrance_API.Controllers
 {
@@ -23,29 +25,26 @@ namespace fragrance_API.Controllers
             _tokenGenerator = tokenGenerator;
         }
         //
-        
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> GetUser([FromBody] User user)
-        {
-            
+        {           
             var userEntity = await _repo.Login(user.username, user.password);
 
-           
-
             var IsAdmin = await _repo.GetAdminStatus(user.username);
+            
             if (userEntity == null)
             {
                 return NotFound($" Error occured : User not found ");
             }
-           
-
+            // If UserEntity is not null generate token
+            var token = _tokenGenerator.GenerateToken(userEntity);
 
 
             if (IsAdmin == null) return Ok(new { message = " Successfully logged in, Not admin" });
-
+            
             return Ok(new { message = " Succesfully logged in, user is admin" });
 
         }
-
     }
 }
