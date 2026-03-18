@@ -1,10 +1,8 @@
-﻿using Fragrance_flow_DL_VERSION_.models.dtos;
-using Microsoft.AspNetCore.Mvc.Routing;
+﻿using Fragrance_flow_DL_VERSION_.models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Fragrance_flow_DL_VERSION_.models;
 
 namespace fragrance_API.jwt
 {
@@ -20,13 +18,13 @@ namespace fragrance_API.jwt
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
-            
+
             if (jwtSecret == null) throw new ArgumentNullException(" Key is null,check for the environment-variable 'JWT_SECRET'. ");
 
             var key = Encoding.UTF8.GetBytes(jwtSecret);
 
 
-            var claims = new []
+            var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()),
                 new Claim(ClaimTypes.Role,((Roles)user.isAdmin).ToString()),
@@ -35,14 +33,14 @@ namespace fragrance_API.jwt
 
 
             };
-            
+
 
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new System.Security.Claims.ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddMinutes(15),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);

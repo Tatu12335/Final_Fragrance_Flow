@@ -1,6 +1,4 @@
-using Azure.Core;
-using fragrance_API.Controllers.AdminControllers;
-using fragrance_API.Controllers.Fragrance_Controllers;
+using fragrance_API.Controllers;
 using fragrance_API.dbcontext;
 using fragrance_API.jwt;
 using Fragrance_flow_DL_VERSION_.classes;
@@ -8,7 +6,6 @@ using Fragrance_flow_DL_VERSION_.classes.Services;
 using Fragrance_flow_DL_VERSION_.classes.Sql;
 using Fragrance_flow_DL_VERSION_.interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -33,13 +30,10 @@ builder.Services.AddTransient<IAdminServices>(sp =>
 
 //builder.Services.AddTransient<GetAllUserInfoById>();
 
-builder.Services.AddTransient<GetFragrancesForUserId>();
 
 builder.Services.AddSingleton<TokenGenerator>();
 builder.Services.AddSingleton<Dbcontext>();
-builder.Services.AddTransient<CreateUser>();
-builder.Services.AddTransient<AddFragranceController>();
-builder.Services.AddTransient<GetAdminStatusController>();
+builder.Services.AddTransient<AdminController>();
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(x =>
@@ -49,7 +43,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET"))),
             ValidateIssuerSigningKey = true,
             ValidateLifetime = true,
-            
+
 
         };
     });
@@ -86,8 +80,19 @@ app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
 app.MapControllers();
+app.UseExceptionHandler(app =>
+{
 
+    app.Run(async context =>
+    {
+        context.Response.StatusCode = 500;
+        await context.Response.WriteAsync(" Something went wrong");
+    });
+});
 app.Run();
+
+
+
+
 
