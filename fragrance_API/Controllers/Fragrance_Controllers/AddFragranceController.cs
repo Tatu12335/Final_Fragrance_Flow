@@ -1,10 +1,12 @@
 ﻿using Fragrance_flow_DL_VERSION_.interfaces;
 using Fragrance_flow_DL_VERSION_.models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace fragrance_API.Controllers.Fragrance_Controllers
 {
     [Controller]
+    [Authorize]
     [Route("api/Fragrance_Flow/Fragrances")]
     public class AddFragranceController : Controller
     {
@@ -23,7 +25,7 @@ namespace fragrance_API.Controllers.Fragrance_Controllers
                 if (fragrance == null) throw new Exception("userid is null, did you try to add a fragrance to a user that doesnt exist");
 
                 await _repo.AddFragrance(username, fragrance);
-
+               
                 return Ok(new { message = "Fragrance added successfully" });
             }
             catch (Exception ex)

@@ -4,12 +4,19 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Fragrance_flow_DL_VERSION_.models;
 
 namespace fragrance_API.jwt
 {
     public class TokenGenerator
     {
-        public string GenerateToken(User user)
+        public enum Roles
+        {
+            User = 1,
+            Admin = 2,
+
+        }
+        public string GenerateToken(UserSession user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
@@ -17,14 +24,15 @@ namespace fragrance_API.jwt
             if (jwtSecret == null) throw new ArgumentNullException(" Key is null,check for the environment-variable 'JWT_SECRET'. ");
 
             var key = Encoding.UTF8.GetBytes(jwtSecret);
-            
 
-            var claims = new List<Claim>
+
+            var claims = new []
             {
-                new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.Name,user.username),
-                
-               
+                new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()),
+                new Claim(ClaimTypes.Role,((Roles)user.isAdmin).ToString()),
+                new Claim(ClaimTypes.Name,user.Username)
+
+
 
             };
             
