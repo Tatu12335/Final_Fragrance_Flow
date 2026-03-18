@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Fragrance_flow(DL_VERSION)\Fragrance_flow(DI_VERSION).csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="dtos\Fragrance\" />
+  </ItemGroup>
+
 </Project>
