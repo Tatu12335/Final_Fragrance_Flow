@@ -1,9 +1,8 @@
-﻿
-using Fragrance_flow_DL_VERSION_.interfaces;
-using Fragrance_flow_DL_VERSION_.models;
+﻿using Fragrance_flow_DL_VERSION_.Application.interfaces;
+using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using System.Text;
 
-namespace Fragrance_flow_DL_VERSION_
+namespace Fragrance_flow_DL_VERSION_.Infrastructure.Repositories
 {
     public class Clirepo : ICli
     {

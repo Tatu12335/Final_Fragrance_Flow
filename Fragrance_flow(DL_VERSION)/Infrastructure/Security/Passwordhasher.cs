@@ -1,8 +1,8 @@
-﻿using Fragrance_flow_DL_VERSION_.interfaces;
+﻿using Fragrance_flow_DL_VERSION_.Application.interfaces;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Fragrance_flow_DL_VERSION_.classes
+namespace Fragrance_flow_DL_VERSION_.Infrastructure.Security
 {
     public class Passwordhasher : IPasswordhasher
     {

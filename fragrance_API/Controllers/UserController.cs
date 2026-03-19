@@ -1,5 +1,5 @@
 ﻿using fragrance_API.dtos.User;
-using Fragrance_flow_DL_VERSION_.interfaces;
+using Fragrance_flow_DL_VERSION_.Application.interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 

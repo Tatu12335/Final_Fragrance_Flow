@@ -1,10 +1,9 @@
 ﻿
-using Fragrance_flow_DL_VERSION_.classes;
-using Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine;
+using Fragrance_flow_DL_VERSION_.Application.interfaces;
+using Fragrance_flow_DL_VERSION_.Application.Services;
 using Fragrance_flow_DL_VERSION_.classes.logic.Suggestion_logic;
-using Fragrance_flow_DL_VERSION_.classes.Services;
 using Fragrance_flow_DL_VERSION_.classes.Sql;
-using Fragrance_flow_DL_VERSION_.interfaces;
+using Fragrance_flow_DL_VERSION_.Infrastructure.Security;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;

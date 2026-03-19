@@ -1,7 +1,7 @@
-﻿using Fragrance_flow_DL_VERSION_.interfaces;
+﻿using Fragrance_flow_DL_VERSION_.Application.interfaces;
 using System.Collections.Concurrent;
 
-namespace Fragrance_flow_DL_VERSION_.classes.Services
+namespace Fragrance_flow_DL_VERSION_.Application.Services
 {
     // Note to me : Remember to addsingleton not, addtransient.
     // Also add username to executeadmincommand(), in clirepo, so i can see who made a change.

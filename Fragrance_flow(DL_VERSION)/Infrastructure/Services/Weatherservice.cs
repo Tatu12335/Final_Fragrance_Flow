@@ -1,10 +1,10 @@
-﻿using Fragrance_flow_DL_VERSION_.interfaces;
-using Fragrance_flow_DL_VERSION_.models;
+﻿using Fragrance_flow_DL_VERSION_.Application.interfaces;
+using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using System.Globalization;
 using System.Net.Http.Json;
 using System.Text.Json;
 
-namespace Fragrance_flow_DL_VERSION_.classes.Sql
+namespace Fragrance_flow_DL_VERSION_.Infrastructure.Services
 {
     public class Weatherservice : IWeatherService
     {
@@ -33,7 +33,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Sql
 
                     var json = await response.Content.ReadAsStringAsync();
 
-                    using var document = System.Text.Json.JsonDocument.Parse(json);
+                    using var document = JsonDocument.Parse(json);
                     var currentWeather = document.RootElement
                         .GetProperty("current_weather");
 

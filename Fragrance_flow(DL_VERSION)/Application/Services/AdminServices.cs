@@ -1,9 +1,9 @@
 ﻿using Dapper;
-using Fragrance_flow_DL_VERSION_.interfaces;
-using Fragrance_flow_DL_VERSION_.models;
+using Fragrance_flow_DL_VERSION_.Application.interfaces;
+using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Microsoft.Data.SqlClient;
 
-namespace Fragrance_flow_DL_VERSION_.classes.Services
+namespace Fragrance_flow_DL_VERSION_.Application.Services
 {
     public class AdminServices : IAdminServices
     {
@@ -25,7 +25,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Services
             {
                 using (var conn = new SqlConnection(_connectionString))
                 {
-                    var response = (await conn.QueryAsync<Users>(sqlQuery));
+                    var response = await conn.QueryAsync<Users>(sqlQuery);
 
                     return response;
                 }

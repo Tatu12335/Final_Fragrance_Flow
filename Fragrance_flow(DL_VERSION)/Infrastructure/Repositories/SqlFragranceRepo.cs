@@ -1,9 +1,9 @@
 ﻿using Dapper;
-using Fragrance_flow_DL_VERSION_.interfaces;
-using Fragrance_flow_DL_VERSION_.models;
+using Fragrance_flow_DL_VERSION_.Application.interfaces;
+using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Microsoft.Data.SqlClient;
 
-namespace Fragrance_flow_DL_VERSION_.classes.Sql
+namespace Fragrance_flow_DL_VERSION_.Infrastructure.Repositories
 {
     public class SqlFragranceRepo : IFragranceRepo
     {
@@ -62,7 +62,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.Sql
             {
                 using (var conn = new SqlConnection(_connectionString))
                 {
-                    var userList = (await conn.QueryFirstOrDefaultAsync<Users>(sqlQuery, new { Username = username }));
+                    var userList = await conn.QueryFirstOrDefaultAsync<Users>(sqlQuery, new { Username = username });
 
                     return userList;
                 }

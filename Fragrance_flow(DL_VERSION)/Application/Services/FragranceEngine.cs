@@ -1,6 +1,6 @@
-﻿using Fragrance_flow_DL_VERSION_.interfaces;
+﻿using Fragrance_flow_DL_VERSION_.Application.interfaces;
 
-namespace Fragrance_flow_DL_VERSION_.classes.Fragrance_Engine
+namespace Fragrance_flow_DL_VERSION_.Application.Services
 {
     public class FragranceEngine
     {
