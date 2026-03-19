@@ -43,6 +43,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET"))),
             ValidateIssuerSigningKey = true,
             ValidateLifetime = true,
+            ValidateAudience = false,
+            ValidateIssuer = false,
 
 
         };
@@ -65,7 +67,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 
-builder.Services.AddAuthorization();
+
 
 var app = builder.Build();
 app.UseAuthentication();
@@ -87,7 +89,7 @@ app.UseExceptionHandler(app =>
     app.Run(async context =>
     {
         context.Response.StatusCode = 500;
-        await context.Response.WriteAsync(" Something went wrong");
+        await context.Response.WriteAsync($" Something went wrong : {context.Response.Body}");
     });
 });
 app.Run();

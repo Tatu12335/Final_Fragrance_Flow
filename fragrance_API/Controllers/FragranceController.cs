@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace fragrance_API.Controllers
 {
+    [Route("api/Fragrance_Flow/")]
     public class FragranceController : Controller
     {
         // To access the fragrance repos addFragrance() METHod 

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace fragrance_API.Controllers
 {
+    [Route("api/Fragrance_Flow/User")]
     public class UserController : Controller
     {
         private readonly IFragranceRepo _repo;

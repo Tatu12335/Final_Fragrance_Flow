@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace fragrance_API.Controllers
 {
+    [Route("api/Fragrance_Flow/Admin")]
     public class AdminController : ControllerBase
     {
         // To access the admin functionality

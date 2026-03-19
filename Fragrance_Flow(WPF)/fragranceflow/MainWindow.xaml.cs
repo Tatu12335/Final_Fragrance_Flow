@@ -1,6 +1,7 @@
 ﻿using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Fragrance_Flow_WPF_.fragranceflow;
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Windows;
@@ -13,11 +14,13 @@ namespace Fragrance_Flow_WPF_
     public partial class MainWindow : Window
     {
         private string _username;
+        private readonly LoginResponse _loginResponse;
 
-        public MainWindow(string username)
+        public MainWindow(string username, LoginResponse loginResponse)
         {
             InitializeComponent();
             _username = username;
+            _loginResponse = loginResponse;          
             try
             {
                 GetFragrances();
@@ -28,7 +31,7 @@ namespace Fragrance_Flow_WPF_
                 throw new Exception(" An error occured while loading the main window : " + ex.Message);
             }
 
-
+            
         }
         public async Task<bool> AdminStatus()
         {
@@ -37,6 +40,9 @@ namespace Fragrance_Flow_WPF_
 
                 using (HttpClient client = new HttpClient())
                 {
+                    client.DefaultRequestHeaders.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _loginResponse.token);
+                    
                     var isAdmin = await client.GetAsync($"https://localhost:7014/api/Fragrance_Flow/Users/IsAdmin?username={_username}");
                     if (isAdmin == null) return false;
                     var content = isAdmin.Content;
@@ -60,7 +66,7 @@ namespace Fragrance_Flow_WPF_
         {
             try
             {
-                await AdminStatus();
+                //await AdminStatus();
                 using (HttpClient client = new HttpClient())
                 {
 
@@ -69,11 +75,12 @@ namespace Fragrance_Flow_WPF_
                         username = _username,
 
                     };
-
+                    client.DefaultRequestHeaders.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _loginResponse.token);
 
                     var json = JsonConvert.SerializeObject(userData);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-
+                    Debug.WriteLine(_loginResponse.token);
                     var response = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/Fragrances", content);
 
                     if (response.IsSuccessStatusCode)
@@ -117,6 +124,9 @@ namespace Fragrance_Flow_WPF_
                         MessageBox.Show(selectedFragrance.GetType().FullName);
                         return;
                     }
+
+                    client.DefaultRequestHeaders.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _loginResponse.token);
 
                     var idToDelete = selectedFragrance.id;
 

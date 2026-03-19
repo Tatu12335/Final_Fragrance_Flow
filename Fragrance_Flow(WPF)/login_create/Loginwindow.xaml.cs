@@ -1,4 +1,5 @@
 ﻿using Fragrance_flow_DL_VERSION_.Application.interfaces;
+using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using MahApps.Metro.Controls;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -16,16 +17,14 @@ namespace Fragrance_Flow_WPF_
 
     public partial class Loginwindow : MetroWindow
     {
-
-        public void ChangeAppStyle()
-        {
-
-        }
+        
+        
         public Loginwindow()
         {
 
             InitializeComponent();
-
+            
+            
 
         }
 
@@ -59,9 +58,20 @@ namespace Fragrance_Flow_WPF_
 
                     if (response.IsSuccessStatusCode)
                     {
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                        var result = JsonConvert.DeserializeObject<LoginResponse>(jsonResponse);
+
+                        if (string.IsNullOrEmpty(result.ToString())) return;
+
+                        
 
 
-                        MainWindow mainWindow = new MainWindow(username);
+                        MainWindow mainWindow = new MainWindow(username,result);
+
+                        
+
+                        
                         mainWindow.Show();
 
                         this.Close();
@@ -97,37 +107,7 @@ namespace Fragrance_Flow_WPF_
 
         }
     }
-    public class Passwordhasher : IPasswordhasher
-    {
-
-        private const int saltSize = 64;
-        private const int iterations = 350000;
-        private HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
-
-        public string HashPassword(string password, out byte[] salt)
-        {
-            salt = RandomNumberGenerator.GetBytes(saltSize);
-            var hash = Rfc2898DeriveBytes.Pbkdf2(
-                Encoding.UTF8.GetBytes(password),
-                salt,
-                iterations,
-                hashAlgorithm,
-                saltSize
-            );
-            return Convert.ToHexString(hash);
-        }
-        public bool VerifyPassword(string password, string hash, byte[] salt)
-        {
-            var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(
-                    password,
-                    salt,
-                    iterations,
-                    hashAlgorithm,
-                    saltSize);
-            // Used fixed time comparison to prevent timing attacks
-            return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromHexString(hash));
-        }
-    }
+    
 }
 
 
