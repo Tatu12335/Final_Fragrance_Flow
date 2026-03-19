@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Fragrance_flow_DL_VERSION_.Domain.Entities;
+using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
 using System.Windows;
@@ -11,11 +12,13 @@ namespace Fragrance_Flow_WPF_.fragranceflow
     /// </summary>
     public partial class AddFragranceWindow : Window
     {
+        private readonly LoginResponse _loginResponse;
         private string _username;
-        public AddFragranceWindow(string username)
+        public AddFragranceWindow(string username, LoginResponse loginResponse)
         {
             InitializeComponent();
             _username = username;
+            _loginResponse = loginResponse;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -38,8 +41,9 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                     var json = JsonConvert.SerializeObject(fragranceData);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                    var response = await client.PostAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/Add?username={_username}", content);
+                    client.DefaultRequestHeaders.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _loginResponse.token);
+                    var response = await client.PostAsync($"https://localhost:7014/api/Fragrance_Flow/Add?username={_username}", content);
 
                     if (response.IsSuccessStatusCode)
                     {

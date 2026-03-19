@@ -9,7 +9,7 @@ namespace fragrance_API.Controllers
     [Route("api/Fragrance_Flow/")]
     public class FragranceController : Controller
     {
-        // To access the fragrance repos addFragrance() METHod 
+        // To access the fragrance repos  METHods
         private readonly IFragranceRepo _repo;
         public FragranceController(IFragranceRepo repo)
         {
@@ -35,7 +35,7 @@ namespace fragrance_API.Controllers
             
         }
         [Authorize]
-        [HttpDelete]
+        [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(string username, int id)
         {
             var userId = await _repo.GetUserId(username);
@@ -58,7 +58,7 @@ namespace fragrance_API.Controllers
             var fragrances = await _repo.GetAllAsync();
             return Ok(fragrances);
         }
-        [Authorize]
+        [Authorize("Admin")]
         [HttpGet("GetUsers")]
         public async Task<Users> GetUserInfoByUsername(string username)
         {

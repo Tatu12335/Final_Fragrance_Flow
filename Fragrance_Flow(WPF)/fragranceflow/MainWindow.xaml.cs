@@ -20,17 +20,20 @@ namespace Fragrance_Flow_WPF_
         {
             InitializeComponent();
             _username = username;
-            _loginResponse = loginResponse;          
-            try
+            _loginResponse = loginResponse;
+            this.Loaded += async (s, e) =>
             {
-                GetFragrances();
-                label1.Content = $" Welcome, {_username}!";
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(" An error occured while loading the main window : " + ex.Message);
-            }
-
+                try
+                {
+                    label1.Content = $" Welcome, {_username}!";
+                    await GetFragrances();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($" An error occured while loading Main Window : {ex.Message}", " Error", MessageBoxButton.OK);
+                    return;
+                }
+            }; 
             
         }
         public async Task<bool> AdminStatus()
@@ -62,11 +65,11 @@ namespace Fragrance_Flow_WPF_
                 return false;
             }
         }
-        public async void GetFragrances()
+        public async Task GetFragrances()
         {
             try
             {
-                //await AdminStatus();
+                await AdminStatus();
                 using (HttpClient client = new HttpClient())
                 {
 
@@ -80,7 +83,7 @@ namespace Fragrance_Flow_WPF_
 
                     var json = JsonConvert.SerializeObject(userData);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    Debug.WriteLine(_loginResponse.token);
+                    
                     var response = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/Fragrances", content);
 
                     if (response.IsSuccessStatusCode)
@@ -106,7 +109,7 @@ namespace Fragrance_Flow_WPF_
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
 
-            Window addFragranceWindow = new AddFragranceWindow(_username);
+            Window addFragranceWindow = new AddFragranceWindow(_username,_loginResponse);
             addFragranceWindow.Show();
 
         }
@@ -130,11 +133,12 @@ namespace Fragrance_Flow_WPF_
 
                     var idToDelete = selectedFragrance.id;
 
-                    var response = await client.DeleteAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/delete?username={_username}&id={idToDelete}");
+                    var response = await client.DeleteAsync($"https://localhost:7014/api/Fragrance_Flow/Delete?username={_username}&id={idToDelete}");
 
                     if (response.IsSuccessStatusCode)
                     {
                         MessageBox.Show("Fragrance remove successful", "Removal successful", MessageBoxButton.OK);
+                        await GetFragrances();
                     }
                     return;
 
