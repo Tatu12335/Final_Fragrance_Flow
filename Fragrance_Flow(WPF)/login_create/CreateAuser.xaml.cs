@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Fragrance_flow_DL_VERSION_.Domain.Entities;
+using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
 using System.Windows;
@@ -11,11 +12,11 @@ namespace Fragrance_Flow_WPF_
     /// </summary>
     public partial class CreateAuser : Window
     {
-
+       
         public CreateAuser()
         {
             InitializeComponent();
-
+            
 
         }
 

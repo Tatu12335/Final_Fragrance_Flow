@@ -1,6 +1,7 @@
 ﻿using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Fragrance_Flow_WPF_.fragranceflow;
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Windows;
@@ -13,22 +14,27 @@ namespace Fragrance_Flow_WPF_
     public partial class MainWindow : Window
     {
         private string _username;
+        private readonly LoginResponse _loginResponse;
 
-        public MainWindow(string username)
+        public MainWindow(string username, LoginResponse loginResponse)
         {
             InitializeComponent();
             _username = username;
-            try
+            _loginResponse = loginResponse;
+            this.Loaded += async (s, e) =>
             {
-                GetFragrances();
-                label1.Content = $" Welcome, {_username}!";
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(" An error occured while loading the main window : " + ex.Message);
-            }
-
-
+                try
+                {
+                    label1.Content = $" Welcome, {_username}!";
+                    await GetFragrances();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($" An error occured while loading Main Window : {ex.Message}", " Error", MessageBoxButton.OK);
+                    return;
+                }
+            }; 
+            
         }
         public async Task<bool> AdminStatus()
         {
@@ -37,6 +43,9 @@ namespace Fragrance_Flow_WPF_
 
                 using (HttpClient client = new HttpClient())
                 {
+                    client.DefaultRequestHeaders.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _loginResponse.token);
+                    
                     var isAdmin = await client.GetAsync($"https://localhost:7014/api/Fragrance_Flow/Users/IsAdmin?username={_username}");
                     if (isAdmin == null) return false;
                     var content = isAdmin.Content;
@@ -56,7 +65,7 @@ namespace Fragrance_Flow_WPF_
                 return false;
             }
         }
-        public async void GetFragrances()
+        public async Task GetFragrances()
         {
             try
             {
@@ -69,11 +78,12 @@ namespace Fragrance_Flow_WPF_
                         username = _username,
 
                     };
-
+                    client.DefaultRequestHeaders.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _loginResponse.token);
 
                     var json = JsonConvert.SerializeObject(userData);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-
+                    
                     var response = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/Fragrances", content);
 
                     if (response.IsSuccessStatusCode)
@@ -99,7 +109,7 @@ namespace Fragrance_Flow_WPF_
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
 
-            Window addFragranceWindow = new AddFragranceWindow(_username);
+            Window addFragranceWindow = new AddFragranceWindow(_username,_loginResponse);
             addFragranceWindow.Show();
 
         }
@@ -118,13 +128,17 @@ namespace Fragrance_Flow_WPF_
                         return;
                     }
 
+                    client.DefaultRequestHeaders.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _loginResponse.token);
+
                     var idToDelete = selectedFragrance.id;
 
-                    var response = await client.DeleteAsync($"https://localhost:7014/api/Fragrance_Flow/Fragrances/delete?username={_username}&id={idToDelete}");
+                    var response = await client.DeleteAsync($"https://localhost:7014/api/Fragrance_Flow/Delete?username={_username}&id={idToDelete}");
 
                     if (response.IsSuccessStatusCode)
                     {
                         MessageBox.Show("Fragrance remove successful", "Removal successful", MessageBoxButton.OK);
+                        await GetFragrances();
                     }
                     return;
 

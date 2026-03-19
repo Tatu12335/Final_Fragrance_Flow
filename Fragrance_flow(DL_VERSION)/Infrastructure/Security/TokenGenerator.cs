@@ -10,8 +10,8 @@ namespace fragrance_API.jwt
     {
         public enum Roles
         {
-            User = 1,
-            Admin = 2,
+            User = 0,
+            Admin = 1,
 
         }
         public string GenerateToken(UserSession user)
@@ -19,7 +19,7 @@ namespace fragrance_API.jwt
             var tokenHandler = new JwtSecurityTokenHandler();
             var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
 
-            if (jwtSecret == null) throw new ArgumentNullException(" Key is null,check for the environment-variable 'JWT_SECRET'. ");
+            if (jwtSecret == null) throw new ArgumentNullException(" Key is null,check for the environment-variable 'JWTSECRET'. ");
 
             var key = Encoding.UTF8.GetBytes(jwtSecret);
 
@@ -29,8 +29,6 @@ namespace fragrance_API.jwt
                 new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()),
                 new Claim(ClaimTypes.Role,((Roles)user.isAdmin).ToString()),
                 new Claim(ClaimTypes.Name,user.Username)
-
-
 
             };
 

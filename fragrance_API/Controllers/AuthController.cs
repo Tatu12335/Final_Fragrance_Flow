@@ -41,9 +41,9 @@ namespace fragrance_API.Controllers
                 var token = _tokenGenerator.GenerateToken(userEntity);
                 
                     
-                if (IsAdmin == null) return Ok(new { message = " Successfully logged in, Not admin" });
+                if (IsAdmin == null) return Ok(new { token = token , role = "User"});
 
-                return Ok(new { message = " Succesfully logged in, user is admin" });
+                return Ok(new { token = token , role = "Admin"});
             
            
 

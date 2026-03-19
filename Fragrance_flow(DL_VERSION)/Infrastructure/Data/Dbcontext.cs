@@ -1,7 +1,9 @@
 ﻿
-using Microsoft.Extensions.Configuration;
+using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System.Data;
+using System.Runtime.InteropServices;
 namespace fragrance_API.dbcontext
 {
     public class Dbcontext
@@ -14,7 +16,7 @@ namespace fragrance_API.dbcontext
             _config = config;
             _connectionString = _config.GetConnectionString(Environment.GetEnvironmentVariable("DB_CONNECTION"));
         }
-        public IDbConnection CreateConnection() => new SqlConnection(_connectionString);
+       
     }
 
 }
