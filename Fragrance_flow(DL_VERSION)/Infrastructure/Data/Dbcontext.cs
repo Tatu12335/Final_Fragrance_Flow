@@ -1,5 +1,5 @@
 ﻿
-
+using Microsoft.Extensions.Configuration;
 using Microsoft.Data.SqlClient;
 using System.Data;
 namespace fragrance_API.dbcontext
