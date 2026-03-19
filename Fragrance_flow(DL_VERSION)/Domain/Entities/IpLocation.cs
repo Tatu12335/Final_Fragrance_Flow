@@ -1,4 +1,4 @@
-﻿namespace Fragrance_flow_DL_VERSION_.models
+﻿namespace Fragrance_flow_DL_VERSION_.Domain.Entities
 {
     // The api location model,
     // I know i dont need all this data from the users ip but i decided to keep it just in case 

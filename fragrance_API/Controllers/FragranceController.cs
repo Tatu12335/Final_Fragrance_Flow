@@ -1,6 +1,6 @@
 ﻿using fragrance_API.dtos.Auth;
-using Fragrance_flow_DL_VERSION_.interfaces;
-using Fragrance_flow_DL_VERSION_.models;
+using Fragrance_flow_DL_VERSION_.Application.interfaces;
+using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

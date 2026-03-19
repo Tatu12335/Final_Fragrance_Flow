@@ -1,4 +1,4 @@
-﻿using Fragrance_flow_DL_VERSION_.models;
+﻿using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Fragrance_Flow_WPF_.fragranceflow;
 using Newtonsoft.Json;
 using System.Net.Http;

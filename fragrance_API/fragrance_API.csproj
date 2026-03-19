@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="dtos\Fragrance\" />
+    <Folder Include="Middleware\" />
   </ItemGroup>
 
 </Project>

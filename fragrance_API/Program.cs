@@ -1,10 +1,10 @@
 using fragrance_API.Controllers;
 using fragrance_API.dbcontext;
 using fragrance_API.jwt;
-using Fragrance_flow_DL_VERSION_.classes;
-using Fragrance_flow_DL_VERSION_.classes.Services;
-using Fragrance_flow_DL_VERSION_.classes.Sql;
-using Fragrance_flow_DL_VERSION_.interfaces;
+using Fragrance_flow_DL_VERSION_.Application.interfaces;
+using Fragrance_flow_DL_VERSION_.Application.Services;
+using Fragrance_flow_DL_VERSION_.Infrastructure.Repositories;
+using Fragrance_flow_DL_VERSION_.Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;

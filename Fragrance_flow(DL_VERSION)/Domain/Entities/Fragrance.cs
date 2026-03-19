@@ -1,4 +1,4 @@
-﻿namespace Fragrance_flow_DL_VERSION_.models
+﻿namespace Fragrance_flow_DL_VERSION_.Domain.Entities
 {
     // Fragrance model
     public class Fragrance

@@ -1,5 +1,5 @@
 ﻿
-using Fragrance_flow_DL_VERSION_.models;
+using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Net.Http;

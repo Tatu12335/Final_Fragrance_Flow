@@ -1,4 +1,4 @@
-﻿using Fragrance_flow_DL_VERSION_.models;
+﻿using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
