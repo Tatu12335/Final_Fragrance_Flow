@@ -52,7 +52,7 @@ namespace Fragrance_Flow_WPF_
 
                     var json = JsonConvert.SerializeObject(userData);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-
+                   
 
                     var response = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/Login", content);
 
@@ -80,7 +80,7 @@ namespace Fragrance_Flow_WPF_
                     }
                     else
                     {
-                        MessageBox.Show($" An error occured : {response.StatusCode} {response.ReasonPhrase}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($" An error occured : {response.StatusCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 
                 }
