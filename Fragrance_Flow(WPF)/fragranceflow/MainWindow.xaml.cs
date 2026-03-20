@@ -152,7 +152,7 @@ namespace Fragrance_Flow_WPF_
 
         private void BtnAdmin_Click(object sender, RoutedEventArgs e)
         {
-            AdminPanel adminPanel = new AdminPanel(_username);
+            AdminPanel adminPanel = new AdminPanel(_username,_loginResponse);
             adminPanel.Show();
         }
 

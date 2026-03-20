@@ -19,8 +19,11 @@ namespace fragrance_API.Controllers
 
         [Authorize("Admin")]
         [HttpPatch("Ban")]
-        public async Task<IActionResult> BanUser([FromBody] BanDto dto)
+        public async Task<IActionResult> BanUser([FromHeader] BanDto dto)
         {
+            
+
+
             await _adminServices.BanUserById(dto.id);
             return Ok(new { message = " Banned user successfully" });
         }
@@ -53,13 +56,13 @@ namespace fragrance_API.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound(new { message = $" Error getting the userlist : {ex.Message}" });
+                return BadRequest(new { message = $" Error getting the userlist : {ex.Message}" });
 
             }
         }
         [Authorize("Admin")]
         [HttpPatch("Promote")]
-        public async Task<IActionResult> PromoteUser([FromBody] PromoteDto dto)
+        public async Task<IActionResult> PromoteUser([FromHeader] PromoteDto dto)
         {
             try
             {
@@ -73,7 +76,7 @@ namespace fragrance_API.Controllers
         }
         [Authorize("Admin")]
         [HttpPatch("Unban")]
-        public async Task<IActionResult> UnbanUserAsync([FromBody] UnbanDto dto)
+        public async Task<IActionResult> UnbanUserAsync([FromHeader] UnbanDto dto)
         {
             try
             {

@@ -14,15 +14,15 @@ namespace Fragrance_Flow_WPF_.fragranceflow
     public partial class AdminPanel : Window
     {
         private string _username;
-
-        public AdminPanel(string username)
+        private LoginResponse _loginResponse;
+        public AdminPanel(string username, LoginResponse loginResponse)
         {
             InitializeComponent();
             _username = username;
             welcome.Content = $"Welcome {_username}";
 
             // When the window is loaded, do this!
-
+            _loginResponse = loginResponse;
             this.Loaded += async (s, e) =>
             {
                 try
@@ -35,6 +35,7 @@ namespace Fragrance_Flow_WPF_.fragranceflow
                     return;
                 }
             };
+            
         }
         public async Task GetUsers()
         {
@@ -44,7 +45,10 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                 using (HttpClient client = new HttpClient())
                 {
-                    var response = await client.GetAsync("https://localhost:7014/api/Fragrance_Flow/Users/UserList");
+                    client.DefaultRequestHeaders.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _loginResponse.token);
+
+                    var response = await client.GetAsync("https://localhost:7014/api/Fragrance_Flow/Admin/UserList");
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -136,7 +140,6 @@ namespace Fragrance_Flow_WPF_.fragranceflow
         /// 
         /// This is the unban-button click handler. And ask's user to confirm the ban.
         /// 
-        ///  Note to me : Implement jwt later!
         /// </summary>
         private async void ButtonUnban_Click(object sender, RoutedEventArgs e)
         {

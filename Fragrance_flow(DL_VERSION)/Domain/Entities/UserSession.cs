@@ -13,7 +13,6 @@
 
         public double? Temperature { get; set; }
         public string? Location { get; set; }
-        public string token { get; set; }
 
         public bool IsFullyLoaded => UserId > 0 && Temperature.HasValue && isBanned == 0;
 
