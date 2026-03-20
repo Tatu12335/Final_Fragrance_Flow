@@ -46,7 +46,7 @@ namespace Fragrance_Flow_WPF_
                     client.DefaultRequestHeaders.Authorization =
                         new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _loginResponse.token);
                     
-                    var isAdmin = await client.GetAsync($"https://localhost:7014/api/Fragrance_Flow/Users/IsAdmin?username={_username}");
+                    var isAdmin = await client.GetAsync($"https://localhost:7014/api/Fragrance_Flow/Admin/IsAdmin?username={_username}");
                     if (isAdmin == null) return false;
                     var content = isAdmin.Content;
 
