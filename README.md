@@ -1,4 +1,4 @@
-Fragrance-Flow - Fullstack app for fragrance collectors, for analysing and maintaining.
+##Fragrance-Flow - Fullstack app for fragrance collectors, for analysing and maintaining.
 
 #Tech Stack : 
  
@@ -18,7 +18,8 @@ Fragrance-Flow - Fullstack app for fragrance collectors, for analysing and maint
   • Suggestion algorithms [ Still WIP ]
   • Role-Based Access Control ( RBAC )
 
-#Architeture : 
+#Architecture
+```
   |
   Api
   |————Controllers/
@@ -57,7 +58,7 @@ Fragrance-Flow - Fullstack app for fragrance collectors, for analysing and maint
   Wpf
   |
   |
-
+```
  # Lessons Learned
       • Throught this project i have learned a lot about managing bigger more complex system's and, 
       Also about database operations,security-practices and writing more readable code.
