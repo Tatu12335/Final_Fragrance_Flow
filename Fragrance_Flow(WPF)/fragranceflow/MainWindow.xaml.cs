@@ -160,6 +160,20 @@ namespace Fragrance_Flow_WPF_
         {
             GetFragrances();
         }
+
+        private void Listbox1_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var selectedFrag = Listbox1.SelectedItem as Fragrance;
+
+            if (selectedFrag == null) MessageBox.Show("Error : selectedFrag is null");
+
+            MessageBox.Show($"Brand : {selectedFrag.brand},Name : {selectedFrag.name}, Notes{selectedFrag.notes}, Most common usecase : {selectedFrag.occasion}, Most common weather {selectedFrag.weather}.");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }

@@ -8,17 +8,17 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="240"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <Label x:Name="label1" Content="Welcome to Fragrance Flow!" FontSize="24" FontWeight="Bold" Foreground="DarkRed" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <ListBox x:Name="Listbox1" Grid.Row="1" Grid.Column="0" Margin="10" Background="Beige" BorderBrush="Silver" BorderThickness="3px" DisplayMemberPath="name"/>
+        <ListBox x:Name="Listbox1" Grid.Row="1" Grid.Column="0" Margin="10" Background="Beige" BorderBrush="Silver" BorderThickness="3px" DisplayMemberPath="name" MouseDoubleClick="Listbox1_MouseDoubleClick"/>
 
 
         <Label Content="Fragrances" HorizontalAlignment="Center" Margin="0,88,0,0" VerticalAlignment="Top" Height="41" Width="86" RenderTransformOrigin="0.648,0.502" FontSize="16" Grid.RowSpan="2"/>
@@ -31,5 +31,8 @@
         Click="BtnDelete_Click"/>
         <Button  Content="🔁" FontSize="30" Margin="10,10,158,57" HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center" Click="ReFreshButton_Click"/>
+
+        <Button  Content="Scent of the day" FontSize="10" Height="30" HorizontalContentAlignment="Center"
+         VerticalContentAlignment="Bottom" Grid.Column="2" Grid.Row="2" VerticalAlignment="Top" Margin="0,85,21,0" Click="Button_Click"/>
     </Grid>
 </Window>
