@@ -1,6 +1,6 @@
-##Fragrance-Flow - Fullstack app for fragrance collectors, for analysing and maintaining.
+## Fragrance-Flow - Fullstack app for fragrance collectors, for analysing and maintaining.
 
-#Tech Stack : 
+## Tech Stack : 
  
   • Backend 
     ° .NET 8, C#, Dapper
@@ -11,14 +11,14 @@
   • Auth 
     ° JWT(Json Web Token)
 
-#Key Features : 
+## Key Features : 
 
   • User management & Secure login ( JWT ) 
   • Fragrance & User Database
   • Suggestion algorithms [ Still WIP ]
   • Role-Based Access Control ( RBAC )
 
-#Architecture
+## Architecture
 ```
   |
   Api
@@ -59,7 +59,7 @@
   |
   |
 ```
- # Lessons Learned
+ ## Lessons Learned
       • Throught this project i have learned a lot about managing bigger more complex system's and, 
       Also about database operations,security-practices and writing more readable code.
 
