@@ -37,6 +37,9 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
+        <Button Content="Promote" FontSize="10" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"
+         Height="22" Width="100" VerticalContentAlignment="Center" Click="Button_Click" HorizontalAlignment="Right" BorderBrush="AliceBlue"
+                />
 
     </Grid>
 </Window>

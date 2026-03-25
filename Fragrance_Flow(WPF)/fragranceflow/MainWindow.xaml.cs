@@ -72,12 +72,13 @@ namespace Fragrance_Flow_WPF_
                 await AdminStatus();
                 using (HttpClient client = new HttpClient())
                 {
-
+                    Debug.Write(_loginResponse.role);
                     var userData = new
                     {
                         username = _username,
 
                     };
+                    
                     client.DefaultRequestHeaders.Authorization =
                         new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _loginResponse.token);
 

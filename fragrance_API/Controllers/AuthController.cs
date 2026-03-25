@@ -3,6 +3,7 @@ using fragrance_API.jwt;
 using Fragrance_flow_DL_VERSION_.Application.interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace fragrance_API.Controllers
 {
@@ -37,11 +38,14 @@ namespace fragrance_API.Controllers
                 {
                     return NotFound($" Error occured : User not found ");
                 }
+            
+                
                 // If UserEntity is not null generate token
                 var token = _tokenGenerator.GenerateToken(userEntity);
+
                 
-                    
-                if (IsAdmin == null) return Ok(new { token = token , role = "User"});
+
+            if (IsAdmin == null) return Ok(new { token = token , role = "User"});
 
                 return Ok(new { token = token , role = "Admin"});
             

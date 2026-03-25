@@ -8,8 +8,8 @@
         public string email { get; set; }
         public string PasswordHash { get; set; }
         public string salt { get; set; }
-        public int isAdmin { get; set; } = 0;
-        public int isBanned { get; set; } = 0;
+        public int isAdmin { get; set; }
+        public int isBanned { get; set; }
 
         // FullUserInfo because displaymemberpath in wpf
         public string FullUserInfo => $"{id} - {username} - {email} - (ISBANNED) : {isBanned} - (ISADMIN) : {isAdmin}";

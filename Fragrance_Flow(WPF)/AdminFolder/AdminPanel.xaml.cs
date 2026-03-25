@@ -2,6 +2,7 @@
 using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Windows;
@@ -45,8 +46,10 @@ namespace Fragrance_Flow_WPF_.fragranceflow
 
                 using (HttpClient client = new HttpClient())
                 {
+                    Debug.WriteLine(_loginResponse.role);
                     client.DefaultRequestHeaders.Authorization =
                         new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _loginResponse.token);
+                    
 
                     var response = await client.GetAsync("https://localhost:7014/api/Fragrance_Flow/Admin/UserList");
 
@@ -196,6 +199,11 @@ namespace Fragrance_Flow_WPF_.fragranceflow
             {
                 MessageBox.Show($" An error occured while unbanning user [{selectedUser.username}]: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
