@@ -7,9 +7,7 @@ namespace Fragrance_flow_DL_VERSION_.classes.logic.Suggestion_logic
 {
     public class SuggestionLogic : ISuggestion
     {
-        /// <summary>
-        /// This is still a little wip!
-        /// </summary>
+        
         private readonly string _connectionString;
         private readonly ILoggger _loggger;
         public SuggestionLogic(string connectionString, ILoggger loggger)

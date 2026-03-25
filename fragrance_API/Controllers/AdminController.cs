@@ -2,6 +2,7 @@
 using Fragrance_flow_DL_VERSION_.Application.interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace fragrance_API.Controllers
 {
@@ -17,7 +18,7 @@ namespace fragrance_API.Controllers
             _repository = repository;
         }
 
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPatch("Ban")]
         public async Task<IActionResult> BanUser([FromHeader] BanDto dto)
         {
@@ -45,13 +46,16 @@ namespace fragrance_API.Controllers
             }
         }
 
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet("UserList")]
         public async Task<IActionResult> GetUsers()
         {
             try
             {
                 var users = await _adminServices.GetAllUsers();
+
+                
+                
                 return Ok(users);
             }
             catch (Exception ex)
@@ -60,7 +64,7 @@ namespace fragrance_API.Controllers
 
             }
         }
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPatch("Promote")]
         public async Task<IActionResult> PromoteUser([FromHeader] PromoteDto dto)
         {
@@ -74,7 +78,7 @@ namespace fragrance_API.Controllers
                 return BadRequest(" Unexpected error occured, Message > " + ex.Message);
             }
         }
-        [Authorize("Admin")]
+        [Authorize (Roles = "Admin")]
         [HttpPatch("Unban")]
         public async Task<IActionResult> UnbanUserAsync([FromHeader] UnbanDto dto)
         {

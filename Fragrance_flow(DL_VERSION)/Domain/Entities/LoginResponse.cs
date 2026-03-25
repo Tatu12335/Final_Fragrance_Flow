@@ -11,7 +11,7 @@ namespace Fragrance_flow_DL_VERSION_.Domain.Entities
     public class LoginResponse
     {
         public string token { get; set; }
-        public string role { get; set; }
+        public string role { get; set; } 
         
         
     }
