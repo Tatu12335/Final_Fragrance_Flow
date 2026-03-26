@@ -3,7 +3,7 @@ using Fragrance_flow_DL_VERSION_.Application.interfaces;
 using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Microsoft.Data.SqlClient;
 
-namespace Fragrance_flow_DL_VERSION_.Application.Services
+namespace Fragrance_flow_DL_VERSION_.Infrastructure.Repositories
 {
     public class AdminServices : IAdminServices
     {
@@ -76,7 +76,7 @@ namespace Fragrance_flow_DL_VERSION_.Application.Services
         }
         // Promote user to admin.
         // NOTE that i at this time have only 2 roles user and admin, i plan on making this better once the wpf frontend is good enough.
-        public async Task PromoteUserById(int id)
+        public async Task<bool> PromoteUserById(int id)
         {
             string sqlQuery = "UPDATE users SET isAdmin = 1 WHERE id = @id";
 
@@ -84,7 +84,9 @@ namespace Fragrance_flow_DL_VERSION_.Application.Services
             {
                 using (var conn = new SqlConnection(_connectionString))
                 {
-                    await conn.ExecuteAsync(sqlQuery, new { Id = id });
+                    var result = await conn.ExecuteAsync(sqlQuery, new { Id = id });
+                    if (result != null) return true;
+                    return false;
                 }
             }
             catch (Exception ex)
@@ -94,7 +96,7 @@ namespace Fragrance_flow_DL_VERSION_.Application.Services
             }
         }
         // Demote user to user
-        public async Task DemoteUserById(int id)
+        public async Task <bool> DemoteUserById(int id)
         {
             string sqlQuery = "UPDATE users SET isAdmin = 0 WHERE id = @id";
 
@@ -102,7 +104,9 @@ namespace Fragrance_flow_DL_VERSION_.Application.Services
             {
                 using (var conn = new SqlConnection(_connectionString))
                 {
-                    await conn.ExecuteAsync(sqlQuery, new { Id = id });
+                    var result = await conn.ExecuteAsync(sqlQuery, new { Id = id });
+                    if(result != null)  return true; 
+                    return false;
                 }
             }
             catch (Exception ex)

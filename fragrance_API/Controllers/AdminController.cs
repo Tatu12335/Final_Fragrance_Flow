@@ -22,9 +22,6 @@ namespace fragrance_API.Controllers
         [HttpPatch("Ban")]
         public async Task<IActionResult> BanUser([FromHeader] BanDto dto)
         {
-            
-
-
             await _adminServices.BanUserById(dto.id);
             return Ok(new { message = " Banned user successfully" });
         }
@@ -42,7 +39,7 @@ namespace fragrance_API.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(new { message = " Fatal error occured " });
             }
         }
 
@@ -60,7 +57,7 @@ namespace fragrance_API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = $" Error getting the userlist : {ex.Message}" });
+                return BadRequest(new { message = " Fatal error occured " });
 
             }
         }
@@ -75,7 +72,7 @@ namespace fragrance_API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(" Unexpected error occured, Message > " + ex.Message);
+                return BadRequest(new { message = " Fatal error occured " } );
             }
         }
         [Authorize (Roles = "Admin")]
@@ -89,7 +86,24 @@ namespace fragrance_API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest($" Fatal error occured : {ex.Message}");
+                return BadRequest($" Fatal error occured");
+            }
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPatch("Demote")]
+        public async Task<IActionResult> DemoteUser([FromHeader]  DemoteDto dto)
+        {
+            try
+            {
+                var success = await _adminServices.DemoteUserById(dto.id);
+                
+                if (!success) return NotFound(new { message = "User not found" });
+
+                return Ok(new { message = "Successfully demoted user" });
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new { message = $"Fatal error occured " });
             }
         }
     }

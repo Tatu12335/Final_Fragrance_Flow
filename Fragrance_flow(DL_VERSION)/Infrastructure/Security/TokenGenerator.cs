@@ -22,7 +22,7 @@ namespace fragrance_API.jwt
             if (jwtSecret == null) throw new ArgumentNullException(" Key is null,check for the environment-variable 'JWTSECRET'. ");
 
             var key = Encoding.UTF8.GetBytes(jwtSecret);
-            var role = user.isAdmin  == 1 ? "Admin" : "User";
+            var role = user.isAdmin  == 1 ? "User" : "Admin";
 
             var claims = new[]
             {
