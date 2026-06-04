@@ -52,7 +52,7 @@ namespace fragrance_API.Controllers
             }
         }
         [Authorize]
-        [HttpGet("GetAllFragrances")]
+        [HttpGet("Get-All")]
         public async Task<IActionResult> Get()
         {
             var fragrances = await _repo.GetAllAsync();
