@@ -17,8 +17,10 @@ namespace FRONTEND
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly string _token;
+        public MainWindow(string token)
         {
+            _token = token;
             InitializeComponent();
         }
         public string GetFragrances()
@@ -27,12 +29,14 @@ namespace FRONTEND
             {
                 using(var client = new HttpClient())
                 {
-
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
+                    return client.GetStringAsync("https://localhost:7014/api/Fragrance_Flow/Get-All").Result;
                 }
             }
             catch(Exception ex)
             {
                 this.Close();
+                return $"An error occurred while trying to retrieve fragrances: {ex.Message}";
             }
         }
     }
