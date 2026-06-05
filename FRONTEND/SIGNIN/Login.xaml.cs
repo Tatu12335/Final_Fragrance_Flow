@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net.Http;
+using FRONTEND.View;
 namespace FRONTEND.SIGNIN
 {
     /// <summary>
@@ -64,7 +65,7 @@ namespace FRONTEND.SIGNIN
             string token = await SIGNIN(username, password);
             if (!string.IsNullOrEmpty(token))
             {
-                MainWindow mainWindow = new MainWindow(token);         
+                MainWindow mainWindow = new MainWindow(token);
                 mainWindow.Show();
                 this.Close();
             }
