@@ -42,7 +42,7 @@ namespace FRONTEND.SIGNIN
                 using(var client = new HttpClient())
                 {
                     var token = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/Login",content);
-                    if (token == null)
+                    if (!token.IsSuccessStatusCode)
                     {
                         MessageBox.Show("Invalid username or password.", "Authentication Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                         return null;

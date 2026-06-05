@@ -13,8 +13,8 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION")
-?? throw new InvalidOperationException("'DB_CONNECTION' not found");
+string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION3")
+?? throw new InvalidOperationException("'DB_CONNECTION3' not found");
 
 builder.Services.AddSingleton<ILoggger, LoggerService>();
 

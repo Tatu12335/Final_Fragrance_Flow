@@ -23,14 +23,21 @@ namespace FRONTEND
             _token = token;
             InitializeComponent();
         }
-        public string GetFragrances()
+        public async Task<string> GetFragrances()
         {
             try
             {
                 using(var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token);
-                    return client.GetStringAsync("https://localhost:7014/api/Fragrance_Flow/Get-All").Result;
+                   client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                    var response = await client.GetAsync("https://localhost:7014/api/Fragrance_Flow/Get-All");
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show($"Failed to retrieve fragrances: {response.ReasonPhrase}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return null;
+                    }
+                    return await response.Content.ReadAsStringAsync();
                 }
             }
             catch(Exception ex)

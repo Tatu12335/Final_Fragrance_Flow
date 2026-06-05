@@ -86,7 +86,8 @@ namespace Fragrance_flow_DL_VERSION_.Infrastructure.Repositories
 
                     var user = await conn.QueryFirstOrDefaultAsync<Users>(sqlQuery, new { Username = username });
 
-                    if (user == null) return null;
+                    if (user == null) 
+                        return null;
 
                     return user;
 
@@ -128,8 +129,7 @@ namespace Fragrance_flow_DL_VERSION_.Infrastructure.Repositories
         public async Task<Users> GetAdminStatus(string username)
         {
 
-            try
-            {
+            
                 var userEntity = await GetUserId(username);
                 if (userEntity == null) return null;
 
@@ -143,12 +143,8 @@ namespace Fragrance_flow_DL_VERSION_.Infrastructure.Repositories
                     if (isAdmin == 1) return userEntity;
                     return null;
                 }
-            }
-            catch (Exception ex)
-            {
-                _loggger.Log($" [error] : {ex.Message}. {ex.StackTrace}");
-                throw new Exception(" An error occured : " + ex.Message);
-            }
+            
+            
         }
         public async Task<UserSession?> Login(string username, string password)
         {
