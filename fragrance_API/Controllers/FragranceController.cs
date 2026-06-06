@@ -3,7 +3,8 @@ using Fragrance_flow_DL_VERSION_.Application.interfaces;
 using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using fragrance_API.dtos;
+using fragrance_API.dtos.Fragrance;
 namespace fragrance_API.Controllers
 {
     [Route("api/Fragrance_Flow/")]
@@ -32,7 +33,7 @@ namespace fragrance_API.Controllers
                 return StatusCode(500, new { message = $"Error adding fragrance: {ex.Message}" });
             }
 
-            
+
         }
         [Authorize]
         [HttpDelete("Delete")]
@@ -82,6 +83,25 @@ namespace fragrance_API.Controllers
             }
             var fragrances = await _repo.GetFragrancesByUserId(id.username, userInfo.id);
             return fragrances;
+        }
+        [Authorize]
+        [HttpPost("UpdateRating")]
+        public async Task<IActionResult> UpdateRating([FromBody] UpdateRatingRequest request)
+        {
+            try
+            {
+                Users userInfo = await _repo.CheckIfUserExists(request.username);
+                if (userInfo == null)
+                {
+                    return NotFound(new { message = "User not found" });
+                }
+                await _repo.UpdateRating(userInfo.id, request.fragranceId, request.newRating);
+                return Ok(new { message = "Rating updated successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = $"Error updating rating: {ex.Message}" });
+            }
         }
     }
 }

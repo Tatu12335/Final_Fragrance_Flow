@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net.Http;
 using FRONTEND.View;
+using Fragrance_flow_DL_VERSION_.Domain.Entities;
 namespace FRONTEND.SIGNIN
 {
     /// <summary>
@@ -24,7 +25,7 @@ namespace FRONTEND.SIGNIN
         {
             InitializeComponent();
         }
-        public async Task<string> SIGNIN(string username, string password)
+        public async Task<LoginResponse> SIGNIN(string username, string password)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
@@ -48,7 +49,8 @@ namespace FRONTEND.SIGNIN
                         MessageBox.Show("Invalid username or password.", "Authentication Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                         return null;
                     }
-                    return await token.Content.ReadAsStringAsync();
+                    var responseContent = await token.Content.ReadAsStringAsync();
+                    return System.Text.Json.JsonSerializer.Deserialize<LoginResponse>(responseContent);
                 }
             }
             catch(Exception ex)
@@ -62,8 +64,8 @@ namespace FRONTEND.SIGNIN
         {
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Password;
-            string token = await SIGNIN(username, password);
-            if (!string.IsNullOrEmpty(token))
+            var token = await SIGNIN(username, password);
+            if (token != null)
             {
                 MainWindow mainWindow = new MainWindow(token);
                 mainWindow.Show();

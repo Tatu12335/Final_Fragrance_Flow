@@ -1,4 +1,5 @@
-﻿using FRONTEND.Entities;
+﻿using Fragrance_flow_DL_VERSION_.Domain.Entities;
+using FRONTEND.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,7 +27,7 @@ namespace FRONTEND.View_Model
             public event PropertyChangedEventHandler PropertyChanged;
             public ObservableCollection<FRAGRANCE> Fragrances { get; set; }
             private FRAGRANCE _selectedFragrance;
-            private string _token;
+            private LoginResponse _token;
             public FRAGRANCE SelectedFragrance
             {
                 get { return _selectedFragrance; }
@@ -43,7 +44,7 @@ namespace FRONTEND.View_Model
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
-            public MainViewModel(string token)
+            public MainViewModel(LoginResponse token)
             {
                 _token = token;
                 Fragrances = new ObservableCollection<FRAGRANCE>();
