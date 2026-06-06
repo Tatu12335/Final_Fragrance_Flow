@@ -86,7 +86,8 @@ namespace Fragrance_flow_DL_VERSION_.Infrastructure.Repositories
 
                     var user = await conn.QueryFirstOrDefaultAsync<Users>(sqlQuery, new { Username = username });
 
-                    if (user == null) return null;
+                    if (user == null)
+                        return null;
 
                     return user;
 
@@ -128,27 +129,22 @@ namespace Fragrance_flow_DL_VERSION_.Infrastructure.Repositories
         public async Task<Users> GetAdminStatus(string username)
         {
 
-            try
+
+            var userEntity = await GetUserId(username);
+            if (userEntity == null) return null;
+
+            string sqlQuery = "SELECT isAdmin FROM users WHERE id = @Id";
+
+            using (var conn = new SqlConnection(_connectionString))
             {
-                var userEntity = await GetUserId(username);
-                if (userEntity == null) return null;
 
-                string sqlQuery = "SELECT isAdmin FROM users WHERE id = @Id";
+                var isAdmin = await conn.ExecuteScalarAsync<int>(sqlQuery, new { Id = userEntity.id });
 
-                using (var conn = new SqlConnection(_connectionString))
-                {
-
-                    var isAdmin = await conn.ExecuteScalarAsync<int>(sqlQuery, new { Id = userEntity.id });
-
-                    if (isAdmin == 1) return userEntity;
-                    return null;
-                }
+                if (isAdmin == 1) return userEntity;
+                return null;
             }
-            catch (Exception ex)
-            {
-                _loggger.Log($" [error] : {ex.Message}. {ex.StackTrace}");
-                throw new Exception(" An error occured : " + ex.Message);
-            }
+
+
         }
         public async Task<UserSession?> Login(string username, string password)
         {
@@ -290,7 +286,23 @@ namespace Fragrance_flow_DL_VERSION_.Infrastructure.Repositories
                 throw new Exception(" An error occured : " + ex.Message);
             }
         }
+        public async Task UpdateRating(int userId, int id, double rating)
+        {
+            string sqlQuery = "UPDATE tuoksut SET Rating = @Rating where id = @Id and userId = @UserId";
+            try
+            {
+                using (var conn = new SqlConnection(_connectionString))
+                {
+                    await conn.ExecuteAsync(sqlQuery, new { UserId = userId, Id = id, Rating = rating });
+                }
+            }
+            catch (Exception ex)
+            {
+                _loggger.Log($" [error] : {ex.Message}. {ex.StackTrace}");
+                throw new Exception(" An error occured : " + ex.Message);
+            }
 
+        }
     }
 
 }
