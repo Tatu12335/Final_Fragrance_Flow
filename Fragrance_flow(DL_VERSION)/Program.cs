@@ -1,9 +1,9 @@
 ﻿
 using Fragrance_flow_DL_VERSION_.Application.interfaces;
 using Fragrance_flow_DL_VERSION_.Application.Services;
-using Fragrance_flow_DL_VERSION_.classes.logic.Suggestion_logic;
 using Fragrance_flow_DL_VERSION_.Infrastructure.Repositories;
 using Fragrance_flow_DL_VERSION_.Infrastructure.Security;
+using Fragrance_flow_DL_VERSION_.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
