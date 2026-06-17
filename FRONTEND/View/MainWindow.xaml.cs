@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net.Http;
 using Fragrance_flow_DL_VERSION_.Domain.Entities;
+using FRONTEND.View_Model;
 namespace FRONTEND.View
 {
     /// <summary>
@@ -26,17 +27,18 @@ namespace FRONTEND.View
             InitializeComponent();
             DataContext = new View_Model.MainViewModel(token);
             _token = token;
-           
+            
         }
 
         private async Task Window_Loaded(object sender, RoutedEventArgs e)
         {
-            using (var client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token.token);
+            
+                
 
-                var response = await client.GetAsync("https://localhost:7014/api/Fragrance_Flow/Get-All");
-            }
+               
+
+                
+            
         }
     }
 }

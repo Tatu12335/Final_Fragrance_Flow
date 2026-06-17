@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -44,13 +46,29 @@ namespace FRONTEND.View_Model
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
+        public async Task LoadFragrances()
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _token.token);
+                var fragrances = await client.GetFromJsonAsync<List<FRAGRANCE>>("https://localhost:7014/api/Fragrance_Flow/Get-All");
+                
+                Fragrances.Clear();
+
+                foreach (var fragrance in fragrances)
+                {
+                    Fragrances.Add(fragrance);
+                }
+            }
+        }
             public MainViewModel(LoginResponse token)
             {
                 _token = token;
-                Fragrances = new ObservableCollection<FRAGRANCE>();
+                //Fragrances = new ObservableCollection<FRAGRANCE>();
+                _ = LoadFragrances();
 
             }
-            // This is where you would put properties and commands for the main view
+            
         }
     
 }
