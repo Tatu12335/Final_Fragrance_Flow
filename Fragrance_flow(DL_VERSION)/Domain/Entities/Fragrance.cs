@@ -10,6 +10,6 @@
         public string category { get; set; }
         public string weather { get; set; }
         public string occasion { get; set; }
-
+        public decimal rating { get; set; } = 0;
     }
 }

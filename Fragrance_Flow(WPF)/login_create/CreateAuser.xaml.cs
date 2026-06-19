@@ -44,7 +44,7 @@ namespace Fragrance_Flow_WPF_
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
 
 
-                    var response = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/Users/Create", content);
+                    var response = await client.PostAsync("https://localhost:7014/api/Fragrance_Flow/User/Create", content);
 
                     if (response.IsSuccessStatusCode)
                     {

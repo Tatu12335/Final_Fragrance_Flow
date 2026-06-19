@@ -17,12 +17,12 @@ namespace fragrance_API.jwt
         public string GenerateToken(UserSession user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
+            var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET2");
 
-            if (jwtSecret == null) throw new ArgumentNullException(" Key is null,check for the environment-variable 'JWTSECRET'. ");
+            if (jwtSecret == null) throw new ArgumentNullException(" Key is null,check for the environment-variable 'JWT_SECRET2'. ");
 
             var key = Encoding.UTF8.GetBytes(jwtSecret);
-            var role = user.isAdmin  == 1 ? "Admin" : "User";
+            var role = user.isAdmin  == 1 ? "User" : "Admin";
 
             var claims = new[]
             {

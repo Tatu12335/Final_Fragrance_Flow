@@ -16,7 +16,7 @@ namespace Fragrance_flow_DL_VERSION_.Application.interfaces
         public Task<Users> GetAdminStatus(string username);
         public Task<Users> GetBannedStatus(string username);
         public Task RemoveFragranceById(int userId, int id);
-
+        public Task UpdateRating(int userId, int fragranceId, double newRating);
     }
 
 }

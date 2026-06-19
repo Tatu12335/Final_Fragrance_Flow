@@ -7,8 +7,8 @@ namespace Fragrance_flow_DL_VERSION_.Application.interfaces
         public Task<IEnumerable<Users>> GetAllUsers();
         public Task BanUserById(int id);
         public Task UnbanUserById(int id);
-        public Task PromoteUserById(int id);
-        public Task DemoteUserById(int id);
+        public Task <bool> PromoteUserById(int id);
+        public Task <bool> DemoteUserById(int id);
         public Task RemoveUserById(int id);
     }
 }

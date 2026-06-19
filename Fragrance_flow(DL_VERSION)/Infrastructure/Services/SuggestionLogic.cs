@@ -3,7 +3,7 @@ using Fragrance_flow_DL_VERSION_.Application.interfaces;
 using Fragrance_flow_DL_VERSION_.Domain.Entities;
 using Microsoft.Data.SqlClient;
 
-namespace Fragrance_flow_DL_VERSION_.classes.logic.Suggestion_logic
+namespace Fragrance_flow_DL_VERSION_.Infrastructure.Services
 {
     public class SuggestionLogic : ISuggestion
     {

@@ -13,8 +13,8 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION")
-?? throw new InvalidOperationException("'DB_CONNECTION' not found");
+string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION3")
+?? throw new InvalidOperationException("'DB_CONNECTION3' not found");
 
 builder.Services.AddSingleton<ILoggger, LoggerService>();
 
@@ -40,7 +40,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     {
         x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
         {
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET"))),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET2"))),
             ValidateIssuerSigningKey = true,
             ValidateLifetime = true,
             ValidateAudience = false,
